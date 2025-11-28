@@ -1,13 +1,5 @@
-﻿namespace Api.Models;
-
-public enum ReservationStatus
-{
-    Pending,
-    Confirmed,
-    Cancelled,
-    Completed,
-    NoShow
-}
+﻿using Api.Models.Enums;
+namespace Api.Models.Entities;
 
 public class Reservation
 {

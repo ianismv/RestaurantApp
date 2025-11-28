@@ -1,5 +1,6 @@
-﻿using Api.Models;
-using Api.Repositories;
+﻿using Api.Models.Entities;
+using Api.Models.Enums;
+using Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Repositories;
+namespace Api.Repositories.Implementations;
 
 public class ReservationRepository : IReservationRepository
 {

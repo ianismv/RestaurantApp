@@ -1,6 +1,6 @@
 ﻿using Api.DTOs;
 
-namespace Api.Services;
+namespace Api.Services.Interfaces;
 
 public interface ITableService
 {

@@ -1,5 +1,5 @@
 ﻿using Api.DTOs;
-using Api.Services;
+using Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

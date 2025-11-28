@@ -1,7 +1,7 @@
 ﻿using Api.DTOs;
 using System.Threading.Tasks;
 
-namespace Api.Services;
+namespace Api.Services.Interfaces;
 
 public interface IUserService
 {

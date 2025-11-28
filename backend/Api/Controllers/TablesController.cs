@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
-using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using System.Threading.Tasks;
 
 namespace Api.Controllers;

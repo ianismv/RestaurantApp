@@ -1,7 +1,9 @@
-using Api.Data;
-using Api.Repositories;
-using Api.Services;
-using Api.Utilities;
+Ôªøusing Api.Data;
+using Api.Repositories.Interfaces;
+using Api.Services.Interfaces;
+using Api.Repositories.Implementations;
+using Api.Services.Implementations;
+using Api.Data.Seeds;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -18,7 +20,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
     .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day));
 
-// ---------- ConfiguraciÛn ----------
+// ---------- Configuraci√≥n ----------
 var config = builder.Configuration;
 
 // ---------- Base de datos (PostgreSQL) ----------
@@ -106,7 +108,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// ---------- Migraciones autom·ticas + Seed (admin + mesas + platos) ----------
+// ---------- Migraciones autom√°ticas + Seed (admin + mesas + platos) ----------
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();

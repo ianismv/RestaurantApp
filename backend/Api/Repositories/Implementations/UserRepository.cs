@@ -1,10 +1,11 @@
-﻿using Api.Repositories;
+﻿using Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
-using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using System.Threading.Tasks;
 
-namespace Api.Repositories;
+namespace Api.Repositories.Implementations;
 
 public class UserRepository : IUserRepository
 {

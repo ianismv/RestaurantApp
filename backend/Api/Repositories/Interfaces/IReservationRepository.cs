@@ -1,9 +1,10 @@
-﻿using Api.Models;
+﻿using Api.Models.Entities;
+using Api.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Api.Repositories;
+namespace Api.Repositories.Interfaces;
 
 public interface IReservationRepository
 {

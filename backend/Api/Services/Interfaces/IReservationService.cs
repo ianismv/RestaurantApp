@@ -1,10 +1,11 @@
 ﻿using Api.DTOs;
-using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Api.Services;
+namespace Api.Services.Interfaces;
 
 public interface IReservationService
 {

@@ -1,4 +1,5 @@
-﻿using Api.Models;
+﻿using Api.Models.Entities;
+using Api.Models.Enums;
 namespace Api.DTOs;
 
 public class ReservationDto

@@ -1,8 +1,10 @@
 ﻿using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using Api.Data;
 using Serilog;
 
-namespace Api.Utilities;
+namespace Api.Data.Seeds;
 
 public static class SeedData
 {

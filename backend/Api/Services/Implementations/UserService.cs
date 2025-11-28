@@ -1,13 +1,15 @@
-﻿using Api.DTOs;
-using Api.Models;
-using Api.Repositories;
+﻿using Api.Services.Interfaces;
+using Api.DTOs;
+using Api.Models.Entities;
+using Api.Models.Enums;
+using Api.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Api.Services;
+namespace Api.Services.Implementations;
 
 public class UserService : IUserService
 {

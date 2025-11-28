@@ -1,4 +1,6 @@
 ﻿using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Data;

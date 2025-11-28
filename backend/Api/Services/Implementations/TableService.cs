@@ -1,9 +1,11 @@
-﻿using Api.DTOs;
-using Api.Models;
-using Api.Repositories;
+﻿using Api.Services.Interfaces;
+using Api.DTOs;
+using Api.Models.Entities;
+using Api.Models.Enums;
+using Api.Repositories.Interfaces;
 using AutoMapper;
 
-namespace Api.Services;
+namespace Api.Services.Implementations;
 
 public class TableService : ITableService
 {

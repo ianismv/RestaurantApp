@@ -1,5 +1,6 @@
 ﻿using Api.DTOs;
-using Api.Models;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using AutoMapper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

@@ -1,12 +1,14 @@
-﻿using Api.DTOs;
-using Api.Models;
-using Api.Repositories;
+﻿using Api.Services.Interfaces;
+using Api.DTOs;
+using Api.Models.Entities;
+using Api.Models.Enums;
+using Api.Repositories.Interfaces;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Api.Services;
+namespace Api.Services.Implementations;
 
 public class ReservationService : IReservationService
 {

@@ -1,6 +1,7 @@
-﻿using Api.Models;
+﻿using Api.Models.Entities;
+using Api.Models.Enums;
 
-namespace Api.Repositories;
+namespace Api.Repositories.Interfaces;
 
 public interface ITableRepository
 {

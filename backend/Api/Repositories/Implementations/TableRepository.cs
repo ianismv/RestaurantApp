@@ -1,8 +1,10 @@
-﻿using Api.Data;
-using Api.Models;
+﻿using Api.Repositories.Interfaces;
+using Api.Data;
+using Api.Models.Entities;
+using Api.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Repositories;
+namespace Api.Repositories.Implementations;
 
 public class TableRepository : ITableRepository
 {

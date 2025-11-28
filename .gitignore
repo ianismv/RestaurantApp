@@ -1,0 +1,12 @@
+# Directorios de compilación y output
+[Bb]in/
+[Oo]bj/
+*.log
+
+# Visual Studio y archivos de usuario
+.vs/
+*.suo
+*.user
+
+# Archivos de paquetes de NuGet
+packages/

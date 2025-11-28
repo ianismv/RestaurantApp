@@ -1,0 +1,51 @@
+2025-11-28 00:00:36.154 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-28 00:00:36.625 -03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-11-28 00:00:36.637 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-28 00:00:36.640 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-11-28 00:00:36.643 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-28 00:00:36.649 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-28 00:00:36.924 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-11-28 00:00:36.935 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-11-28 00:00:36.942 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-11-28 00:00:37.081 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-28 00:00:37.263 -03:00 [INF] Now listening on: http://localhost:5231
+2025-11-28 00:00:37.590 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/index.html - null null
+2025-11-28 00:00:37.654 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-28 00:00:37.657 -03:00 [INF] Hosting environment: Development
+2025-11-28 00:00:37.659 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-11-28 00:00:37.876 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/index.html - 200 null text/html;charset=utf-8 297.4067ms
+2025-11-28 00:00:37.887 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/index.js - null null
+2025-11-28 00:00:37.912 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/_vs/browserLink - null null
+2025-11-28 00:00:37.918 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-28 00:00:37.922 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/index.js - 200 null application/javascript;charset=utf-8 35.4126ms
+2025-11-28 00:00:37.928 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 9.8754ms
+2025-11-28 00:00:37.978 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 66.3148ms
+2025-11-28 00:00:38.075 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/v1/swagger.json - null null
+2025-11-28 00:00:38.107 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.9022ms
+2025-11-28 00:00:45.334 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/health - null null
+2025-11-28 00:00:45.438 -03:00 [INF] Executing endpoint 'HTTP: GET /health'
+2025-11-28 00:00:45.453 -03:00 [INF] Setting HTTP status code 200.
+2025-11-28 00:00:45.460 -03:00 [INF] Writing value of type '<>f__AnonymousType6`2' as Json.
+2025-11-28 00:00:45.469 -03:00 [INF] Executed endpoint 'HTTP: GET /health'
+2025-11-28 00:00:45.472 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/health - 200 null application/json; charset=utf-8 137.4618ms

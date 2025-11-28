@@ -1,0 +1,96 @@
+📁 frontend/src/
+├── 📁 api/                      # API Clients
+│   ├── client.ts               # Axios configurado
+│   ├── auth.api.ts             # Endpoints de auth
+│   ├── reservations.api.ts     # Endpoints de reservas
+│   └── tables.api.ts           # Endpoints de mesas
+│
+├── 📁 components/               # Componentes reutilizables
+│   ├── 📁 ui/                  # Design System
+│   │   ├── Button.tsx          # Botón customizado
+│   │   ├── Input.tsx           # Input con validación
+│   │   ├── Card.tsx            # Card container
+│   │   ├── Modal.tsx           # Modal reutilizable
+│   │   ├── Toast.tsx           # Notificaciones
+│   │   ├── Spinner.tsx         # Loading spinner
+│   │   └── Avatar.tsx          # Avatar de usuario
+│   │
+│   └── 📁 layout/              # Componentes de layout
+│       ├── Navbar.tsx          # Barra de navegación
+│       ├── Sidebar.tsx         # Sidebar (admin)
+│       ├── Footer.tsx          # Footer
+│       └── PageHeader.tsx      # Header de página
+│
+├── 📁 features/                 # Features por dominio (⭐ CLAVE)
+│   ├── 📁 auth/
+│   │   ├── components/
+│   │   │   ├── LoginForm.tsx
+│   │   │   └── RegisterForm.tsx
+│   │   ├── hooks/
+│   │   │   └── useAuth.ts
+│   │   ├── stores/
+│   │   │   └── authStore.ts    # Zustand store
+│   │   └── types/
+│   │       └── auth.types.ts
+│   │
+│   ├── 📁 reservations/
+│   │   ├── components/
+│   │   │   ├── ReservationCard.tsx
+│   │   │   ├── ReservationForm.tsx
+│   │   │   ├── ReservationCalendar.tsx
+│   │   │   └── TableSelector.tsx
+│   │   ├── hooks/
+│   │   │   ├── useReservations.ts
+│   │   │   └── useCreateReservation.ts
+│   │   ├── stores/
+│   │   │   └── reservationStore.ts
+│   │   └── types/
+│   │       └── reservation.types.ts
+│   │
+│   └── 📁 tables/
+│       ├── components/
+│       │   ├── TableCard.tsx
+│       │   ├── TableForm.tsx
+│       │   └── TableGrid.tsx
+│       ├── hooks/
+│       │   └── useTables.ts
+│       └── types/
+│           └── table.types.ts
+│
+├── 📁 pages/                    # Páginas (rutas)
+│   ├── HomePage.tsx
+│   ├── LoginPage.tsx
+│   ├── RegisterPage.tsx
+│   ├── ReservationsPage.tsx
+│   ├── MyReservationsPage.tsx
+│   └── AdminDashboard.tsx
+│
+├── 📁 router/
+│   ├── index.tsx               # Configuración de rutas
+│   ├── PrivateRoute.tsx        # HOC para rutas protegidas
+│   └── routes.ts               # Definición de rutas
+│
+├── 📁 hooks/                    # Hooks globales
+│   ├── useDebounce.ts
+│   ├── useLocalStorage.ts
+│   └── useMediaQuery.ts
+│
+├── 📁 utils/                    # Utilidades
+│   ├── formatters.ts           # Formateo de fechas, números
+│   ├── validators.ts           # Validaciones
+│   └── constants.ts            # Constantes globales
+│
+├── 📁 types/                    # Types compartidos
+│   ├── api.types.ts
+│   ├── common.types.ts
+│   └── index.ts
+│
+├── 📁 styles/                   # Estilos globales
+│   ├── globals.css
+│   └── themes/                 # Temas (light/dark)
+│       ├── light.ts
+│       └── dark.ts
+│
+├── App.tsx
+├── main.tsx
+└── vite-env.d.ts

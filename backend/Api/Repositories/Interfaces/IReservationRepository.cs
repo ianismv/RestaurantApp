@@ -15,4 +15,7 @@ public interface IReservationRepository
     Task CreateAsync(Reservation reservation);
     Task UpdateAsync(Reservation reservation);
     Task DeleteAsync(int id);
+
+    // ✅ NUEVO MÉTODO - Para consulta de disponibilidad
+    Task<List<int>> GetReservedTableIdsAsync(DateOnly date, TimeOnly startTime, TimeOnly endTime);
 }

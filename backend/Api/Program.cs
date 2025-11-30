@@ -45,6 +45,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<ITableRepository, TableRepository>();
 builder.Services.AddScoped<ITableService, TableService>();
+builder.Services.AddScoped<IAvailabilityService, AvailabilityService>(); // ✅ AGREGAR
+
 
 
 // ----------------------------------------------------------------------------

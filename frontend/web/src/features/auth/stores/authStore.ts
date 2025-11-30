@@ -1,11 +1,17 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { authApi } from '../../../api/auth.api';
-import type { User, LoginRequest, RegisterRequest, AuthResponse } from '../../../types/api.types';
 import { toast } from 'sonner';
+import { authApi } from '../../../api/auth.api';
+
+import type {
+  User,
+  LoginRequest,
+  RegisterRequest,
+  AuthResponse,
+} from '../../../types/api.types';
 
 // ============================================================================
-// AUTH STORE STATE
+// AUTH STATE INTERFACE
 // ============================================================================
 
 export interface AuthState {
@@ -17,14 +23,14 @@ export interface AuthState {
 
   login: (credentials: LoginRequest) => Promise<void>;
   register: (data: RegisterRequest) => Promise<void>;
-  logout: (showToast?: boolean) => Promise<void>; // ✅ Agregar parámetro opcional
-  setUser: (user: User) => void;
+  logout: (showToast?: boolean) => Promise<void>;
   refreshSession: () => Promise<void>;
   initializeAuth: () => Promise<void>;
+  setUser: (user: User) => void;
 }
 
 // ============================================================================
-// AUTH STORE
+// AUTH STORE — ROBUSTO Y SIN ERRORES
 // ============================================================================
 
 export const useAuthStore = create<AuthState>()(
@@ -36,14 +42,16 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       isLoading: false,
 
-      // ====================================================================
+      // ============================================================================
       // LOGIN
-      // ====================================================================
-      login: async (credentials: LoginRequest): Promise<void> => {
+      // ============================================================================
+      login: async (credentials) => {
         set({ isLoading: true });
+
         try {
           const response = await authApi.login(credentials);
 
+          // Persistir tokens manualmente
           localStorage.setItem('access_token', response.accessToken);
           localStorage.setItem('refresh_token', response.refreshToken);
 
@@ -55,24 +63,28 @@ export const useAuthStore = create<AuthState>()(
             isLoading: false,
           });
 
-          toast.success('¡Bienvenido!', { description: `Hola ${response.user.email}` });
-        } catch (error: unknown) {
+          toast.success('¡Bienvenido!', {
+            description: `Hola ${response.user.email}`,
+          });
+        } catch (err) {
           set({ isLoading: false });
-          if (error instanceof Error) {
-            toast.error('Fallo en el login', { description: error.message });
-            throw error;
-          } else {
-            toast.error('Fallo en el login', { description: 'Error desconocido' });
-            throw new Error('Error desconocido en login');
-          }
+
+          const message =
+            err instanceof Error ? err.message : 'Error desconocido';
+
+          toast.error('Fallo en el login', { description: message });
+
+          // Relanzar para que LoginPage pueda manejarlo
+          throw new Error(message);
         }
       },
 
-      // ====================================================================
+      // ============================================================================
       // REGISTER
-      // ====================================================================
-      register: async (data: RegisterRequest): Promise<void> => {
+      // ============================================================================
+      register: async (data) => {
         set({ isLoading: true });
+
         try {
           const response = await authApi.register(data);
 
@@ -87,65 +99,65 @@ export const useAuthStore = create<AuthState>()(
             isLoading: false,
           });
 
-          toast.success('¡Cuenta creada!', { description: 'Tu cuenta ha sido creada exitosamente' });
-        } catch (error: unknown) {
+          toast.success('¡Cuenta creada con éxito!');
+        } catch (err) {
           set({ isLoading: false });
-          if (error instanceof Error) {
-            toast.error('Fallo en el registro', { description: error.message });
-            throw error;
-          } else {
-            toast.error('Fallo en el registro', { description: 'Error desconocido' });
-            throw new Error('Error desconocido en register');
-          }
+
+          const message =
+            err instanceof Error ? err.message : 'Error desconocido';
+
+          toast.error('Fallo en el registro', { description: message });
+
+          throw new Error(message);
         }
       },
 
-      // ====================================================================
+      // ============================================================================
       // LOGOUT
-      // ====================================================================
-      logout: async (showToast: boolean = true) => {
+      // ============================================================================
+      logout: async (showToast = true) => {
         const { refreshToken } = get();
+
         try {
-          if (refreshToken) await authApi.logout(refreshToken);
-        } catch (error) {
-          console.error('Error en logout:', error);
-        } finally {
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('refresh_token');
-
-          set({
-            user: null,
-            accessToken: null,
-            refreshToken: null,
-            isAuthenticated: false,
-          });
-
-          // ✅ Solo mostrar toast si se llama manualmente (no desde interceptor)
-          if (showToast) {
-            toast.success('Sesión cerrada', { 
-              description: 'Has cerrado sesión correctamente' 
-            });
+          if (refreshToken) {
+            await authApi.logout(refreshToken);
           }
+        } catch {
+          // No mostramos toast ni errors aquí.
+          // El logout del backend es best-effort.
+        }
+
+        // Limpieza total
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+
+        set({
+          user: null,
+          accessToken: null,
+          refreshToken: null,
+          isAuthenticated: false,
+        });
+
+        if (showToast) {
+          toast.success('Sesión cerrada correctamente');
         }
       },
 
-      // ====================================================================
-      // SET USER
-      // ====================================================================
-      setUser: (user) => set({ user }),
-
-      // ====================================================================
+      // ============================================================================
       // REFRESH SESSION
-      // ====================================================================
+      // ============================================================================
       refreshSession: async () => {
         const { refreshToken } = get();
+
         if (!refreshToken) {
-          await get().logout(false); // ✅ false = no mostrar toast
+          await get().logout(false);
           throw new Error('No refresh token available');
         }
 
         try {
-          const response: AuthResponse = await authApi.refreshToken(refreshToken);
+          const response: AuthResponse = await authApi.refreshToken(
+            refreshToken
+          );
 
           localStorage.setItem('access_token', response.accessToken);
           localStorage.setItem('refresh_token', response.refreshToken);
@@ -156,20 +168,21 @@ export const useAuthStore = create<AuthState>()(
             refreshToken: response.refreshToken,
             isAuthenticated: true,
           });
-        } catch (error) {
-          console.error('Error refreshing session:', error);
-          await get().logout(false); // ✅ false = no mostrar toast
-          throw error;
+        } catch (err) {
+          console.error('Error refreshing session:', err);
+          await get().logout(false);
+          throw err;
         }
       },
 
-      // ====================================================================
-      // INITIALIZE AUTH — al iniciar la app
-      // ====================================================================
+      // ============================================================================
+      // INITIALIZE AUTH
+      // ============================================================================
       initializeAuth: async () => {
         const accessToken = localStorage.getItem('access_token');
         const refreshToken = localStorage.getItem('refresh_token');
 
+        // No había tokens en storage → usuario no autenticado
         if (!accessToken || !refreshToken) {
           set({ isLoading: false });
           return;
@@ -178,7 +191,7 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true });
 
         try {
-          const user: User = await authApi.getCurrentUser();
+          const user = await authApi.getCurrentUser();
 
           set({
             user,
@@ -187,9 +200,8 @@ export const useAuthStore = create<AuthState>()(
             isAuthenticated: true,
             isLoading: false,
           });
-        } catch (error) {
-          console.error('Failed to initialize auth:', error);
-
+        } catch {
+          // Si falla, limpiamos estado
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
 
@@ -202,7 +214,16 @@ export const useAuthStore = create<AuthState>()(
           });
         }
       },
+
+      // ============================================================================
+      // SET USER
+      // ============================================================================
+      setUser: (user) => set({ user }),
     }),
+
+    // ============================================================================
+    // PERSISTENCIA
+    // ============================================================================
     {
       name: 'auth-storage',
       partialize: (state) => ({
@@ -214,3 +235,4 @@ export const useAuthStore = create<AuthState>()(
     }
   )
 );
+

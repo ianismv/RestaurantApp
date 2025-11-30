@@ -1,17 +1,15 @@
 import path from "path"
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
 
-
-// https://vite.dev/config/
 export default defineConfig({
+  appType: "spa",            // ← asegura SPA fallback
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // 👇 ESTO HACE QUE VITE RECONOZCA VITE_API_URL
   envPrefix: "VITE_",
 })

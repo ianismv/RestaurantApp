@@ -19,6 +19,7 @@ public class ReservationRepository : IReservationRepository
         _context = context;
     }
 
+    // ✅ TUS MÉTODOS EXISTENTES (NO TOCAR)
     public async Task<List<Reservation>> GetByDateAsync(DateOnly date)
     {
         return await _context.Reservations
@@ -71,5 +72,22 @@ public class ReservationRepository : IReservationRepository
             _context.Reservations.Remove(reservation);
             await _context.SaveChangesAsync();
         }
+    }
+
+    // ✅ NUEVO MÉTODO - Agregar al final
+    /// <summary>
+    /// Obtiene los IDs de mesas que tienen reservas en el rango especificado
+    /// </summary>
+    public async Task<List<int>> GetReservedTableIdsAsync(DateOnly date, TimeOnly startTime, TimeOnly endTime)
+    {
+        return await _context.Reservations
+            .Where(r =>
+                r.Date == date &&
+                r.Status != ReservationStatus.Cancelled &&
+                r.StartTime < endTime &&
+                r.EndTime > startTime)
+            .Select(r => r.TableId)
+            .Distinct()
+            .ToListAsync();
     }
 }

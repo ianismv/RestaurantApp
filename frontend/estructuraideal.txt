@@ -90,6 +90,26 @@
 │   └── themes/                 # Temas (light/dark)
 │       ├── light.ts
 │       └── dark.ts
+
+
+
+
+cd C:\Proyecto\RestaurantManagement\RestaurantApp\frontend
+
+# Instalar dependencias principales
+npm install zustand axios date-fns
+npm install react-hook-form zod @hookform/resolvers
+npm install framer-motion lucide-react
+npm install sonner
+
+# Instalar shadcn/ui (opcional pero RECOMENDADO)
+npm install -D @types/node
+npx shadcn-ui@latest init
+
+# Durante init de shadcn, seleccionar:
+# - Style: Default
+# - Base color: Slate
+# - CSS variables: Yes
 │
 ├── App.tsx
 ├── main.tsx

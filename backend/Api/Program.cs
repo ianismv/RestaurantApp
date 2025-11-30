@@ -14,16 +14,20 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ---------- Serilog (bonito en consola + archivo) ----------
+// ----------------------------------------------------------------------------
+// 1. Logging (Serilog)
+// ----------------------------------------------------------------------------
 builder.Host.UseSerilog((ctx, lc) => lc
     .MinimumLevel.Information()
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
     .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day));
 
-// ---------- Configuración ----------
+// ----------------------------------------------------------------------------
+// 2. Configuración y Dependencias
+// ----------------------------------------------------------------------------
 var config = builder.Configuration;
 
-// ---------- Base de datos (PostgreSQL) ----------
+// Base de datos (PostgreSQL)
 var connectionString = config.GetConnectionString("DefaultConnection")
     ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -31,10 +35,10 @@ var connectionString = config.GetConnectionString("DefaultConnection")
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString, npgsql => npgsql.MigrationsAssembly("Api")));
 
-// ---------- AutoMapper ----------
+// AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
 
-// ---------- Repositorios y Servicios ----------
+// Repositorios y Servicios
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -43,10 +47,19 @@ builder.Services.AddScoped<ITableRepository, TableRepository>();
 builder.Services.AddScoped<ITableService, TableService>();
 
 
-// ---------- JWT Authentication (HS512) ----------
+// ----------------------------------------------------------------------------
+// 3. Autenticación JWT (HS512)
+// ----------------------------------------------------------------------------
 var jwtSecret = config["JWT_SECRET"] ?? Environment.GetEnvironmentVariable("JWT_SECRET")
     ?? throw new InvalidOperationException("JWT_SECRET no configurado");
 var key = Encoding.UTF8.GetBytes(jwtSecret);
+
+// Validar que la clave secreta tenga la longitud adecuada para HMACSHA512
+// (Generalmente se requieren 64 bytes o más)
+if (key.Length < 64)
+{
+    Log.Warning("JWT_SECRET es demasiado corto para HMACSHA512. Considera una clave de al menos 64 bytes.");
+}
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -64,22 +77,31 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// ---------- CORS (para Vite/React en localhost:5173) ----------
-var frontendOrigin = config["VITE_API_URL"] ?? "http://localhost:5173";
+// ----------------------------------------------------------------------------
+// 4. CORS (CORRECCIÓN CRÍTICA)
+// ----------------------------------------------------------------------------
+
+// Definimos el origen del frontend (Vite) de forma explícita,
+// ya que Vite por defecto corre en 5173. ESTE ES EL ORIGEN CORRECTO.
+const string FrontendOrigin = "http://localhost:5173";
+
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins(frontendOrigin)
+        policy.WithOrigins(FrontendOrigin) // <--- ¡USAR 5173!
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials()));
 
-// ---------- Controllers + Swagger (con JWT) ----------
+// ----------------------------------------------------------------------------
+// 5. Controllers, Swagger, y Mapeo
+// ----------------------------------------------------------------------------
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Restaurant API", Version = "v3.0" });
 
+    // Configuración de JWT en Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header usando Bearer. Ejemplo: 'Bearer {token}'",
@@ -106,24 +128,30 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// ----------------------------------------------------------------------------
+// 6. Configuración de Middleware y Ejecución
+// ----------------------------------------------------------------------------
 var app = builder.Build();
 
-// ---------- Migraciones automáticas + Seed (admin + mesas + platos) ----------
+// Migraciones automáticas + Seed
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    // Ejecuta las migraciones si es necesario
+    db.Database.Migrate(); 
+    // Si la base de datos está vacía, la puebla con datos iniciales (admin)
     SeedData.Initialize(db, config);
 }
 
-// ---------- Middlewares ----------
+// Middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestaurantApp"));
 }
 
-app.UseCors("AllowFrontend");
+// IMPORTANTE: El middleware UseCors debe ir antes de UseAuthentication/UseAuthorization
+app.UseCors("AllowFrontend"); 
 app.UseAuthentication();
 app.UseAuthorization();
 

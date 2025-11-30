@@ -1,67 +1,47 @@
-import { request } from './client';
-import type { 
-  LoginRequest, 
-  RegisterRequest, 
-  AuthResponse, 
-  User 
-} from '../types/api.types';
-
-// ============================================================================
-// AUTH API
-// ============================================================================
+import apiClient from './client';
+import { refreshClient } from './refreshClient';
+import type { LoginRequest, RegisterRequest, AuthResponse, User } from '../types/api.types';
 
 export const authApi = {
-  /**
-   * Login de usuario
-   */
+  // -----------------------------
+  // LOGIN
+  // -----------------------------
   login: async (data: LoginRequest): Promise<AuthResponse> => {
-    return request<AuthResponse>({
-      method: 'POST',
-      url: 'auth/login',
-      data,
-    });
+    const res = await apiClient.post<AuthResponse>('/auth/login', data);
+    return res.data;
   },
 
-  /**
-   * Registro de usuario
-   */
+  // -----------------------------
+  // REGISTER
+  // -----------------------------
   register: async (data: RegisterRequest): Promise<AuthResponse> => {
-    return request<AuthResponse>({
-      method: 'POST',
-      url: 'auth/register',
-      data,
-    });
+    const res = await apiClient.post<AuthResponse>('/auth/register', data);
+    return res.data;
   },
 
-  /**
-   * Obtener usuario actual
-   */
+  // -----------------------------
+  // GET CURRENT USER
+  // -----------------------------
   getCurrentUser: async (): Promise<User> => {
-    return request<User>({
-      method: 'GET',
-      url: 'auth/me',
-    });
+    const res = await apiClient.get<User>('/auth/me');
+    return res.data;
   },
 
-  /**
-   * Refresh token
-   */
-  refreshToken: async (refreshToken: string): Promise<AuthResponse> => {
-    return request<AuthResponse>({
-      method: 'POST',
-      url: 'auth/refresh',
-      data: { refreshToken },
+  // -----------------------------
+  // REFRESH TOKEN
+  // ✅ CORRECCIÓN: Usa refreshClient (SIN interceptors)
+  // -----------------------------
+  refreshToken: async (token: string): Promise<AuthResponse> => {
+    const res = await refreshClient.post<AuthResponse>('/auth/refresh', { 
+      refreshToken: token 
     });
+    return res.data;
   },
 
-  /**
-   * Logout (revocar refresh token)
-   */
+  // -----------------------------
+  // LOGOUT
+  // -----------------------------
   logout: async (refreshToken: string): Promise<void> => {
-    return request<void>({
-      method: 'POST',
-      url: 'auth/revoke',
-      data: { refreshToken },
-    });
+    await apiClient.post('/auth/revoke', { refreshToken });
   },
 };

@@ -12,4 +12,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // 👇 ESTO HACE QUE VITE RECONOZCA VITE_API_URL
+  envPrefix: "VITE_",
 })

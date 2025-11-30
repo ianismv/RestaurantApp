@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../stores/authStore';
 import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../../components/ui/Card';
@@ -9,7 +10,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 // ============================================================================
 
 export const LoginForm = () => {
-  const { login, isLoading } = useAuth();
+  const navigate = useNavigate();
+  const { login, isLoading } = useAuthStore(); // ✅ Directo del store
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
@@ -39,9 +42,11 @@ export const LoginForm = () => {
     if (!validateForm()) return;
 
     try {
-      await login(email, password);
+      await login({ email, password });
+      navigate('/'); // ✅ Navegar después del login exitoso
     } catch (error) {
       console.error('Login error:', error);
+      // El toast ya se muestra en el store
     }
   };
 

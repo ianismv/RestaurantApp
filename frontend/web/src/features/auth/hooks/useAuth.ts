@@ -1,9 +1,8 @@
 import { useAuthStore } from '../stores/authStore';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 // ============================================================================
-// USE AUTH HOOK
+// USE AUTH HOOK (SIN useEffect)
 // ============================================================================
 
 export const useAuth = () => {
@@ -15,13 +14,7 @@ export const useAuth = () => {
     login,
     register,
     logout,
-    initializeAuth,
   } = useAuthStore();
-
-  // Inicializar auth al montar
-  useEffect(() => {
-    initializeAuth();
-  }, [initializeAuth]);
 
   // Helpers
   const isAdmin = user?.role === 'Admin';

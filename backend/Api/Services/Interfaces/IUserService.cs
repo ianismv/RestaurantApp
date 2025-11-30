@@ -1,10 +1,14 @@
 ﻿using Api.DTOs;
-using System.Threading.Tasks;
 
 namespace Api.Services.Interfaces;
 
 public interface IUserService
 {
-    Task<string> RegisterAsync(UserRegisterDto dto);
-    Task<string> LoginAsync(UserLoginDto dto);
+    Task<AuthResponseDto> RegisterAsync(UserRegisterDto dto);
+    Task<AuthResponseDto> LoginAsync(UserLoginDto dto);
+    Task<UserDto?> GetByIdAsync(int id);
+    Task<UserDto?> GetByEmailAsync(string email);
+    Task RevokeRefreshTokenAsync(int userId);
+    Task<AuthResponseDto> RefreshTokenAsync(string refreshToken);
+
 }

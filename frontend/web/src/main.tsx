@@ -1,31 +1,44 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+
 import { Toaster } from 'sonner';
-import { AppRouter } from './router';
-import './index.css';
+import { AppRouter } from './router/AppRouter';
+
 import { useAuthStore } from './features/auth/stores/authStore';
+import './index.css';
 
 // ============================================================================
 // INICIALIZAR APP
 // ============================================================================
-
 const startApp = async () => {
-  const root = document.getElementById('root');
-  if (!root) throw new Error('Root element not found');
+  const rootElement = document.getElementById('root');
+  if (!rootElement) throw new Error('Root element not found');
 
-  // Mostrar loading inicial
-  root.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;"><div>Cargando...</div></div>';
+  // Loading inicial simple
+  rootElement.innerHTML = `
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      color:white;
+      background:#111;
+      font-size:20px;
+    ">
+      Cargando aplicación...
+    </div>
+  `;
 
   try {
-    // Inicializar auth SOLO UNA VEZ
+    console.log('[main] Inicializando autenticación...');
     await useAuthStore.getState().initializeAuth();
   } catch (error) {
-    console.error('Failed to initialize app:', error);
+    console.error('[main] Error al inicializar:', error);
   }
 
-  // Renderizar app
-  createRoot(root).render(
+  // Renderizar aplicación completa
+  createRoot(rootElement).render(
     <StrictMode>
       <BrowserRouter>
         <AppRouter />
@@ -36,4 +49,3 @@ const startApp = async () => {
 };
 
 startApp();
-

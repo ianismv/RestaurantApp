@@ -1,26 +1,26 @@
 import { useEffect } from 'react';
 import { useReservationStore } from '../stores/reservationStore';
 
-// ============================================================================
-// USE RESERVATIONS HOOK
-// ============================================================================
-
-export const useReservations = (date?: string) => {
+/**
+ * Hook para gestionar reservas
+ */
+export const useReservations = (autoFetch: boolean = true) => {
   const {
     reservations,
     isLoading,
     selectedReservation,
-    fetchReservations,
+    fetchMyReservations,
     createReservation,
     updateReservation,
     cancelReservation,
     setSelectedReservation,
   } = useReservationStore();
 
-  // Fetch al montar o cuando cambia la fecha
   useEffect(() => {
-    fetchReservations(date);
-  }, [date, fetchReservations]);
+    if (autoFetch) {
+      fetchMyReservations();
+    }
+  }, [autoFetch, fetchMyReservations]);
 
   return {
     reservations,
@@ -30,6 +30,6 @@ export const useReservations = (date?: string) => {
     updateReservation,
     cancelReservation,
     setSelectedReservation,
-    refetch: () => fetchReservations(date),
+    refetch: fetchMyReservations,
   };
 };

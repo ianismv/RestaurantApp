@@ -1,55 +1,92 @@
-import { useAuthStore } from '../stores/authStore';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../stores/authStore';
+import type { LoginRequest, RegisterRequest } from '../../../types/api.types';
 
-// ============================================================================
-// USE AUTH HOOK (SIN useEffect)
-// ============================================================================
-
+/**
+ * ✅ Hook profesional de autenticación
+ * - Login, Register, Logout
+ * - Redirecciones según rol
+ * - Estado derivado: isAuthenticated, isAdmin, isUser
+ */
 export const useAuth = () => {
   const navigate = useNavigate();
+
   const {
     user,
-    isAuthenticated,
+    accessToken,
     isLoading,
     login,
-    register,
     logout,
+    register,
   } = useAuthStore();
 
-  // Helpers
+  // ----------------------------------------------------------
+  // Derivados del estado
+  // ----------------------------------------------------------
+  const isAuthenticated = Boolean(accessToken);
   const isAdmin = user?.role === 'Admin';
   const isUser = user?.role === 'User';
 
-  // Login wrapper
-  const handleLogin = async (email: string, password: string) => {
-    await login({ email, password });
-    navigate('/');
+  // ----------------------------------------------------------
+  // LOGIN
+  // ----------------------------------------------------------
+  const handleLogin = async (credentials: LoginRequest) => {
+    try {
+      await login(credentials.email, credentials.password);
+
+      // Redirección automática según rol
+      if (user?.role === 'Admin') {
+        navigate('/admin');
+      } else {
+        navigate('/reservations');
+      }
+    } catch (err) {
+      console.error('[useAuth] login error:', err);
+      // El toast ya se muestra en el store
+    }
   };
 
-  // Register wrapper
-  const handleRegister = async (
-    email: string,
-    password: string,
-    confirmPassword: string
-  ) => {
-    await register({ email, password, confirmPassword });
-    navigate('/');
-  };
-
-  // Logout wrapper
+  // ----------------------------------------------------------
+  // LOGOUT
+  // ----------------------------------------------------------
   const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+    try {
+      await logout();
+      navigate('/login');
+    } catch (err) {
+      console.error('[useAuth] logout error:', err);
+    }
   };
 
+  // ----------------------------------------------------------
+  // REGISTER
+  // ----------------------------------------------------------
+  const handleRegister = async (data: RegisterRequest) => {
+    try {
+      await register(data);
+
+      // Después de registrar, redirige según rol asignado
+      if (user?.role === 'Admin') {
+        navigate('/admin');
+      } else {
+        navigate('/reservations');
+      }
+    } catch (err) {
+      console.error('[useAuth] register error:', err);
+    }
+  };
+
+  // ----------------------------------------------------------
+  // Retorno del hook
+  // ----------------------------------------------------------
   return {
     user,
-    isAuthenticated,
     isLoading,
+    isAuthenticated,
     isAdmin,
     isUser,
     login: handleLogin,
-    register: handleRegister,
     logout: handleLogout,
+    register: handleRegister,
   };
 };

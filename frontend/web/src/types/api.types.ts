@@ -7,6 +7,7 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -15,33 +16,36 @@ export interface RegisterRequest {
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
-  expiresAt: string;
   user: User;
 }
 
 export interface User {
   id: number;
+  name?: string;
   email: string;
   role: 'User' | 'Admin';
   createdAt: string;
 }
 
 // ============================================================================
-// RESERVATION TYPES
+// RESERVATION TYPES (Actualizar/Agregar)
 // ============================================================================
+
 export interface Reservation {
   id: number;
   userId: number;
   tableId: number;
-  date: string; // DateOnly como string ISO
-  startTime: string; // TimeOnly como string "HH:mm"
-  endTime: string;
+  date: string; // DateOnly como string ISO (YYYY-MM-DD)
+  startTime: string; // TimeOnly como string (HH:mm)
+  endTime: string; // TimeOnly como string (HH:mm)
   guests: number;
   status: ReservationStatus;
   notes: string;
-  userEmail: string;
-  tableName: string;
   createdAt: string;
+  updatedAt?: string;
+  // Relations
+  user?: User;
+  table?: Table;
 }
 
 export type ReservationStatus = 
@@ -53,9 +57,9 @@ export type ReservationStatus =
 
 export interface CreateReservationRequest {
   tableId: number;
-  date: string;
-  startTime: string;
-  endTime: string;
+  date: string; // YYYY-MM-DD
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
   guests: number;
   notes?: string;
 }
@@ -69,8 +73,9 @@ export interface UpdateReservationRequest {
 }
 
 // ============================================================================
-// TABLE TYPES
+// TABLE TYPES (Actualizar/Agregar)
 // ============================================================================
+
 export interface Table {
   id: number;
   name: string;
@@ -79,14 +84,19 @@ export interface Table {
   isActive: boolean;
 }
 
-export interface CreateTableRequest {
+export interface TableAvailability {
+  id: number;
   name: string;
   capacity: number;
   location: string;
+  isAvailable: boolean;
 }
 
-export interface UpdateTableRequest extends CreateTableRequest {
-  isActive: boolean;
+export interface AvailabilityQuery {
+  date: string; // YYYY-MM-DD
+  startTime: string; // HH:mm
+  endTime: string; // HH:mm
+  guests?: number;
 }
 
 // ============================================================================

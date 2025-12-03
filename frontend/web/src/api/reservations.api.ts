@@ -1,8 +1,10 @@
-import { request } from './client';
+import apiClient from './client';
 import type {
   Reservation,
   CreateReservationRequest,
   UpdateReservationRequest,
+  TableAvailability,
+  AvailabilityQuery,
 } from '../types/api.types';
 
 // ============================================================================
@@ -15,65 +17,47 @@ export const reservationsApi = {
    */
   getAll: async (date?: string): Promise<Reservation[]> => {
     const params = date ? { date } : undefined;
-    return request<Reservation[]>({
-      method: 'GET',
-      url: '/reservations',
-      params,
-    });
+    const response = await apiClient.get<Reservation[]>('/reservations', { params });
+    return response.data;
   },
 
   /**
    * Obtener reserva por ID
    */
   getById: async (id: number): Promise<Reservation> => {
-    return request<Reservation>({
-      method: 'GET',
-      url: `/reservations/${id}`,
-    });
+    const response = await apiClient.get<Reservation>(`/reservations/${id}`);
+    return response.data;
   },
 
   /**
    * Crear nueva reserva
    */
   create: async (data: CreateReservationRequest): Promise<Reservation> => {
-    return request<Reservation>({
-      method: 'POST',
-      url: '/reservations',
-      data,
-    });
+    const response = await apiClient.post<Reservation>('/reservations', data);
+    return response.data;
   },
 
   /**
    * Actualizar reserva existente
    */
-  update: async (
-    id: number,
-    data: UpdateReservationRequest
-  ): Promise<void> => {
-    return request<void>({
-      method: 'PUT',
-      url: `/reservations/${id}`,
-      data,
-    });
+  update: async (id: number, data: UpdateReservationRequest): Promise<void> => {
+    await apiClient.put(`/reservations/${id}`, data);
   },
 
   /**
    * Cancelar reserva
    */
   cancel: async (id: number): Promise<void> => {
-    return request<void>({
-      method: 'DELETE',
-      url: `/reservations/${id}`,
-    });
+    await apiClient.delete(`/reservations/${id}`);
   },
 
   /**
-   * Obtener reservas del usuario actual
+   * Obtener mesas disponibles
    */
-  getMyReservations: async (): Promise<Reservation[]> => {
-    return request<Reservation[]>({
-      method: 'GET',
-      url: '/reservations',
+  getAvailability: async (query: AvailabilityQuery): Promise<TableAvailability[]> => {
+    const response = await apiClient.get<TableAvailability[]>('/availability', {
+      params: query,
     });
+    return response.data;
   },
 };

@@ -1,0 +1,913 @@
+2025-12-01 16:55:39.409 -03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 16:55:39.807 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 16:55:39.818 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 16:55:39.824 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 16:55:39.827 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 16:55:39.834 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 16:55:40.370 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 16:55:40.382 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 16:55:40.390 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 16:55:40.853 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 16:55:41.978 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 16:55:41.980 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 16:55:42.200 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 16:55:42.202 -03:00 [INF] Hosting environment: Development
+2025-12-01 16:55:42.203 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 16:55:43.300 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 16:55:43.583 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 294.9852ms
+2025-12-01 16:55:43.619 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 16:55:43.619 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 16:55:43.619 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 16:55:43.668 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 48.9988ms
+2025-12-01 16:55:43.674 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 55.6118ms
+2025-12-01 16:55:43.734 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 115.0237ms
+2025-12-01 16:55:43.789 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 16:55:43.829 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 40.1613ms
+2025-12-01 16:55:55.661 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 16:55:56.014 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 16:55:56.026 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 16:55:56.028 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 16:55:56.031 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 16:55:56.038 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 16:55:56.307 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 16:55:56.315 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 16:55:56.320 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 16:55:56.458 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 16:55:56.717 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 16:55:56.724 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 16:55:56.946 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 16:55:56.947 -03:00 [INF] Hosting environment: Development
+2025-12-01 16:55:56.949 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 16:55:57.966 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 16:55:58.213 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 257.0758ms
+2025-12-01 16:55:58.227 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 16:55:58.227 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 16:55:58.228 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 16:55:58.240 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 12.5619ms
+2025-12-01 16:55:58.246 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 18.433ms
+2025-12-01 16:55:58.285 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.2217ms
+2025-12-01 16:55:58.443 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 16:55:58.482 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 39.5044ms
+2025-12-01 16:56:25.925 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - null null
+2025-12-01 16:56:25.972 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:25.991 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - 204 null null 66.0869ms
+2025-12-01 16:56:26.031 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/login - application/json 55
+2025-12-01 16:56:26.037 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:26.174 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-01 16:56:26.203 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.DTOs.UserLoginDto) on controller Api.Controllers.AuthController (Api).
+2025-12-01 16:56:26.511 -03:00 [INF] Executed DbCommand (26ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-01 16:56:26.805 -03:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-01 16:56:26.819 -03:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 609.4508ms
+2025-12-01 16:56:26.822 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-01 16:56:26.828 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/login - 401 null application/json; charset=utf-8 797.7983ms
+2025-12-01 16:56:45.812 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - null null
+2025-12-01 16:56:45.817 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:45.819 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - 204 null null 7.5738ms
+2025-12-01 16:56:45.823 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/login - application/json 55
+2025-12-01 16:56:45.830 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:45.832 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-01 16:56:45.835 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.DTOs.UserLoginDto) on controller Api.Controllers.AuthController (Api).
+2025-12-01 16:56:45.910 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-01 16:56:46.595 -03:00 [INF] Executed DbCommand (13ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "PasswordHash" = @p4, "RefreshToken" = @p5, "RefreshTokenExpiration" = @p6, "Role" = @p7
+WHERE "Id" = @p8;
+2025-12-01 16:56:46.648 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "PasswordHash" = @p4, "RefreshToken" = @p5, "RefreshTokenExpiration" = @p6, "Role" = @p7
+WHERE "Id" = @p8;
+2025-12-01 16:56:46.660 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.AuthResponseDto'.
+2025-12-01 16:56:46.665 -03:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 826.9515ms
+2025-12-01 16:56:46.671 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-01 16:56:46.678 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/login - 200 null application/json; charset=utf-8 855.4437ms
+2025-12-01 16:56:50.705 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/revoke - null null
+2025-12-01 16:56:50.711 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:50.712 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/revoke - 204 null null 7.3746ms
+2025-12-01 16:56:50.716 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/revoke - application/json 55
+2025-12-01 16:56:50.724 -03:00 [INF] CORS policy execution successful.
+2025-12-01 16:56:50.798 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Revoke (Api)'
+2025-12-01 16:56:50.806 -03:00 [INF] Route matched with {action = "Revoke", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Revoke() on controller Api.Controllers.AuthController (Api).
+2025-12-01 16:56:50.856 -03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 16:56:50.874 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "PasswordHash" = @p4, "RefreshToken" = @p5, "RefreshTokenExpiration" = @p6, "Role" = @p7
+WHERE "Id" = @p8;
+2025-12-01 16:56:50.882 -03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-12-01 16:56:50.883 -03:00 [INF] Executed action Api.Controllers.AuthController.Revoke (Api) in 74.1344ms
+2025-12-01 16:56:50.885 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Revoke (Api)'
+2025-12-01 16:56:50.886 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/revoke - 204 null null 170.0788ms
+2025-12-01 18:01:55.494 -03:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:01:55.930 -03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 18:01:55.942 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 18:01:55.945 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 18:01:55.947 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:01:55.953 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 18:01:56.226 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 18:01:56.238 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 18:01:56.246 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 18:01:56.447 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 18:01:56.796 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 18:01:56.798 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 18:01:57.028 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 18:01:57.030 -03:00 [INF] Hosting environment: Development
+2025-12-01 18:01:57.032 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 18:01:58.263 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 18:01:58.573 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 318.0033ms
+2025-12-01 18:01:58.615 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 18:01:58.621 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 18:01:58.625 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 18:01:58.635 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 19.6129ms
+2025-12-01 18:01:58.689 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 67.218ms
+2025-12-01 18:01:58.747 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 122.4762ms
+2025-12-01 18:01:58.829 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 18:01:58.864 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 35.1574ms
+2025-12-01 18:09:09.986 -03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:09:10.441 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 18:09:10.451 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 18:09:10.455 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 18:09:10.458 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:09:10.465 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 18:09:10.750 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 18:09:10.761 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 18:09:10.768 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 18:09:10.956 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 18:09:11.268 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 18:09:11.271 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 18:09:11.816 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 18:09:11.818 -03:00 [INF] Hosting environment: Development
+2025-12-01 18:09:11.819 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 18:09:12.899 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 18:09:13.299 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 420.9929ms
+2025-12-01 18:09:13.343 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 18:09:13.343 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 18:09:13.345 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 18:09:13.360 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 16.5722ms
+2025-12-01 18:09:13.372 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 29.3279ms
+2025-12-01 18:09:13.439 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 93.4183ms
+2025-12-01 18:09:13.619 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 18:09:13.670 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 51.6543ms
+2025-12-01 18:10:32.368 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/register - null null
+2025-12-01 18:10:32.381 -03:00 [INF] CORS policy execution successful.
+2025-12-01 18:10:32.397 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/register - 204 null null 28.6892ms
+2025-12-01 18:10:32.400 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/register - application/json 82
+2025-12-01 18:10:32.405 -03:00 [INF] CORS policy execution successful.
+2025-12-01 18:10:32.494 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 18:10:32.532 -03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Api.DTOs.UserRegisterDto) on controller Api.Controllers.AuthController (Api).
+2025-12-01 18:10:32.666 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-12-01 18:10:32.694 -03:00 [INF] Executed action Api.Controllers.AuthController.Register (Api) in 153.4072ms
+2025-12-01 18:10:32.696 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 18:10:32.699 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/register - 400 null application/problem+json; charset=utf-8 299.2761ms
+2025-12-01 18:40:25.624 -03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:40:25.906 -03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 18:40:25.917 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 18:40:25.920 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 18:40:25.924 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:40:25.935 -03:00 [INF] Applying migration '20251201214005_AddUserName'.
+2025-12-01 18:40:25.979 -03:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Users" ADD "Name" text NOT NULL DEFAULT '';
+2025-12-01 18:40:25.988 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251201214005_AddUserName', '9.0.11');
+2025-12-01 18:40:32.605 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:40:32.973 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 18:40:33.056 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 18:40:33.134 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 18:40:33.141 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:40:33.157 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 18:41:08.446 -03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:41:08.813 -03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 18:41:08.830 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 18:41:08.837 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 18:41:08.842 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 18:41:08.847 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 18:41:09.173 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 18:41:09.183 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 18:41:09.188 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 18:41:09.361 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 18:41:09.643 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 18:41:09.645 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 18:41:09.876 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 18:41:09.877 -03:00 [INF] Hosting environment: Development
+2025-12-01 18:41:09.879 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 18:41:10.820 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 18:41:11.040 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 228.3031ms
+2025-12-01 18:41:11.054 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 18:41:11.054 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 18:41:11.096 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 18:41:11.108 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 53.9108ms
+2025-12-01 18:41:11.116 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 62.487ms
+2025-12-01 18:41:11.166 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 69.3659ms
+2025-12-01 18:41:11.209 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 18:41:11.250 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 41.235ms
+2025-12-01 18:41:35.036 -03:00 [INF] Request starting HTTP/2 POST https://localhost:7231/api/auth/register - application/json 83
+2025-12-01 18:41:35.083 -03:00 [INF] CORS policy execution failed.
+2025-12-01 18:41:35.084 -03:00 [INF] Request origin https://localhost:7231 does not have permission to access the resource.
+2025-12-01 18:41:35.162 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 18:41:35.185 -03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Api.DTOs.UserRegisterDto) on controller Api.Controllers.AuthController (Api).
+2025-12-01 18:41:35.486 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-01 18:41:36.140 -03:00 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("CreatedAt", "Email", "IsActive", "LastLoginAt", "Name", "PasswordHash", "RefreshToken", "RefreshTokenExpiration", "Role")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-12-01 18:41:36.254 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-01 18:41:36.274 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.AuthResponseDto'.
+2025-12-01 18:41:36.286 -03:00 [INF] Executed action Api.Controllers.AuthController.Register (Api) in 1092.0826ms
+2025-12-01 18:41:36.291 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 18:41:36.306 -03:00 [INF] Request finished HTTP/2 POST https://localhost:7231/api/auth/register - 200 null application/json; charset=utf-8 1270.2036ms
+2025-12-01 21:18:28.677 -03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:18:29.027 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 21:18:29.040 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 21:18:29.044 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 21:18:29.047 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:18:29.052 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 21:18:29.420 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 21:18:29.434 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 21:18:29.451 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 21:18:29.653 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 21:18:29.993 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 21:18:29.994 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 21:18:30.280 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 21:18:30.282 -03:00 [INF] Hosting environment: Development
+2025-12-01 21:18:30.291 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 21:18:31.206 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 21:18:31.503 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 313.9966ms
+2025-12-01 21:18:31.527 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 21:18:31.527 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 21:18:31.527 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 21:18:31.608 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 80.9865ms
+2025-12-01 21:18:31.650 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 122.4675ms
+2025-12-01 21:18:31.683 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 155.4436ms
+2025-12-01 21:18:31.747 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 21:18:31.779 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 32.0251ms
+2025-12-01 21:19:31.167 -03:00 [INF] Executed DbCommand (96ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:19:31.558 -03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 21:19:31.575 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 21:19:31.578 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 21:19:31.581 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:19:31.588 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 21:19:31.873 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 21:19:31.883 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 21:19:31.890 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 21:19:32.034 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 21:19:32.303 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 21:19:32.307 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 21:19:32.496 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 21:19:32.509 -03:00 [INF] Hosting environment: Development
+2025-12-01 21:19:32.510 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 21:19:32.957 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 21:19:33.192 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 245.0758ms
+2025-12-01 21:19:33.207 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 21:19:33.207 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 21:19:33.208 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 21:19:33.224 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 16.8814ms
+2025-12-01 21:19:33.240 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 33.3685ms
+2025-12-01 21:19:33.274 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.3542ms
+2025-12-01 21:19:33.331 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 21:19:33.382 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 51.757ms
+2025-12-01 21:20:50.746 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/register - null null
+2025-12-01 21:20:50.802 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:20:50.821 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/register - 204 null null 75.4394ms
+2025-12-01 21:20:50.827 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/register - application/json 93
+2025-12-01 21:20:50.835 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:20:50.928 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 21:20:50.965 -03:00 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Api.DTOs.UserRegisterDto) on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:20:51.244 -03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-01 21:20:51.879 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("CreatedAt", "Email", "IsActive", "LastLoginAt", "Name", "PasswordHash", "RefreshToken", "RefreshTokenExpiration", "Role")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-12-01 21:20:51.985 -03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-01 21:20:52.003 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.AuthResponseDto'.
+2025-12-01 21:20:52.018 -03:00 [INF] Executed action Api.Controllers.AuthController.Register (Api) in 1043.7244ms
+2025-12-01 21:20:52.024 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Register (Api)'
+2025-12-01 21:20:52.036 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/register - 200 null application/json; charset=utf-8 1208.8974ms
+2025-12-01 21:26:27.751 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:26:27.756 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:26:27.760 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 9.5916ms
+2025-12-01 21:26:27.769 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:26:27.783 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:26:27.885 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:26:27.890 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:26:28.033 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:26:28.042 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:26:28.044 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 150.6777ms
+2025-12-01 21:26:28.047 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:26:28.048 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 279.488ms
+2025-12-01 21:26:39.659 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:26:39.661 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:26:39.662 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 3.423ms
+2025-12-01 21:26:39.665 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:26:39.667 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:26:39.683 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:26:39.685 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:26:39.786 -03:00 [ERR] Failed executing DbCommand (88ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:26:39.796 -03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'Api.Data.AppDbContext'.
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure.
+ ---> Npgsql.NpgsqlException (0x80004005): Exception while writing to stream
+ ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.Write(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.<>c.<MoveNextAsync>b__20_0(DbContext _, AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at lambda_method170(Closure, QueryContext)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindAsync(Object[] keyValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
+   at UserRepository.GetByIdAsync(Int32 id) in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Repositories\Implementations\UserRepository.cs:line 22
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at UserRepository.GetByIdAsync(Int32 id)
+   at Api.Services.Implementations.UserService.GetByIdAsync(Int32 id) in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Services\Implementations\UserService.cs:line 69
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Api.Services.Implementations.UserService.GetByIdAsync(Int32 id)
+   at Api.Controllers.AuthController.Me() in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Controllers\AuthController.cs:line 74
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Api.Controllers.AuthController.Me()
+   at lambda_method155(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.VsContentMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecuteFromThreadPool(Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure.
+ ---> Npgsql.NpgsqlException (0x80004005): Exception while writing to stream
+ ---> System.IO.IOException: Unable to write data to the transport connection: Se ha forzado la interrupción de una conexión existente por el host remoto..
+ ---> System.Net.Sockets.SocketException (10054): Se ha forzado la interrupción de una conexión existente por el host remoto.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.SendAsyncForNetworkStream(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.SendAsyncForNetworkStream(ReadOnlyMemory`1 buffer, SocketFlags socketFlags, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.WriteAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.Write(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.<>c.<MoveNextAsync>b__20_0(DbContext _, AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at lambda_method170(Closure, QueryContext)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindAsync(Object[] keyValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
+   at UserRepository.GetByIdAsync(Int32 id) in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Repositories\Implementations\UserRepository.cs:line 22
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at UserRepository.GetByIdAsync(Int32 id)
+   at Api.Services.Implementations.UserService.GetByIdAsync(Int32 id) in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Services\Implementations\UserService.cs:line 69
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Api.Services.Implementations.UserService.GetByIdAsync(Int32 id)
+   at Api.Controllers.AuthController.Me() in C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api\Controllers\AuthController.cs:line 74
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Api.Controllers.AuthController.Me()
+   at lambda_method155(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.WebTools.BrowserLink.Net.VsContentMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecutionContextCallback(Object s)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.ExecuteFromThreadPool(Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlWriteBuffer.Flush(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.<Write>g__WriteExecute|101_0(NpgsqlConnector connector, Boolean async, Boolean flush, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-12-01 21:28:13.867 -03:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:28:14.341 -03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-01 21:28:14.357 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-01 21:28:14.361 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-01 21:28:14.365 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-01 21:28:14.373 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-01 21:28:14.668 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-01 21:28:14.680 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-01 21:28:14.688 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-01 21:28:14.827 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-01 21:28:15.057 -03:00 [INF] Now listening on: https://localhost:7231
+2025-12-01 21:28:15.059 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-01 21:28:15.287 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-01 21:28:15.292 -03:00 [INF] Hosting environment: Development
+2025-12-01 21:28:15.293 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-01 21:28:15.527 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.html - null null
+2025-12-01 21:28:15.757 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.html - 200 null text/html;charset=utf-8 239.3641ms
+2025-12-01 21:28:15.773 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-01 21:28:15.773 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/index.js - null null
+2025-12-01 21:28:15.775 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/_vs/browserLink - null null
+2025-12-01 21:28:15.786 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/index.js - 200 null application/javascript;charset=utf-8 12.9947ms
+2025-12-01 21:28:15.792 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 19.7422ms
+2025-12-01 21:28:15.833 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.9904ms
+2025-12-01 21:28:15.940 -03:00 [INF] Request starting HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - null null
+2025-12-01 21:28:15.997 -03:00 [INF] Request finished HTTP/2 GET https://localhost:7231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 56.9084ms
+2025-12-01 21:28:25.111 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:25.116 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:25.130 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 18.7834ms
+2025-12-01 21:28:25.132 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:25.138 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:25.283 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:25.310 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:28:25.570 -03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:28:25.657 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:28:25.670 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 352.1675ms
+2025-12-01 21:28:25.673 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:25.680 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 547.7748ms
+2025-12-01 21:28:33.109 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:33.114 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:33.119 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 10.8231ms
+2025-12-01 21:28:33.121 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:33.124 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:33.127 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:33.128 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:28:33.191 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:28:33.196 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:28:33.197 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 67.864ms
+2025-12-01 21:28:33.200 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:33.201 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 80.3066ms
+2025-12-01 21:28:36.960 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:36.968 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:36.974 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:36.976 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:28:36.984 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:28:36.988 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:28:36.989 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 11.5259ms
+2025-12-01 21:28:36.991 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:36.992 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 32.2524ms
+2025-12-01 21:28:52.934 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:52.937 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:52.938 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 3.9393ms
+2025-12-01 21:28:52.941 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:52.943 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:52.945 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:52.946 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:28:52.951 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:28:52.955 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:28:52.957 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 9.1095ms
+2025-12-01 21:28:52.962 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:52.964 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 23.2275ms
+2025-12-01 21:28:57.508 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:28:57.510 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:28:57.512 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:57.513 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:28:57.517 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:28:57.520 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:28:57.521 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 5.5591ms
+2025-12-01 21:28:57.522 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:28:57.524 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 16.1682ms
+2025-12-01 21:29:11.303 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:29:11.307 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:29:11.308 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 4.945ms
+2025-12-01 21:29:11.326 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:29:11.335 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:29:11.336 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:11.337 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:29:11.341 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:29:11.344 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:29:11.346 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 5.8539ms
+2025-12-01 21:29:11.347 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:11.352 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 26.2623ms
+2025-12-01 21:29:17.764 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-01 21:29:17.777 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:29:17.778 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 13.824ms
+2025-12-01 21:29:17.780 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:29:17.787 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:29:17.788 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:17.790 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:29:17.793 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:29:17.796 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:29:17.797 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 6.119ms
+2025-12-01 21:29:17.800 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:17.808 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 27.4406ms
+2025-12-01 21:29:21.560 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-01 21:29:21.563 -03:00 [INF] CORS policy execution successful.
+2025-12-01 21:29:21.565 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:21.576 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-01 21:29:21.584 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-01 21:29:21.595 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-01 21:29:21.597 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 16.4367ms
+2025-12-01 21:29:21.604 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-01 21:29:21.608 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 47.9834ms

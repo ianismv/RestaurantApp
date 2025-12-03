@@ -48,7 +48,6 @@ builder.Services.AddScoped<ITableService, TableService>();
 builder.Services.AddScoped<IAvailabilityService, AvailabilityService>(); // ✅ AGREGAR
 
 
-
 // ----------------------------------------------------------------------------
 // 3. Autenticación JWT (HS512)
 // ----------------------------------------------------------------------------

@@ -122,7 +122,7 @@ export const LoginForm = () => {
             <motion.div whileTap={{ scale: 0.98 }}>
               <Button
                 type="submit"
-                className="w-full bg-primary text-white hover:bg-primary/90 dark:bg-indigo-600 dark:hover:bg-indigo-500"
+                className="w-full text-white hover:bg-primary/90 dark:bg-indigo-600 dark:hover:bg-indigo-500"
                 isLoading={isLoading}
                 disabled={isLoading}
               >

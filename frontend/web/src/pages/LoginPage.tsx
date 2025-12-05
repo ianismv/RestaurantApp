@@ -44,8 +44,8 @@ export const LoginPage = () => {
           >
             <p className="text-xs text-gray-500 mb-2">Credenciales de prueba:</p>
             <div className="text-xs text-gray-400 space-y-1">
-              <p>👤 User: user@test.com / pass123</p>
-              <p>👑 Admin: admin@test.com / admin123</p>
+              <p>👤 User: ianis@ianis.com/Ianis123</p>
+              <p>👑 Admin: admin@bodegon.com/1b4601d6a237</p>
             </div>
           </motion.div>
         </motion.div>

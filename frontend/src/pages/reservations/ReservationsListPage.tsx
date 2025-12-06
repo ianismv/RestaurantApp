@@ -100,9 +100,15 @@ export default function ReservationsListPage() {
               <StatusIcon className="h-3 w-3" />
               {status.label}
             </Badge>
-            <span className="text-sm text-muted-foreground">
-              #{reservation.id.slice(0, 8)}
+              <span className="text-sm text-muted-foreground">
+              #{reservation.id.toString().slice(0, 8)}
             </span>
+
+            <Link to={`/reservations/${reservation.id.toString()}`}>
+              <Button variant="outline" size="sm">
+                Ver detalles
+              </Button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

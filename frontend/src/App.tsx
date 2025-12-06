@@ -22,7 +22,7 @@ import LandingPage from "@/pages/landing/LandingPage";
 import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
 import ReservationsListPage from "@/pages/reservations/ReservationsListPage";
-import CreateReservationPage from "@/pages/reservations/CreateReservationPage";
+import CreateReservationPage from "@/pages/reservations/CreatePage/CreateReservationPage";
 import ReservationDetailPage from "@/pages/reservations/ReservationDetailPage";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import TablesListPage from "@/pages/admin/tables/TablesListPage";

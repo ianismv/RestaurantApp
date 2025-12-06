@@ -41,6 +41,18 @@ public class ReservationService : IReservationService
         return _mapper.Map<List<ReservationDto>>(reservations);
     }
 
+    public async Task<ReservationDto> GetByIdAsync(int id, int userId, string role)
+    {
+        var reservation = await _reservationRepository.GetByIdAsync(id)
+            ?? throw new Exception("Reserva no encontrada");
+
+        // Restringir acceso
+        if (reservation.UserId != userId && role != "Admin")
+            throw new Exception("No tienes permiso para ver esta reserva");
+
+        return _mapper.Map<ReservationDto>(reservation);
+    }
+
     public async Task<List<ReservationDto>> GetByUserIdAsync(int userId)
     {
         var reservations = await _reservationRepository.GetByUserIdAsync(userId);

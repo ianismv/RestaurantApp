@@ -7,10 +7,10 @@ export interface AvailabilityQuery {
   guests: number;
 }
 
-// Tipo actualizado según lo que devuelve el backend
+// Tipo actualizado según backend
 export interface AvailableSlot {
-  tableId: string;       // mapeado desde "id"
-  tableName: string;     // mapeado desde "name"
+  tableId: number;       // CORREGIDO a number
+  tableName: string;
   capacity: number;
   location?: string;
   isAvailable: boolean;
@@ -20,11 +20,16 @@ export interface AvailableSlot {
 
 export const availabilityApi = {
   check: async (query: AvailabilityQuery): Promise<AvailableSlot[]> => {
-    const response = await api.get('/availability', { params: query });
+    const token = localStorage.getItem('accessToken'); // o donde guardes tu token
 
-    // Mapeamos los datos del backend a nuestro tipo AvailableSlot
+    const response = await api.get('/availability', {
+      params: query,
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    });
+
+    // Mapear datos del backend
     return response.data.map((slot: any) => ({
-      tableId: slot.id.toString(),
+      tableId: Number(slot.id),      // ahora number
       tableName: slot.name,
       capacity: slot.capacity,
       location: slot.location,

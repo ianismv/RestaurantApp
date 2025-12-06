@@ -10,9 +10,10 @@ interface ReservationState {
   // Actions
   fetchReservations: () => Promise<void>;
   fetchMyReservations: () => Promise<void>;
-  fetchReservation: (id: string) => Promise<void>;
+  fetchReservation: (id: number) => Promise<void>;
   createReservation: (data: CreateReservationDto) => Promise<Reservation>;
-  cancelReservation: (id: string) => Promise<void>;
+  cancelReservation: (id: number) => Promise<void>;
+  deleteReservation: (id: number) => Promise<void>;
   clearError: () => void;
 }
 
@@ -58,7 +59,7 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
   }
 },
 
-  fetchReservation: async (id: string) => {
+  fetchReservation: async (id: number) => {
     set({ isLoading: true, error: null });
     try {
       const reservation = await reservationsApi.getById(id);
@@ -66,7 +67,7 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
     } catch (error: any) {
       set({ error: error.message, isLoading: false });
     }
-  },
+},
 
   createReservation: async (data: CreateReservationDto) => {
     set({ isLoading: true, error: null });
@@ -83,21 +84,36 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
     }
   },
 
-  cancelReservation: async (id: string) => {
-    set({ isLoading: true, error: null });
-    try {
-      await reservationsApi.cancel(id);
-      set((state) => ({
-        reservations: state.reservations.map((r) =>
-          r.id === id ? { ...r, status: 'Cancelled' as const } : r
-        ),
-        isLoading: false,
-      }));
-    } catch (error: any) {
-      set({ error: error.message, isLoading: false });
-      throw error;
-    }
-  },
+  cancelReservation: async (id: number) => {
+  set({ isLoading: true, error: null });
+  try {
+    await reservationsApi.cancel(id);
+    set((state) => ({
+      reservations: state.reservations.map((r) =>
+        r.id === id ? { ...r, status: 'Cancelled' as const } : r
+      ),
+      isLoading: false,
+    }));
+  } catch (error: any) {
+    set({ error: error.message, isLoading: false });
+    throw error;
+  }
+},
 
   clearError: () => set({ error: null }),
+
+  deleteReservation: async (id: number) => {
+  set({ isLoading: true, error: null });
+  try {
+    await reservationsApi.delete(id);
+    set((state) => ({
+      reservations: state.reservations.filter((r) => r.id !== id),
+      currentReservation: null,
+      isLoading: false,
+    }));
+  } catch (error: any) {
+    set({ error: error.message, isLoading: false });
+    throw error;
+  }
+},
 }));

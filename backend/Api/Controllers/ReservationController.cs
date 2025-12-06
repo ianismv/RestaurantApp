@@ -37,6 +37,23 @@ public class ReservationsController : ControllerBase
         }
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var role = User.FindFirstValue(ClaimTypes.Role)!;
+
+        try
+        {
+            var reservation = await _reservationService.GetByIdAsync(id, userId, role);
+            return Ok(reservation);
+        }
+        catch (Exception ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ReservationCreateDto dto)
     {

@@ -3,6 +3,8 @@ using Api.Services.Implementations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Api.Services.Interfaces; // <- usar la interfaz
+
 
 namespace Api.Controllers
 {
@@ -11,9 +13,9 @@ namespace Api.Controllers
     [Route("api/reservations/{reservationId}/dishes")]
     public class ReservationDishesController : ControllerBase
     {
-        private readonly ReservationDishService _service;
+        private readonly IReservationDishService _service;
 
-        public ReservationDishesController(ReservationDishService service)
+        public ReservationDishesController(IReservationDishService service)
         {
             _service = service;
         }

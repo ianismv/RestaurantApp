@@ -1,9 +1,9 @@
 import api from '@/lib/api';
 
 export interface Reservation {
-  id: string;
-  userId: string;
-  tableId: string;
+  id: number; // antes era string
+  userId: number;
+  tableId: number;
   date: string;
   startTime: string;
   endTime: string;
@@ -14,7 +14,7 @@ export interface Reservation {
 }
 
 export interface CreateReservationDto {
-  tableId: string;
+  tableId: number;
   date: string;
   startTime: string;
   endTime: string;
@@ -37,7 +37,7 @@ export const reservationsApi = {
     return response.data;
   },
 
-  getById: async (id: string): Promise<Reservation> => {
+  getById: async (id: number): Promise<Reservation> => { // <-- number
     const response = await api.get(`/reservations/${id}`);
     return response.data;
   },
@@ -47,16 +47,16 @@ export const reservationsApi = {
     return response.data;
   },
 
-  update: async (id: string, data: UpdateReservationDto): Promise<Reservation> => {
+  update: async (id: number, data: UpdateReservationDto): Promise<Reservation> => { // <-- number
     const response = await api.put(`/reservations/${id}`, data);
     return response.data;
   },
 
-  delete: async (id: string): Promise<void> => {
+  delete: async (id: number): Promise<void> => { // <-- number
     await api.delete(`/reservations/${id}`);
   },
 
-  cancel: async (id: string): Promise<Reservation> => {
+  cancel: async (id: number): Promise<Reservation> => { // <-- number
     const response = await api.patch(`/reservations/${id}/cancel`);
     return response.data;
   },

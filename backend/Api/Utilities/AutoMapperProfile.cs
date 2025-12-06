@@ -45,7 +45,10 @@ public class AutoMapperProfile : Profile
         // RESERVATION DISHES
         // ---------------------------------------------------------------------
         CreateMap<ReservationDish, ReservationDishDto>()
-            .ForMember(dest => dest.DishName, opt => opt.MapFrom(src => src.Dish.Name))
-            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Dish.Price));
+       .ForMember(dest => dest.DishName, opt => opt.MapFrom(src => src.Dish != null ? src.Dish.Name : "Plato no encontrado"))
+       .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Dish != null ? src.Dish.Price : 0))
+       .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Dish != null ? src.Dish.Category : ""));
+
+
     }
 }

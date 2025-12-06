@@ -45,7 +45,7 @@ public class AvailabilityService : IAvailabilityService
                 Name: t.Name,
                 Capacity: t.Capacity,
                 Location: t.Location,
-                IsAvailable: true
+                IsAvailable: !reservedTableIds.Contains(t.Id) // ✅ reflejar ocupadas
             ))
             .ToList();
 

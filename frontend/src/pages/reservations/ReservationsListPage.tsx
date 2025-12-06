@@ -104,11 +104,7 @@ export default function ReservationsListPage() {
               #{reservation.id.toString().slice(0, 8)}
             </span>
 
-            <Link to={`/reservations/${reservation.id.toString()}`}>
-              <Button variant="outline" size="sm">
-                Ver detalles
-              </Button>
-            </Link>
+            
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -9,6 +9,10 @@ import { ConfirmButton } from "@/components/ConfirmButton";
 import AddDishModal from "@/components/AddDishModal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+import { ReservationStatus, getReservationStatusText } from "@/enums/ReservationStatus";
+
 
 export default function ReservationDetailPage() {
   const { id } = useParams();
@@ -27,6 +31,43 @@ export default function ReservationDetailPage() {
     fetchDishes(reservationId);
     fetchMenu();
   }, [reservationId]);
+
+  const [dishQuantities, setDishQuantities] = useState<Record<number, number>>({});
+
+  useEffect(() => {
+    const initialQuantities: Record<number, number> = {};
+    dishes.forEach(d => {
+      initialQuantities[d.dishId] = d.quantity;
+    });
+    setDishQuantities(initialQuantities);
+  }, [dishes]);
+
+  const incrementQuantity = async (dishId: number) => {
+    // Actualizar estado local
+    setDishQuantities(prev => ({ ...prev, [dishId]: (prev[dishId] || 1) + 1 }));
+    // Agregar 1 unidad en backend
+    await addDish(reservationId, { dishId, quantity: 1 });
+  };
+
+  const decrementQuantity = async (dishId: number) => {
+    const currentQty = dishQuantities[dishId] || 1;
+
+    if (currentQty <= 1) {
+      // Llega a 0 → eliminar plato en backend y limpiar local
+      await removeDish(reservationId, dishId);
+      setDishQuantities(prev => {
+        const copy = { ...prev };
+        delete copy[dishId];
+        return copy;
+      });
+    } else {
+      // Reducir cantidad sin eliminar
+      setDishQuantities(prev => ({ ...prev, [dishId]: currentQty - 1 }));
+      // Agregar lógica para restar 1 unidad en backend si tu API lo soporta
+      // Si no, dejalo local hasta sincronizar
+    }
+  };
+
 
   if (!currentReservation) {
     return (
@@ -68,7 +109,7 @@ export default function ReservationDetailPage() {
             <p><strong>Fecha:</strong> {currentReservation.date}</p>
             <p><strong>Horario:</strong> {currentReservation.startTime} - {currentReservation.endTime}</p>
             <p><strong>Invitados:</strong> {currentReservation.guests}</p>
-            <p><strong>Estado:</strong> <Badge>{currentReservation.status}</Badge></p>
+            <p>  <strong>Estado:</strong> <Badge>{getReservationStatusText(currentReservation.status)}</Badge></p>
             {currentReservation.notes && <p><strong>Notas:</strong> {currentReservation.notes}</p>}
           </CardContent>
         </Card>
@@ -107,28 +148,26 @@ export default function ReservationDetailPage() {
         )}
 
         {dishes.map((dish) => (
-          <motion.div
-            key={dish.dishId}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="shadow-sm border rounded-2xl p-4 flex justify-between items-center hover:shadow-md transition"
-          >
-            <div>
-              <p className="font-semibold text-lg text-gray-900">{dish.dishName}</p>
-              <p className="text-sm text-muted-foreground">
-                Cantidad: {dish.quantity} · ${dish.price}
-              </p>
-            </div>
+        <motion.div
+          key={dish.dishId}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="shadow-sm border rounded-2xl p-4 flex justify-between items-center hover:shadow-md transition"
+        >
+          <div>
+            <p className="font-semibold text-lg text-gray-900">{dish.dishName}</p>
+            <p className="text-sm text-muted-foreground">
+              Cantidad: {dishQuantities[dish.dishId] || dish.quantity} · ${dish.price * (dishQuantities[dish.dishId] || dish.quantity)}
+            </p>
+          </div>
 
-            <ConfirmButton
-              variant="delete"
-              icon="trash"
-              label=""
-              description={`¿Seguro que deseas eliminar ${dish.dishName}?`}
-              onConfirm={() => removeDish(reservationId, dish.dishId)}
-            />
-          </motion.div>
-        ))}
+          <div className="flex items-center gap-2">
+            <Button size="sm" onClick={() => decrementQuantity(dish.dishId)}>-</Button>
+            <span className="w-6 text-center">{dishQuantities[dish.dishId] || dish.quantity}</span>
+            <Button size="sm" onClick={() => incrementQuantity(dish.dishId)}>+</Button>
+          </div>
+        </motion.div>
+      ))}
       </div>
     </PageTransition>
   );

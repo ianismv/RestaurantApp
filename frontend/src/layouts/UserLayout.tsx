@@ -15,31 +15,51 @@ export function UserLayout() {
   const { user, logout } = useAuth();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fafafa] to-[#f0f0f6] dark:from-[#0f0f11] dark:to-[#1a1a1d] transition-all">
+    <div
+      className="min-h-screen overflow-hidden relative"
+      onMouseMove={(e) =>
+        setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight })
+      }
+      style={{
+        background: `radial-gradient(circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, #fff9c4, #ffecb3, #ffe082)`,
+        transition: 'background 0.15s',
+      }}
+    >
+      {/* Partículas flotantes */}
+      <motion.div
+        animate={{ x: [0, 20, 0], y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
+        className="absolute w-2 h-2 bg-yellow-400 rounded-full opacity-50 top-32 left-10"
+      />
+      <motion.div
+        animate={{ x: [0, -15, 0], y: [0, 15, 0] }}
+        transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
+        className="absolute w-3 h-3 bg-yellow-300 rounded-full opacity-40 top-1/2 right-20"
+      />
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/50 dark:bg-black/20 border-b border-border/40 shadow-sm">
-        <div className="container flex h-16 items-center justify-between">
-          
+      {/* Header fijo y flotante */}
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/30 border-b border-border/20 shadow-lg">
+        <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl">🍽️</span>
-            <span className="font-display text-xl font-semibold bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">
+            <span className="font-display text-xl font-semibold gradient-text">
               RestaurantApp
             </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  'flex items-center gap-2 text-sm font-medium transition-all hover:text-primary hover:scale-[1.02]',
+                  'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-lg hover:text-white hover:bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500',
                   location.pathname === link.to
-                    ? 'text-primary'
+                    ? 'bg-yellow-200 text-yellow-800'
                     : 'text-muted-foreground'
                 )}
               >
@@ -49,69 +69,62 @@ export function UserLayout() {
             ))}
           </nav>
 
-          {/* User menu */}
+          {/* User Menu */}
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm">
               <User className="h-4 w-4 text-muted-foreground" />
-              <span className="font-medium">{user?.name}</span>
+              <span>{user?.name}</span>
             </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={logout}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground hover:scale-105 transition-transform"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Salir
             </Button>
           </div>
 
-          {/* Mobile menu toggle */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/50"
+            className="md:hidden border-t border-border/20 backdrop-blur-md bg-white/20"
           >
-            <nav className="container py-4 space-y-2">
+            <nav className="px-4 py-4 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all',
+                    'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 hover:shadow-md hover:bg-yellow-200',
                     location.pathname === link.to
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-secondary/50'
+                      ? 'bg-yellow-100 text-yellow-800'
+                      : 'text-muted-foreground hover:bg-secondary/10'
                   )}
                 >
                   <link.icon className="h-4 w-4" />
                   {link.label}
                 </Link>
               ))}
-
-              <div className="border-t border-border/50 pt-2 mt-2">
-                <div className="px-4 py-2 text-sm text-muted-foreground">
-                  {user?.name}
-                </div>
+              <div className="border-t border-border/20 pt-2 mt-2">
+                <div className="px-4 py-2 text-sm text-muted-foreground">{user?.name}</div>
                 <button
                   onClick={logout}
-                  className="flex items-center gap-2 px-4 py-2 w-full text-sm text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-2 px-4 py-2 w-full text-sm text-muted-foreground hover:text-foreground hover:scale-105 transition-transform"
                 >
                   <LogOut className="h-4 w-4" />
                   Cerrar Sesión
@@ -122,13 +135,10 @@ export function UserLayout() {
         )}
       </header>
 
-      {/* Main */}
-      <main className="container py-8">
-        <div className="mx-auto max-w-4xl rounded-2xl bg-white/60 dark:bg-black/30 shadow-xl backdrop-blur-lg p-6 border border-border/30 transition-all">
-          <Outlet />
-        </div>
+      {/* Main Content */}
+      <main className="w-full max-w-6xl mx-auto px-4 py-8 pt-28 relative">
+        <Outlet />
       </main>
-
     </div>
   );
 }

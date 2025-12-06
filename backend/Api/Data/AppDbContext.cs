@@ -12,7 +12,9 @@ public class AppDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
     public DbSet<Table> Tables => Set<Table>();
-    public DbSet<Dish> Dishes => Set<Dish>();  
+    public DbSet<Dish> Dishes => Set<Dish>();
+    public DbSet<ReservationDish> ReservationDishes => Set<ReservationDish>();
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -39,5 +41,21 @@ public class AppDbContext : DbContext
             .WithMany(t => t.Reservations)
             .HasForeignKey(r => r.TableId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // CONFIGURACIÓN NUEVA: relación muchos-a-muchos Reservation-Dish
+        modelBuilder.Entity<ReservationDish>()
+            .HasKey(rd => new { rd.ReservationId, rd.DishId }); // clave compuesta
+
+        modelBuilder.Entity<ReservationDish>()
+            .HasOne(rd => rd.Reservation)
+            .WithMany(r => r.ReservationDishes)
+            .HasForeignKey(rd => rd.ReservationId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ReservationDish>()
+            .HasOne(rd => rd.Dish)
+            .WithMany(d => d.ReservationDishes)
+            .HasForeignKey(rd => rd.DishId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

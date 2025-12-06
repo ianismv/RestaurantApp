@@ -11,6 +11,9 @@ public interface IReservationService
 {
     Task<List<ReservationDto>> GetByDateAsync(DateOnly date, int userId, string role);
     Task<List<ReservationDto>> GetByUserIdAsync(int userId);
+    /// <summary>
+    /// Crea una nueva reserva. Opcionalmente se pueden agregar platos a la reserva.
+    /// </summary>
     Task<ReservationDto> CreateAsync(ReservationCreateDto dto, int userId);
     Task<ReservationDto> UpdateAsync(int id, ReservationCreateDto dto, int userId, string role);
     Task DeleteAsync(int id, int userId, string role);

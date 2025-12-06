@@ -1,4 +1,5 @@
 ﻿using Api.DTOs;
+using Api.Models;
 using Api.Models.Entities;
 using AutoMapper;
 
@@ -20,30 +21,31 @@ public class AutoMapperProfile : Profile
         CreateMap<TableCreateDto, Table>();
         CreateMap<TableUpdateDto, Table>();
 
-
         // ---------------------------------------------------------------------
         // USERS
         // ---------------------------------------------------------------------
-
-        // ✔ Registro: UserRegisterDto → User
-        // Mapea solo campos públicos. La contraseña NO se mapea aquí.
         CreateMap<UserRegisterDto, User>();
-
-        // ✔ User → UserDto
-        // DTO seguro que se envía al frontend sin exponer PasswordHash.
         CreateMap<User, UserDto>();
-
-        // ⚠ Eliminado (no debe existir más)
-        // CreateMap<User, UserResponseDto>();
-
 
         // ---------------------------------------------------------------------
         // RESERVATIONS
         // ---------------------------------------------------------------------
-        CreateMap<ReservationCreateDto, Reservation>();
-        CreateMap<Reservation, ReservationDto>();
+        CreateMap<ReservationCreateDto, Reservation>()
+            .ForMember(dest => dest.ReservationDishes, opt => opt.Ignore());
+        // Se maneja manualmente en el Service
 
-        // Para actualizar una reserva reutilizando el DTO de creación
+        CreateMap<Reservation, ReservationDto>();
         CreateMap<Reservation, ReservationCreateDto>();
+
+        // DISHES
+        CreateMap<Dish, DishDto>();
+        CreateMap<CreateDishDto, Dish>();
+
+        // ---------------------------------------------------------------------
+        // RESERVATION DISHES
+        // ---------------------------------------------------------------------
+        CreateMap<ReservationDish, ReservationDishDto>()
+            .ForMember(dest => dest.DishName, opt => opt.MapFrom(src => src.Dish.Name))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Dish.Price));
     }
 }

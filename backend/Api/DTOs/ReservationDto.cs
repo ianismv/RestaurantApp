@@ -13,4 +13,6 @@ public class ReservationDto
     public int Guests { get; set; }
     public ReservationStatus Status { get; set; }
     public string Notes { get; set; } = string.Empty;
+    public List<ReservationDishDto>? Dishes { get; set; }
+
 }

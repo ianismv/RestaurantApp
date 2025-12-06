@@ -20,5 +20,11 @@ public class ReservationCreateDto
     [Range(1, int.MaxValue, ErrorMessage = "Guests must be at least 1")]
     public int Guests { get; set; }
 
-    public string Notes { get; set; } = string.Empty;
+    public string? Notes { get; set; }  // Opcional, puede quedar vacío
+
+    /// <summary>
+    /// Lista opcional de platos seleccionados en la reserva.
+    /// Se puede enviar vacía si no se agregan platos.
+    /// </summary>
+    public List<ReservationDishDto>? Dishes { get; set; }
 }

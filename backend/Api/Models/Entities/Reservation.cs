@@ -15,5 +15,7 @@ public class Reservation
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
     public User? User { get; set; }
-    public Table? Table { get; set; }  
+    public Table? Table { get; set; }
+    public List<ReservationDish> ReservationDishes { get; set; } = new();
+
 }

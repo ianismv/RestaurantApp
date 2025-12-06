@@ -46,6 +46,10 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<ITableRepository, TableRepository>();
 builder.Services.AddScoped<ITableService, TableService>();
 builder.Services.AddScoped<IAvailabilityService, AvailabilityService>(); // ✅ AGREGAR
+builder.Services.AddScoped<IDishService, DishService>();
+builder.Services.AddScoped<IDishRepository, DishRepository>();
+builder.Services.AddScoped<IReservationDishRepository, ReservationDishRepository>(); // <
+builder.Services.AddScoped<IReservationDishService, ReservationDishService>(); // <
 
 
 // ----------------------------------------------------------------------------
@@ -84,7 +88,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Definimos el origen del frontend (Vite) de forma explícita,
 // ya que Vite por defecto corre en 5173. ESTE ES EL ORIGEN CORRECTO.
-const string FrontendOrigin = "http://localhost:5173";
+const string FrontendOrigin = "http://localhost:8080"; //<---- nuevo front usa 8080
 
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>

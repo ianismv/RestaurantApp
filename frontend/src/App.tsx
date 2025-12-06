@@ -1,10 +1,11 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 
 import { useAuthStore } from "@/stores/authStore";
 
@@ -12,7 +13,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { UserLayout } from "@/layouts/UserLayout";
 import { AdminLayout } from "@/layouts/AdminLayout";
 
-// Routes
+// Auth
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { PublicRoute } from "@/components/auth/PublicRoute";
 
@@ -33,7 +34,7 @@ import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => {
+export const App = () => {
   const { isLoading, initialize } = useAuthStore();
 
   React.useEffect(() => {
@@ -54,7 +55,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<LandingPage />} />
@@ -91,3 +92,4 @@ const App = () => {
 };
 
 export default App;
+

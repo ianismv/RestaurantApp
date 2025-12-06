@@ -1,7 +1,13 @@
-import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 
 interface Dish {
@@ -15,58 +21,72 @@ interface Props {
   open: boolean;
   onClose: () => void;
   onSelect: (dishId: number) => void;
-  fetchAllDishes: () => Promise<Dish[]>;
+  availableDishes: Dish[];
 }
 
-export default function AddDishModal({ open, onClose, onSelect, fetchAllDishes }: Props) {
-  const [allDishes, setAllDishes] = useState<Dish[]>([]);
+export default function AddDishModal({
+  open,
+  onClose,
+  onSelect,
+  availableDishes,
+}: Props) {
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    if (open) {
-      fetchAllDishes().then(setAllDishes);
-    }
-  }, [open]);
-
-  const filtered = allDishes.filter(d =>
+  const filtered = availableDishes.filter((d) =>
     d.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-xl bg-white rounded-2xl">
+      <DialogContent className="max-w-xl rounded-3xl bg-white border shadow-xl p-6">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
-            Seleccionar plato
+          <DialogTitle className="text-2xl font-bold tracking-tight">
+            Añadir un plato
           </DialogTitle>
         </DialogHeader>
 
+        {/* BUSCADOR */}
         <Input
-          placeholder="Buscar plato..."
+          placeholder="Buscar por nombre..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="mb-4"
+          className="mb-4 rounded-xl"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[350px] overflow-y-auto pr-2">
-          {filtered.map(dish => (
-            <motion.div
-              key={dish.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="border rounded-xl p-4 shadow-sm hover:shadow-md cursor-pointer transition bg-gray-50"
-              onClick={() => onSelect(dish.id)}
-            >
-              <h4 className="font-medium">{dish.name}</h4>
-              <p className="text-sm text-gray-500">{dish.category}</p>
-              <p className="text-sm font-semibold mt-1">${dish.price}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* LISTADO */}
+        <ScrollArea className="max-h-[350px] pr-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {filtered.map((dish) => (
+              <motion.div
+                key={dish.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.1 }}
+                className="p-4 rounded-xl border bg-gray-50 hover:bg-gray-100 shadow-sm cursor-pointer transition group"
+                onClick={() => onSelect(dish.id)}
+              >
+                <div className="flex justify-between items-start">
+                  <h4 className="font-semibold text-lg group-hover:text-primary transition">
+                    {dish.name}
+                  </h4>
+                  <Badge variant="secondary">{dish.category}</Badge>
+                </div>
+                <p className="mt-2 font-bold text-primary text-lg">
+                  ${dish.price}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </ScrollArea>
 
-        <Button variant="secondary" onClick={onClose} className="w-full mt-4">
+        {/* CANCELAR */}
+        <button
+          onClick={onClose}
+          className="w-full mt-4 py-2 rounded-xl bg-gray-200 hover:bg-gray-300 transition"
+        >
           Cancelar
-        </Button>
+        </button>
       </DialogContent>
     </Dialog>
   );

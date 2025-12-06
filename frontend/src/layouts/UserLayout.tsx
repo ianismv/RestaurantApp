@@ -17,25 +17,27 @@ export function UserLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-[#fafafa] to-[#f0f0f6] dark:from-[#0f0f11] dark:to-[#1a1a1d] transition-all">
+
       {/* Header */}
-      <header className="sticky top-0 z-50 glass-card border-b border-border/50">
+      <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/50 dark:bg-black/20 border-b border-border/40 shadow-sm">
         <div className="container flex h-16 items-center justify-between">
+          
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl">🍽️</span>
-            <span className="font-display text-xl font-semibold gradient-text">
+            <span className="font-display text-xl font-semibold bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">
               RestaurantApp
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
+                  'flex items-center gap-2 text-sm font-medium transition-all hover:text-primary hover:scale-[1.02]',
                   location.pathname === link.to
                     ? 'text-primary'
                     : 'text-muted-foreground'
@@ -47,11 +49,11 @@ export function UserLayout() {
             ))}
           </nav>
 
-          {/* User Menu */}
+          {/* User menu */}
           <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm">
               <User className="h-4 w-4 text-muted-foreground" />
-              <span>{user?.name}</span>
+              <span className="font-medium">{user?.name}</span>
             </div>
             <Button
               variant="ghost"
@@ -64,7 +66,7 @@ export function UserLayout() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu toggle */}
           <button
             className="md:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -77,7 +79,7 @@ export function UserLayout() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Nav */}
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -92,16 +94,17 @@ export function UserLayout() {
                   to={link.to}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+                    'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all',
                     location.pathname === link.to
                       ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-secondary'
+                      : 'text-muted-foreground hover:bg-secondary/50'
                   )}
                 >
                   <link.icon className="h-4 w-4" />
                   {link.label}
                 </Link>
               ))}
+
               <div className="border-t border-border/50 pt-2 mt-2">
                 <div className="px-4 py-2 text-sm text-muted-foreground">
                   {user?.name}
@@ -119,10 +122,13 @@ export function UserLayout() {
         )}
       </header>
 
-      {/* Main Content */}
+      {/* Main */}
       <main className="container py-8">
-        <Outlet />
+        <div className="mx-auto max-w-4xl rounded-2xl bg-white/60 dark:bg-black/30 shadow-xl backdrop-blur-lg p-6 border border-border/30 transition-all">
+          <Outlet />
+        </div>
       </main>
+
     </div>
   );
 }

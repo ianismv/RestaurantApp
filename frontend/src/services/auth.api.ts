@@ -48,4 +48,8 @@ export const authApi = {
   revoke: async (): Promise<void> => {
     await api.post('/auth/revoke');
   },
+
+  logout: async (): Promise<void> => {
+    await api.post('/auth/logout');
+  },
 };

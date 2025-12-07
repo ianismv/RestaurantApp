@@ -1,4 +1,4 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Home, LogOut, User, Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -16,6 +16,20 @@ export function UserLayout() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isLoggingOut, setIsLoggingOut] = useState(false); // 👈 Nuevo estado
+
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
 
   return (
     <div
@@ -78,11 +92,12 @@ export function UserLayout() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={logout}
+              onClick={handleLogout} // 👈 Cambiar aquí
+              disabled={isLoggingOut} // 👈 Deshabilitar mientras se procesa
               className="text-muted-foreground hover:text-foreground hover:scale-105 transition-transform"
             >
               <LogOut className="h-4 w-4 mr-2" />
-              Salir
+              {isLoggingOut ? 'Saliendo...' : 'Salir'}
             </Button>
           </div>
 
@@ -123,11 +138,12 @@ export function UserLayout() {
               <div className="border-t border-border/20 pt-2 mt-2">
                 <div className="px-4 py-2 text-sm text-muted-foreground">{user?.name}</div>
                 <button
-                  onClick={logout}
+                  onClick={handleLogout} // 👈 Cambiar aquí también
+                  disabled={isLoggingOut}
                   className="flex items-center gap-2 px-4 py-2 w-full text-sm text-muted-foreground hover:text-foreground hover:scale-105 transition-transform"
                 >
                   <LogOut className="h-4 w-4" />
-                  Cerrar Sesión
+                  {isLoggingOut ? 'Cerrando Sesión...' : 'Cerrar Sesión'}
                 </button>
               </div>
             </nav>

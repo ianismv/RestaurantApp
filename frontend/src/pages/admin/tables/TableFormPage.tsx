@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Save, Users, MapPin, Type } from 'lucide-react';
+import { useAdminTables } from '@/hooks/useAdminTables';
 import { useTables } from '@/hooks/useTables';
 import { tablesApi } from '@/services/tables.api';
 import { PageTransition } from '@/components/ui/page-transition';
@@ -12,11 +13,16 @@ import { Switch } from '@/components/ui/switch';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { useToast } from '@/hooks/use-toast';
 
+
 export default function TableFormPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { tables } = useTables();
+  const {createTable, updateTable, deleteTable,isLoading: adminLoading} = useAdminTables();
   const { toast } = useToast();
-  const { createTable, updateTable } = useTables();
+  const LOCATIONS = Array.from(
+  new Set(tables.map((table) => table.location).filter(Boolean))
+);
 
   const isEditing = !!id;
 
@@ -159,15 +165,22 @@ export default function TableFormPage() {
               <Label htmlFor="location">Ubicación (opcional)</Label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
+                <select
                   id="location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  placeholder="Ej: Interior, Terraza, VIP..."
-                  className="pl-10 input-elegant"
-                />
+                  className="w-full h-10 pl-10 pr-4 rounded-lg border border-input bg-secondary/50 text-sm focus:border-primary/50 focus:ring-primary/20 transition-all"
+                >
+                  <option value="">— Ninguna —</option>
+                  {LOCATIONS.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {loc}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
+
 
             {isEditing && (
               <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/30">

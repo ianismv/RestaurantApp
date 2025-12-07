@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Users, MapPin, CheckCircle, XCircle } from 'lucide-react';
-import { useTables } from '@/hooks/useTables';
+import { useAdminTables } from '@/hooks/useAdminTables';
 import { PageTransition, staggerContainer, fadeInUp } from '@/components/ui/page-transition';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/alert-dialog';
 
 export default function TablesListPage() {
-  const { tables, isLoading, deleteTable } = useTables();
+const { tables, isLoading, updateTable, deleteTable } = useAdminTables();
   const { toast } = useToast();
 
   const handleDelete = async (id: string) => {

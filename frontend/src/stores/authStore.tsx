@@ -13,7 +13,7 @@ interface AuthState {
   setUser: (user: User | null) => void;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   fetchUser: () => Promise<void>;
   initialize: () => Promise<void>;
   isAuthenticated: () => boolean;
@@ -67,8 +67,28 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
-      logout: () => {
-        set({ user: null, accessToken: null, refreshToken: null });
+      logout: async () => {
+        try {
+          // 1. Intentar invalidar el refresh token en el backend
+          await authApi.logout();
+        } catch (error) {
+          // Si falla, continuar igual (el usuario quiere desloguearse)
+          console.error('Error al hacer logout en el backend:', error);
+        } finally {
+          // 2. Limpiar el estado de Zustand
+          set({ 
+            user: null, 
+            accessToken: null, 
+            refreshToken: null,
+            isLoading: false 
+          });
+          
+          // 3. Limpiar manualmente el localStorage de Zustand
+          localStorage.removeItem('restaurant-auth');
+          
+          // 4. Opcional: redirigir al login
+          window.location.href = '/login';
+        }
       },
 
       fetchUser: async () => {

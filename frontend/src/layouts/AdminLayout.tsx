@@ -14,6 +14,8 @@ import { useUIStore } from '@/stores/uiStore';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react'; // 👈 Agregar
+
 
 const navLinks = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
@@ -26,10 +28,23 @@ export function AdminLayout() {
   const { user, logout } = useAuth();
   const location = useLocation();
   const { sidebarCollapsed, toggleSidebarCollapse } = useUIStore();
+  const [isLoggingOut, setIsLoggingOut] = useState(false); // 👈 Nuevo estado
+
 
   const isActive = (path: string, end?: boolean) => {
     if (end) return location.pathname === path;
     return location.pathname.startsWith(path);
+  };
+
+  // 👇 Nueva función para manejar el logout
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await logout(); // El logout ya redirige internamente con window.location.href
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      setIsLoggingOut(false);
+    }
   };
 
   return (
@@ -128,7 +143,8 @@ export function AdminLayout() {
           </div>
           <Button
             variant="ghost"
-            onClick={logout}
+            onClick={handleLogout} // 👈 Cambiar aquí
+            disabled={isLoggingOut} // 👈 Deshabilitar mientras se procesa
             className={cn(
               'w-full justify-start text-muted-foreground hover:text-foreground',
               sidebarCollapsed && 'justify-center px-2'
@@ -143,7 +159,7 @@ export function AdminLayout() {
                   exit={{ opacity: 0 }}
                   className="ml-2"
                 >
-                  Cerrar Sesión
+                  {isLoggingOut ? 'Cerrando...' : 'Cerrar Sesión'}
                 </motion.span>
               )}
             </AnimatePresence>

@@ -121,7 +121,7 @@ export default function TablesListPage() {
                       <td className="px-6 py-4">
                         <p className="font-medium">{table.name}</p>
                         <p className="text-sm text-muted-foreground">
-                          ID: {table.id.slice(0, 8)}
+                          ID: {table.id ? String(table.id).slice(0, 8) : '—'}
                         </p>
                       </td>
                       <td className="px-6 py-4">

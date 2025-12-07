@@ -1,0 +1,1500 @@
+2025-12-07 00:38:42.263 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - null null
+2025-12-07 00:38:42.328 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.330 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - 204 null null 67.7474ms
+2025-12-07 00:38:42.334 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/login - application/json 55
+2025-12-07 00:38:42.336 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.337 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-07 00:38:42.338 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.DTOs.UserLoginDto) on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:38:42.539 -03:00 [INF] Executed DbCommand (43ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-07 00:38:42.738 -03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-07 00:38:42.745 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-07 00:38:42.752 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.AuthResponseDto'.
+2025-12-07 00:38:42.755 -03:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 411.0016ms
+2025-12-07 00:38:42.759 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-07 00:38:42.761 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/login - 200 null application/json; charset=utf-8 427.2575ms
+2025-12-07 00:38:42.814 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:38:42.817 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:38:42.824 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:38:42.836 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.829 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.832 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.843 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 25.7806ms
+2025-12-07 00:38:42.839 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 17.0691ms
+2025-12-07 00:38:42.841 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 26.9834ms
+2025-12-07 00:38:42.821 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:38:42.848 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:38:42.851 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:38:42.855 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:38:42.857 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.862 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.862 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.866 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.867 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 46.6682ms
+2025-12-07 00:38:42.876 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:38:42.879 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:42.884 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:38:42.885 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:38:42.872 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:38:42.891 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:38:42.870 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:38:42.876 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:38:42.933 -03:00 [INF] Executed DbCommand (43ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:38:42.967 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:38:43.017 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:38:43.026 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 136.9872ms
+2025-12-07 00:38:43.028 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:38:43.031 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 155.5905ms
+2025-12-07 00:38:43.046 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:38:43.051 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:38:43.056 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 93.6895ms
+2025-12-07 00:38:43.059 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:38:43.060 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 204.7948ms
+2025-12-07 00:38:43.084 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:38:43.102 -03:00 [INF] Executed DbCommand (82ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:38:43.109 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:38:43.113 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 93.5386ms
+2025-12-07 00:38:43.117 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:38:43.118 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 266.9053ms
+2025-12-07 00:38:43.149 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:38:43.164 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:38:43.191 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 98.4827ms
+2025-12-07 00:38:43.192 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:38:43.194 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 346.1074ms
+2025-12-07 00:38:57.784 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:38:57.794 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:57.796 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 12.3971ms
+2025-12-07 00:38:57.842 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:38:57.846 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:38:57.859 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:38:57.861 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:38:57.873 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:38:57.878 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:38:57.881 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 8.4537ms
+2025-12-07 00:38:57.888 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:38:57.889 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 47.3249ms
+2025-12-07 00:39:05.393 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:39:05.400 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:05.402 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 9.1853ms
+2025-12-07 00:39:05.406 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:39:05.408 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:05.409 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:39:05.410 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:39:05.414 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:39:05.421 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:39:05.422 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 9.0106ms
+2025-12-07 00:39:05.423 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:39:05.425 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 18.8555ms
+2025-12-07 00:39:07.250 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:39:07.250 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:39:07.250 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:39:07.269 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:39:07.288 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.276 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.280 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.301 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 50.3653ms
+2025-12-07 00:39:07.291 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:39:07.294 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 44.0937ms
+2025-12-07 00:39:07.272 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.316 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 66.4576ms
+2025-12-07 00:39:07.308 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:39:07.325 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.307 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:39:07.323 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:39:07.310 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:39:07.326 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:39:07.349 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:39:07.340 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.344 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:07.338 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:39:07.355 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:39:07.356 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:39:07.356 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:39:07.373 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:39:07.375 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:39:07.384 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:39:07.386 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:39:07.388 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 50.734ms
+2025-12-07 00:39:07.397 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:39:07.401 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 47.2847ms
+2025-12-07 00:39:07.408 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:39:07.408 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:39:07.412 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:39:07.418 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:39:07.420 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 150.8399ms
+2025-12-07 00:39:07.427 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:39:07.447 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 42.8928ms
+2025-12-07 00:39:07.450 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:39:07.435 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 41.232ms
+2025-12-07 00:39:07.456 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:39:07.458 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 134.4833ms
+2025-12-07 00:39:07.438 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 130.6307ms
+2025-12-07 00:39:07.453 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 142.9375ms
+2025-12-07 00:39:13.439 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:39:13.450 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:13.452 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 13.6343ms
+2025-12-07 00:39:13.469 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:39:13.472 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:39:13.473 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:39:13.474 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:39:13.483 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:39:13.487 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:39:13.489 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 7.2594ms
+2025-12-07 00:39:13.491 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:39:13.494 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 25.0441ms
+2025-12-07 00:40:10.756 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:40:10.764 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:40:10.770 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:40:10.772 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.779 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.788 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 31.8691ms
+2025-12-07 00:40:10.785 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.800 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 36.1784ms
+2025-12-07 00:40:10.830 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:40:10.809 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:40:10.806 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 35.5472ms
+2025-12-07 00:40:10.835 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.839 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.849 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:40:10.850 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:40:10.852 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:40:10.855 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:10.857 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:40:10.864 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:40:10.866 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:40:10.872 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:40:10.882 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:40:10.882 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:40:10.887 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:40:10.898 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:40:10.905 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:40:10.907 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 36.4601ms
+2025-12-07 00:40:10.917 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 35.836ms
+2025-12-07 00:40:10.927 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:40:10.932 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:40:10.933 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:40:10.937 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 34.1976ms
+2025-12-07 00:40:10.947 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 116.8069ms
+2025-12-07 00:40:10.949 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 139.8554ms
+2025-12-07 00:40:10.953 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:40:10.981 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 132.6504ms
+2025-12-07 00:40:43.718 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:40:43.722 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:43.724 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 37.0333ms
+2025-12-07 00:40:43.727 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:40:43.735 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:40:43.736 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:40:43.737 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:40:43.742 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:40:43.753 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:40:43.755 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 14.5715ms
+2025-12-07 00:40:43.757 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:40:43.761 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 33.8845ms
+2025-12-07 00:41:13.382 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - null null
+2025-12-07 00:41:13.384 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.386 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/login - 204 null null 6.7222ms
+2025-12-07 00:41:13.389 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/auth/login - application/json 49
+2025-12-07 00:41:13.393 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.394 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-07 00:41:13.396 -03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Api.DTOs.UserLoginDto) on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:41:13.400 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Email" = @__email_0
+LIMIT 1
+2025-12-07 00:41:13.592 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-07 00:41:13.598 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p9='?' (DbType = Int32), @p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "CreatedAt" = @p0, "Email" = @p1, "IsActive" = @p2, "LastLoginAt" = @p3, "Name" = @p4, "PasswordHash" = @p5, "RefreshToken" = @p6, "RefreshTokenExpiration" = @p7, "Role" = @p8
+WHERE "Id" = @p9;
+2025-12-07 00:41:13.602 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.AuthResponseDto'.
+2025-12-07 00:41:13.605 -03:00 [INF] Executed action Api.Controllers.AuthController.Login (Api) in 205.9299ms
+2025-12-07 00:41:13.607 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Login (Api)'
+2025-12-07 00:41:13.609 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/auth/login - 200 null application/json; charset=utf-8 220.2308ms
+2025-12-07 00:41:13.640 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:13.676 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:41:13.684 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.690 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.691 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 50.8055ms
+2025-12-07 00:41:13.695 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 18.9697ms
+2025-12-07 00:41:13.698 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:13.701 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:41:13.708 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.711 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:13.713 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:13.714 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:41:13.715 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:41:13.716 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:41:13.731 -03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:41:13.732 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:41:13.751 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:41:13.755 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 23.6065ms
+2025-12-07 00:41:13.745 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:13.758 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:41:13.762 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 37.8496ms
+2025-12-07 00:41:13.768 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:13.774 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 76.0798ms
+2025-12-07 00:41:13.763 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 62.356ms
+2025-12-07 00:41:27.674 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/availability?date=2025-12-07&startTime=19:00&endTime=21:00&guests=2 - null null
+2025-12-07 00:41:27.678 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:27.679 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/availability?date=2025-12-07&startTime=19:00&endTime=21:00&guests=2 - 204 null null 5.4688ms
+2025-12-07 00:41:27.684 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/availability?date=2025-12-07&startTime=19:00&endTime=21:00&guests=2 - null null
+2025-12-07 00:41:27.689 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:27.690 -03:00 [INF] Executing endpoint 'Api.Controllers.AvailabilityController.GetAvailability (Api)'
+2025-12-07 00:41:27.692 -03:00 [INF] Route matched with {action = "GetAvailability", controller = "Availability"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.TableAvailabilityDto]]] GetAvailability(System.String, System.String, System.String, System.Nullable`1[System.Int32]) on controller Api.Controllers.AvailabilityController (Api).
+2025-12-07 00:41:27.707 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."IsActive"
+ORDER BY t."Name"
+2025-12-07 00:41:27.718 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__date_0='?' (DbType = Date), @__endTime_1='?' (DbType = Time), @__startTime_2='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT r."TableId"
+FROM "Reservations" AS r
+WHERE r."Date" = @__date_0 AND r."Status" <> 2 AND r."StartTime" < @__endTime_1 AND r."EndTime" > @__startTime_2
+2025-12-07 00:41:27.726 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.TableAvailabilityDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:27.728 -03:00 [INF] Executed action Api.Controllers.AvailabilityController.GetAvailability (Api) in 32.4331ms
+2025-12-07 00:41:27.729 -03:00 [INF] Executed endpoint 'Api.Controllers.AvailabilityController.GetAvailability (Api)'
+2025-12-07 00:41:27.731 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/availability?date=2025-12-07&startTime=19:00&endTime=21:00&guests=2 - 200 null application/json; charset=utf-8 47.1358ms
+2025-12-07 00:41:40.122 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:40.131 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.134 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 12.4953ms
+2025-12-07 00:41:40.139 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/reservations - application/json 124
+2025-12-07 00:41:40.142 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.149 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Create (Api)'
+2025-12-07 00:41:40.152 -03:00 [INF] Route matched with {action = "Create", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Api.DTOs.ReservationCreateDto) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:41:40.156 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__tableId_0='?' (DbType = Int32), @__date_1='?' (DbType = Date), @__endTime_2='?' (DbType = Time), @__startTime_3='?' (DbType = Time)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId"
+FROM "Reservations" AS r
+WHERE r."TableId" = @__tableId_0 AND r."Date" = @__date_1 AND r."StartTime" < @__endTime_2 AND r."EndTime" > @__startTime_3
+LIMIT 1
+2025-12-07 00:41:40.174 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:41:40.196 -03:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Date), @p2='?' (DbType = Time), @p3='?' (DbType = Int32), @p4='?', @p5='?' (DbType = Time), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Reservations" ("CreatedAt", "Date", "EndTime", "Guests", "Notes", "StartTime", "Status", "TableId", "UpdatedAt", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-12-07 00:41:40.202 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'Api.DTOs.ReservationDto'.
+2025-12-07 00:41:40.203 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Create (Api) in 48.6121ms
+2025-12-07 00:41:40.207 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Create (Api)'
+2025-12-07 00:41:40.208 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/reservations - 201 null application/json; charset=utf-8 69.5169ms
+2025-12-07 00:41:40.215 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations/21/dishes - null null
+2025-12-07 00:41:40.224 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.225 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:41:40.227 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations/21/dishes - 204 null null 12.3853ms
+2025-12-07 00:41:40.230 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.234 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations/21/dishes - null null
+2025-12-07 00:41:40.239 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 13.5923ms
+2025-12-07 00:41:40.242 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.248 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:41:40.250 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationDishesController.Get (Api)'
+2025-12-07 00:41:40.256 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:40.260 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:41:40.257 -03:00 [INF] Route matched with {action = "Get", controller = "ReservationDishes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller Api.Controllers.ReservationDishesController (Api).
+2025-12-07 00:41:40.265 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:41:40.278 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:41:40.279 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__reservationId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."ReservationId", r."DishId", r."Quantity", d."Id", d."Category", d."Name", d."Price"
+FROM "ReservationDishes" AS r
+INNER JOIN "Dishes" AS d ON r."DishId" = d."Id"
+WHERE r."ReservationId" = @__reservationId_0
+2025-12-07 00:41:40.284 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:40.289 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:40.291 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 14.5545ms
+2025-12-07 00:41:40.293 -03:00 [INF] Executed action Api.Controllers.ReservationDishesController.Get (Api) in 21.7134ms
+2025-12-07 00:41:40.296 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:41:40.300 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationDishesController.Get (Api)'
+2025-12-07 00:41:40.302 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 54.0698ms
+2025-12-07 00:41:40.303 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations/21/dishes - 200 null application/json; charset=utf-8 69.038ms
+2025-12-07 00:41:43.500 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations/21/dishes - null null
+2025-12-07 00:41:43.505 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:43.507 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations/21/dishes - 204 null null 6.9825ms
+2025-12-07 00:41:43.513 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/reservations/21/dishes - application/json 25
+2025-12-07 00:41:43.515 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:43.517 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationDishesController.AddDish (Api)'
+2025-12-07 00:41:43.520 -03:00 [INF] Route matched with {action = "AddDish", controller = "ReservationDishes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddDish(Int32, Api.DTOs.CreateReservationDishDto) on controller Api.Controllers.ReservationDishesController (Api).
+2025-12-07 00:41:43.526 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__reservationId_0='?' (DbType = Int32), @__dishId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."ReservationId", r."DishId", r."Quantity"
+FROM "ReservationDishes" AS r
+WHERE r."ReservationId" = @__reservationId_0 AND r."DishId" = @__dishId_1
+LIMIT 1
+2025-12-07 00:41:43.532 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ReservationDishes" ("DishId", "ReservationId", "Quantity")
+VALUES (@p0, @p1, @p2);
+2025-12-07 00:41:43.542 -03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-12-07 00:41:43.544 -03:00 [INF] Executed action Api.Controllers.ReservationDishesController.AddDish (Api) in 20.9811ms
+2025-12-07 00:41:43.547 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationDishesController.AddDish (Api)'
+2025-12-07 00:41:43.550 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/reservations/21/dishes - 204 null null 37.3718ms
+2025-12-07 00:41:43.558 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations/21/dishes - null null
+2025-12-07 00:41:43.561 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:43.562 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationDishesController.Get (Api)'
+2025-12-07 00:41:43.563 -03:00 [INF] Route matched with {action = "Get", controller = "ReservationDishes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller Api.Controllers.ReservationDishesController (Api).
+2025-12-07 00:41:43.570 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__reservationId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."ReservationId", r."DishId", r."Quantity", d."Id", d."Category", d."Name", d."Price"
+FROM "ReservationDishes" AS r
+INNER JOIN "Dishes" AS d ON r."DishId" = d."Id"
+WHERE r."ReservationId" = @__reservationId_0
+2025-12-07 00:41:43.573 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:43.575 -03:00 [INF] Executed action Api.Controllers.ReservationDishesController.Get (Api) in 6.6245ms
+2025-12-07 00:41:43.577 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationDishesController.Get (Api)'
+2025-12-07 00:41:43.578 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations/21/dishes - 200 null application/json; charset=utf-8 20.2401ms
+2025-12-07 00:41:43.602 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:43.605 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:43.607 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:43.614 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:41:43.622 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:41:43.638 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:43.648 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 27.8565ms
+2025-12-07 00:41:43.651 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:43.653 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 51.4022ms
+2025-12-07 00:41:49.614 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:41:49.630 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:49.634 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 20.0736ms
+2025-12-07 00:41:49.649 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:41:49.652 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:49.653 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:41:49.655 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:41:49.668 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:41:49.672 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:49.681 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 15.2214ms
+2025-12-07 00:41:49.685 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:41:49.686 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 37.8184ms
+2025-12-07 00:41:50.384 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:50.394 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:50.396 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 12.5119ms
+2025-12-07 00:41:50.403 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:41:50.411 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:50.414 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:50.416 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:41:50.420 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:41:50.434 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:50.443 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 23.9293ms
+2025-12-07 00:41:50.447 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:41:50.450 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 46.8299ms
+2025-12-07 00:41:51.396 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:41:51.404 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:51.407 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 11.2272ms
+2025-12-07 00:41:51.417 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:41:51.420 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:41:51.421 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:41:51.426 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:41:51.434 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:41:51.437 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:41:51.445 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 11.5954ms
+2025-12-07 00:41:51.452 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:41:51.461 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 44.5801ms
+2025-12-07 00:42:04.912 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:42:04.921 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:04.922 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 9.8793ms
+2025-12-07 00:42:04.925 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:42:04.930 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:04.931 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:42:04.933 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:42:04.940 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:42:04.946 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:42:04.947 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 9.6095ms
+2025-12-07 00:42:04.949 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:42:04.950 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 24.5529ms
+2025-12-07 00:42:05.823 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:42:05.823 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:42:05.840 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.835 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:42:05.837 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.858 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 34.9643ms
+2025-12-07 00:42:05.828 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:42:05.856 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.849 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 25.8345ms
+2025-12-07 00:42:05.866 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.868 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:42:05.871 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:42:05.873 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 45.1074ms
+2025-12-07 00:42:05.887 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:42:05.877 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:42:05.881 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.875 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:42:05.890 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.895 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:05.897 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:42:05.914 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:42:05.920 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:42:05.915 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:42:05.916 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:42:05.915 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:42:05.930 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:42:05.930 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:42:05.955 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:42:05.966 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:42:05.983 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 53.8311ms
+2025-12-07 00:42:05.993 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:42:05.997 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 109.8161ms
+2025-12-07 00:42:05.980 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 68.7927ms
+2025-12-07 00:42:05.975 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:42:06.006 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:42:06.013 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:42:06.014 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 179.541ms
+2025-12-07 00:42:06.021 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 48.4207ms
+2025-12-07 00:42:06.028 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:42:06.029 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 152.5549ms
+2025-12-07 00:42:06.061 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:42:06.064 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:42:06.065 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 132.2937ms
+2025-12-07 00:42:06.069 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:42:06.070 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 200.9553ms
+2025-12-07 00:42:09.307 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:42:09.312 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:42:09.313 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:42:09.315 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:42:09.326 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:42:09.339 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:42:09.342 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 18.089ms
+2025-12-07 00:42:09.347 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:42:09.349 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 42.3713ms
+2025-12-07 00:43:10.444 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:10.467 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:10.469 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 24.8352ms
+2025-12-07 00:43:10.480 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:10.487 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:10.489 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:10.491 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:43:10.494 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:43:10.501 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:10.505 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 11.8283ms
+2025-12-07 00:43:10.509 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:10.510 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 30.2515ms
+2025-12-07 00:43:11.557 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:43:11.564 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:11.567 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 10.7294ms
+2025-12-07 00:43:11.573 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:43:11.577 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:11.584 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:11.587 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:43:11.592 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:43:11.595 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:11.602 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 11.113ms
+2025-12-07 00:43:11.606 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:11.607 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 34.6512ms
+2025-12-07 00:43:19.314 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:43:19.318 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.319 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 5.0527ms
+2025-12-07 00:43:19.322 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:43:19.325 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.327 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:43:19.329 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:43:19.334 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:43:19.341 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:43:19.343 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 10.6426ms
+2025-12-07 00:43:19.344 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:43:19.346 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 23.4587ms
+2025-12-07 00:43:19.393 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:43:19.436 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:19.445 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:19.451 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:43:19.453 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.455 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.457 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.464 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.465 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 72.3042ms
+2025-12-07 00:43:19.467 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 71.4558ms
+2025-12-07 00:43:19.478 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:43:19.469 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:43:19.475 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:19.468 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 22.7569ms
+2025-12-07 00:43:19.493 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:19.485 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:43:19.487 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.484 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.501 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:19.506 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:43:19.506 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:19.509 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:19.515 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:19.518 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:43:19.520 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:43:19.523 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:43:19.524 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:43:19.529 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 23.3989ms
+2025-12-07 00:43:19.549 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:43:19.536 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:43:19.545 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:43:19.533 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:43:19.551 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 99.1325ms
+2025-12-07 00:43:19.557 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:19.568 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:19.573 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:19.587 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 51.9511ms
+2025-12-07 00:43:19.600 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 67.3019ms
+2025-12-07 00:43:19.590 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 48.0845ms
+2025-12-07 00:43:19.612 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:19.617 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:19.619 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:19.629 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 136.6445ms
+2025-12-07 00:43:19.622 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 147.5326ms
+2025-12-07 00:43:19.621 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 142.5495ms
+2025-12-07 00:43:25.416 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:25.421 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:25.426 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 9.4009ms
+2025-12-07 00:43:25.453 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:25.460 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:25.464 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:25.466 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:43:25.470 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:43:25.477 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:25.482 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 13.18ms
+2025-12-07 00:43:25.485 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:25.487 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 34.5881ms
+2025-12-07 00:43:28.162 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:43:28.162 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:28.176 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:28.177 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 15.0188ms
+2025-12-07 00:43:28.163 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:28.168 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:28.192 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 29.7274ms
+2025-12-07 00:43:28.190 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:28.185 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:28.207 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:28.210 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:28.201 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:43:28.203 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:28.214 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:43:28.217 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:28.219 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:43:28.222 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:43:28.225 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:28.241 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:43:28.240 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:43:28.239 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:28.264 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 42.7383ms
+2025-12-07 00:43:28.255 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:28.251 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:43:28.269 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:28.279 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 44.2379ms
+2025-12-07 00:43:28.287 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:28.294 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 131.1384ms
+2025-12-07 00:43:28.284 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:28.285 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 100.249ms
+2025-12-07 00:43:28.301 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 50.8046ms
+2025-12-07 00:43:28.312 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:28.313 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 112.4305ms
+2025-12-07 00:43:30.550 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:30.554 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:30.557 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 7.4235ms
+2025-12-07 00:43:30.569 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:30.571 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:30.578 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:30.580 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:43:30.584 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:43:30.597 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:30.600 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 17.0716ms
+2025-12-07 00:43:30.603 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:30.604 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 35.3489ms
+2025-12-07 00:43:31.983 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:43:31.983 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:43:31.983 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:43:31.996 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:32.000 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:32.010 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:43:32.013 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:32.015 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:32.016 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:32.024 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:43:32.020 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:43:32.017 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:43:32.030 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:43:32.032 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:43:32.043 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:43:32.055 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:32.060 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:32.065 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:43:32.069 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 39.9532ms
+2025-12-07 00:43:32.077 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 45.5043ms
+2025-12-07 00:43:32.082 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 41.0157ms
+2025-12-07 00:43:32.085 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:43:32.087 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:43:32.091 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:43:32.093 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 109.7118ms
+2025-12-07 00:43:32.094 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 111.3594ms
+2025-12-07 00:43:32.098 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 115.5134ms
+2025-12-07 00:44:08.272 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:44:08.286 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:44:08.288 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 16.4406ms
+2025-12-07 00:44:08.295 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:44:08.303 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:44:08.305 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:44:08.310 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:44:08.323 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:44:08.331 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:44:08.334 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 12.3854ms
+2025-12-07 00:44:08.337 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:44:08.340 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 44.5135ms
+2025-12-07 00:44:17.748 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:44:17.753 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:44:17.757 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 8.0349ms
+2025-12-07 00:44:17.765 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:44:17.769 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:44:17.773 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:44:17.780 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:44:17.788 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:44:17.794 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:44:17.796 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 9.3904ms
+2025-12-07 00:44:17.798 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:44:17.800 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 34.6852ms
+2025-12-07 00:52:56.113 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 00:52:56.116 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.117 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 4.0058ms
+2025-12-07 00:52:56.121 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:52:56.123 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.126 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:52:56.127 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:52:56.280 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:52:56.285 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:52:56.287 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 154.6407ms
+2025-12-07 00:52:56.289 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:52:56.290 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 169.6939ms
+2025-12-07 00:52:56.428 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 00:52:56.440 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 00:52:56.444 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 00:52:56.486 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 00:52:56.500 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.490 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.493 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.488 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.505 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 77.8064ms
+2025-12-07 00:52:56.503 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 64.1993ms
+2025-12-07 00:52:56.504 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 60.2174ms
+2025-12-07 00:52:56.502 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:52:56.508 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 00:52:56.511 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 00:52:56.519 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 00:52:56.533 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.523 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.526 -03:00 [INF] CORS policy execution successful.
+2025-12-07 00:52:56.520 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 00:52:56.539 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:52:56.540 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:52:56.541 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:52:56.550 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 00:52:56.553 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 00:52:56.555 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 00:52:56.556 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 00:52:56.559 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 00:52:56.588 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 40.4939ms
+2025-12-07 00:52:56.576 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 00:52:56.609 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:52:56.617 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 46.5469ms
+2025-12-07 00:52:56.621 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 00:52:56.624 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 105.1979ms
+2025-12-07 00:52:56.601 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 00:52:56.634 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 148.2991ms
+2025-12-07 00:52:56.678 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 00:52:56.684 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:52:56.687 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 100.5739ms
+2025-12-07 00:52:56.689 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 00:52:56.690 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 178.9195ms
+2025-12-07 00:52:56.742 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 00:52:56.752 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 00:52:56.755 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 181.4199ms
+2025-12-07 00:52:56.757 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 00:52:56.759 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 250.5533ms
+2025-12-07 01:01:34.791 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:01:34.793 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:01:34.794 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 3.1499ms
+2025-12-07 01:01:34.797 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:01:34.799 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:01:34.800 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:01:34.801 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:01:34.851 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:01:34.856 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:01:34.858 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 53.3839ms
+2025-12-07 01:01:34.866 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:01:34.868 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 71.8525ms
+2025-12-07 01:34:25.697 -03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-07 01:34:26.082 -03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-12-07 01:34:26.100 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-07 01:34:26.104 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-12-07 01:34:26.106 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-07 01:34:26.113 -03:00 [INF] No migrations were applied. The database is already up to date.
+2025-12-07 01:34:26.453 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS u)
+2025-12-07 01:34:26.465 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Tables" AS t)
+2025-12-07 01:34:26.473 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Dishes" AS d)
+2025-12-07 01:34:26.668 -03:00 [INF] User profile is available. Using 'C:\Users\Usuario\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-07 01:34:26.930 -03:00 [INF] Now listening on: http://localhost:5231
+2025-12-07 01:34:27.192 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-07 01:34:27.195 -03:00 [INF] Hosting environment: Development
+2025-12-07 01:34:27.211 -03:00 [INF] Content root path: C:\Proyecto\RestaurantManagement\RestaurantApp\backend\Api
+2025-12-07 01:34:27.870 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/index.html - null null
+2025-12-07 01:34:28.108 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/index.html - 200 null text/html;charset=utf-8 246.4849ms
+2025-12-07 01:34:28.119 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-07 01:34:28.119 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/index.js - null null
+2025-12-07 01:34:28.122 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/_vs/browserLink - null null
+2025-12-07 01:34:28.131 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/index.js - 200 null application/javascript;charset=utf-8 11.6888ms
+2025-12-07 01:34:28.132 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/_framework/aspnetcore-browser-refresh.js - 200 16491 application/javascript; charset=utf-8 14.1819ms
+2025-12-07 01:34:28.209 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/_vs/browserLink - 200 null text/javascript; charset=UTF-8 87.1799ms
+2025-12-07 01:34:28.256 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/swagger/v1/swagger.json - null null
+2025-12-07 01:34:28.316 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 60.4942ms
+2025-12-07 01:34:38.174 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:34:38.183 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:38.186 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 12.45ms
+2025-12-07 01:34:38.190 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:34:38.196 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:38.349 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:34:38.370 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:34:38.647 -03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:34:38.753 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:34:38.766 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 389.9947ms
+2025-12-07 01:34:38.768 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:34:38.776 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 585.6801ms
+2025-12-07 01:34:40.312 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:34:40.314 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 01:34:40.314 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:34:40.316 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:34:40.320 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.324 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.329 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.332 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.332 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 20.8242ms
+2025-12-07 01:34:40.333 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 19.2791ms
+2025-12-07 01:34:40.334 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 20.292ms
+2025-12-07 01:34:40.337 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:34:40.381 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 01:34:40.381 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:34:40.382 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:34:40.382 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:34:40.386 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.388 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.394 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:34:40.401 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:34:40.402 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:34:40.403 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:34:40.407 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:34:40.416 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:34:40.416 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 01:34:40.477 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:34:40.486 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:34:40.488 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 91.3383ms
+2025-12-07 01:34:40.488 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:34:40.494 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:34:40.500 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 183.9385ms
+2025-12-07 01:34:40.517 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:34:40.570 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 151.8716ms
+2025-12-07 01:34:40.582 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:34:40.584 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 202.5237ms
+2025-12-07 01:34:40.586 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:34:40.597 -03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 01:34:40.627 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:34:40.631 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:34:40.632 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 209.9427ms
+2025-12-07 01:34:40.633 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:34:40.635 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 253.5421ms
+2025-12-07 01:34:40.635 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 220.0403ms
+2025-12-07 01:34:40.643 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:34:40.645 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 264.0731ms
+2025-12-07 01:35:12.884 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:35:12.889 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:35:12.890 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 35.8749ms
+2025-12-07 01:35:12.937 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:35:12.939 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:35:12.940 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:35:12.941 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:35:12.950 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:35:12.955 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:35:12.956 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 12.5462ms
+2025-12-07 01:35:12.958 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:35:12.959 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 22.2141ms
+2025-12-07 01:36:59.783 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:36:59.788 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:36:59.789 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 5.886ms
+2025-12-07 01:36:59.794 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:36:59.796 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:36:59.798 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:36:59.799 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:36:59.807 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:36:59.812 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:36:59.814 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 12.1985ms
+2025-12-07 01:36:59.815 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:36:59.816 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 22.2278ms
+2025-12-07 01:37:10.494 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:37:10.536 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:10.570 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:10.589 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.582 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.585 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.578 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:37:10.591 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 54.494ms
+2025-12-07 01:37:10.593 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 98.1275ms
+2025-12-07 01:37:10.594 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 57.3005ms
+2025-12-07 01:37:10.596 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.601 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:10.602 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:37:10.607 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:10.608 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 29.7295ms
+2025-12-07 01:37:10.612 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.614 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.616 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.620 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:10.620 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:37:10.621 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:10.623 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:10.624 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:37:10.627 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:10.628 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:37:10.629 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 01:37:10.633 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:37:10.633 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:37:10.637 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:37:10.642 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:37:10.646 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:10.647 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:10.650 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:37:10.650 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 18.738ms
+2025-12-07 01:37:10.652 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 17.1497ms
+2025-12-07 01:37:10.656 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:37:10.658 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:10.660 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:10.662 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 13.4124ms
+2025-12-07 01:37:10.666 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:37:10.664 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 62.2175ms
+2025-12-07 01:37:10.663 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 61.7912ms
+2025-12-07 01:37:10.667 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 46.8851ms
+2025-12-07 01:37:10.718 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 01:37:10.723 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:10.725 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 88.7211ms
+2025-12-07 01:37:10.727 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:10.728 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 121.9045ms
+2025-12-07 01:37:33.944 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:37:33.948 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:33.951 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:33.957 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.960 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.965 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 21.3919ms
+2025-12-07 01:37:33.963 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.971 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 23.1225ms
+2025-12-07 01:37:33.976 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:33.976 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 25.1809ms
+2025-12-07 01:37:33.979 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:37:33.982 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.984 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:33.987 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.990 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:33.992 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:33.993 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:33.994 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:37:33.995 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:33.997 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:37:34.000 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 01:37:34.001 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:37:34.003 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:37:34.007 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:34.008 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 01:37:34.009 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:34.011 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 12.7873ms
+2025-12-07 01:37:34.015 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:34.016 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 14.7147ms
+2025-12-07 01:37:34.017 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:34.022 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 16.7525ms
+2025-12-07 01:37:34.024 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:34.026 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 50.123ms
+2025-12-07 01:37:34.027 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:34.029 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 49.5846ms
+2025-12-07 01:37:34.036 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 51.9899ms
+2025-12-07 01:37:58.955 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:37:58.959 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:58.968 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:58.971 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.973 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.975 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.976 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 21.1653ms
+2025-12-07 01:37:58.976 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 20.0087ms
+2025-12-07 01:37:58.978 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 14.1209ms
+2025-12-07 01:37:58.980 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:37:58.984 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:37:58.987 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 01:37:58.991 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.994 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.996 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:37:58.997 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:58.998 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:58.999 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:58.999 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:37:59.001 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:37:59.003 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 01:37:59.009 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:37:59.010 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:37:59.014 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 01:37:59.015 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:59.018 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:59.022 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:37:59.025 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 18.276ms
+2025-12-07 01:37:59.027 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 17.7055ms
+2025-12-07 01:37:59.028 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 16.2356ms
+2025-12-07 01:37:59.030 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:37:59.031 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:37:59.032 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:37:59.033 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 52.5437ms
+2025-12-07 01:37:59.034 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 49.9303ms
+2025-12-07 01:37:59.035 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 47.557ms
+2025-12-07 01:46:45.920 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:46:45.923 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:45.923 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 3.6364ms
+2025-12-07 01:46:45.931 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:46:45.935 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:45.937 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:46:45.938 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:46:46.009 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:46:46.020 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:46:46.022 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 82.449ms
+2025-12-07 01:46:46.024 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:46:46.030 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 98.9543ms
+2025-12-07 01:46:56.595 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:46:56.641 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.596 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - null null
+2025-12-07 01:46:56.631 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - null null
+2025-12-07 01:46:56.646 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 51.1286ms
+2025-12-07 01:46:56.650 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.655 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.659 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:46:56.661 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/Dish - 204 null null 64.6169ms
+2025-12-07 01:46:56.662 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/reservations - 204 null null 64.5073ms
+2025-12-07 01:46:56.664 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.669 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/reservations - null null
+2025-12-07 01:46:56.671 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/Dish - null null
+2025-12-07 01:46:56.676 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:46:56.677 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.680 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:46:56.682 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:46:56.684 -03:00 [INF] Executing endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:46:56.686 -03:00 [INF] Executing endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:46:56.695 -03:00 [INF] Route matched with {action = "Get", controller = "Reservations"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(System.Nullable`1[System.DateOnly]) on controller Api.Controllers.ReservationsController (Api).
+2025-12-07 01:46:56.695 -03:00 [INF] Route matched with {action = "GetAll", controller = "Dish"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Api.DTOs.DishDto]]] GetAll() on controller Api.Controllers.DishController (Api).
+2025-12-07 01:46:56.697 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:46:56.713 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:46:56.715 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 21.5324ms
+2025-12-07 01:46:56.716 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:46:56.717 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 57.5561ms
+2025-12-07 01:46:56.784 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."CreatedAt", r."Date", r."EndTime", r."Guests", r."Notes", r."StartTime", r."Status", r."TableId", r."UpdatedAt", r."UserId", t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Reservations" AS r
+INNER JOIN "Tables" AS t ON r."TableId" = t."Id"
+WHERE r."UserId" = @__userId_0
+2025-12-07 01:46:56.787 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.ReservationDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:46:56.787 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."Id", d."Category", d."Name", d."Price"
+FROM "Dishes" AS d
+2025-12-07 01:46:56.796 -03:00 [INF] Executed action Api.Controllers.ReservationsController.Get (Api) in 98.1471ms
+2025-12-07 01:46:56.799 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.DTOs.DishDto, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:46:56.799 -03:00 [INF] Executed endpoint 'Api.Controllers.ReservationsController.Get (Api)'
+2025-12-07 01:46:56.801 -03:00 [INF] Executed action Api.Controllers.DishController.GetAll (Api) in 100.3878ms
+2025-12-07 01:46:56.802 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/reservations - 200 null application/json; charset=utf-8 132.5667ms
+2025-12-07 01:46:56.803 -03:00 [INF] Executed endpoint 'Api.Controllers.DishController.GetAll (Api)'
+2025-12-07 01:46:56.812 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/Dish - 200 null application/json; charset=utf-8 141.0678ms
+2025-12-07 01:50:01.363 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:50:01.381 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:50:01.383 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 19.8043ms
+2025-12-07 01:50:01.386 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:50:01.390 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:50:01.392 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:50:01.393 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:50:01.397 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:50:01.400 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:50:01.401 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 5.3036ms
+2025-12-07 01:50:01.402 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:50:01.403 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 17.6195ms
+2025-12-07 01:58:39.016 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:58:39.016 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:58:39.021 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - null null
+2025-12-07 01:58:39.028 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.033 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.039 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 23.1795ms
+2025-12-07 01:58:39.036 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.051 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 35.1582ms
+2025-12-07 01:58:39.054 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:58:39.056 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/auth/me - 204 null null 35.1091ms
+2025-12-07 01:58:39.063 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:58:39.069 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.080 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.082 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:58:39.084 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:58:39.086 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:58:39.088 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:58:39.163 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:58:39.163 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:58:39.171 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:58:39.173 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:58:39.176 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 69.2202ms
+2025-12-07 01:58:39.177 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 81.5259ms
+2025-12-07 01:58:39.181 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:58:39.179 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/auth/me - null null
+2025-12-07 01:58:39.179 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:58:39.188 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 133.08ms
+2025-12-07 01:58:39.191 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:58:39.192 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 129.7138ms
+2025-12-07 01:58:39.202 -03:00 [INF] Executing endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:58:39.207 -03:00 [INF] Route matched with {action = "Me", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Me() on controller Api.Controllers.AuthController (Api).
+2025-12-07 01:58:39.219 -03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."LastLoginAt", u."Name", u."PasswordHash", u."RefreshToken", u."RefreshTokenExpiration", u."Role"
+FROM "Users" AS u
+WHERE u."Id" = @__p_0
+LIMIT 1
+2025-12-07 01:58:39.224 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.DTOs.UserDto'.
+2025-12-07 01:58:39.226 -03:00 [INF] Executed action Api.Controllers.AuthController.Me (Api) in 15.0118ms
+2025-12-07 01:58:39.237 -03:00 [INF] Executed endpoint 'Api.Controllers.AuthController.Me (Api)'
+2025-12-07 01:58:39.241 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/auth/me - 200 null application/json; charset=utf-8 61.8005ms
+2025-12-07 01:59:25.254 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:59:25.261 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:59:25.263 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 8.3965ms
+2025-12-07 01:59:25.270 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:59:25.277 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:59:25.279 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:25.286 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:59:25.300 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:59:25.304 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:59:25.306 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 11.8236ms
+2025-12-07 01:59:25.308 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:25.309 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 38.8972ms
+2025-12-07 01:59:33.386 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 01:59:33.391 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:59:33.395 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 8.7465ms
+2025-12-07 01:59:33.404 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:59:33.408 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:59:33.411 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:33.417 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:59:33.422 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:59:33.427 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:59:33.435 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 13.5902ms
+2025-12-07 01:59:33.436 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:33.437 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 33.617ms
+2025-12-07 01:59:37.707 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 01:59:37.713 -03:00 [INF] CORS policy execution successful.
+2025-12-07 01:59:37.714 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:37.715 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 01:59:37.723 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 01:59:37.734 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 01:59:37.736 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 15.2904ms
+2025-12-07 01:59:37.738 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 01:59:37.742 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 34.7378ms
+2025-12-07 02:00:06.483 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:00:06.496 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:06.497 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 13.8281ms
+2025-12-07 02:00:06.503 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5231/api/tables - application/json 47
+2025-12-07 02:00:06.512 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:06.514 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.Create (Api)'
+2025-12-07 02:00:06.520 -03:00 [INF] Route matched with {action = "Create", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Api.Models.Entities.Table) on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:06.699 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?', @p4='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Tables" ("Capacity", "CreatedAt", "IsActive", "Location", "Name")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2025-12-07 02:00:06.733 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'Api.Models.Entities.Table'.
+2025-12-07 02:00:06.757 -03:00 [INF] Executed action Api.Controllers.TablesController.Create (Api) in 230.2653ms
+2025-12-07 02:00:06.760 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.Create (Api)'
+2025-12-07 02:00:06.762 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5231/api/tables - 201 null application/json; charset=utf-8 259.1519ms
+2025-12-07 02:00:06.806 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:00:06.810 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:06.813 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:06.814 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:06.824 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:00:06.841 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:00:06.846 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 27.483ms
+2025-12-07 02:00:06.854 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:06.859 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 52.6621ms
+2025-12-07 02:00:18.884 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:00:18.900 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:18.903 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 18.0175ms
+2025-12-07 02:00:18.909 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:00:18.915 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:18.918 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:18.921 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:18.931 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:00:18.938 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:00:18.945 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 17.5392ms
+2025-12-07 02:00:18.952 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:18.957 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 47.8862ms
+2025-12-07 02:00:51.912 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:00:51.924 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:51.928 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 15.0893ms
+2025-12-07 02:00:51.933 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:00:51.941 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:51.944 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:51.945 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:51.954 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:00:51.959 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:00:51.961 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 10.1302ms
+2025-12-07 02:00:51.963 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:51.966 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 33.4322ms
+2025-12-07 02:00:54.631 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:00:54.674 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:00:54.682 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:54.690 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:54.692 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - 204 null null 61.9249ms
+2025-12-07 02:00:54.694 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:54.698 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:00:54.699 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:54.707 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:00:54.714 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:00:54.714 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.Get (Api)'
+2025-12-07 02:00:54.728 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:00:54.732 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 20.2923ms
+2025-12-07 02:00:54.740 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:00:54.737 -03:00 [INF] Route matched with {action = "Get", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:00:54.742 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 108.2942ms
+2025-12-07 02:00:54.759 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."Id" = @__p_0
+LIMIT 1
+2025-12-07 02:00:54.766 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.Models.Entities.Table'.
+2025-12-07 02:00:54.768 -03:00 [INF] Executed action Api.Controllers.TablesController.Get (Api) in 22.1136ms
+2025-12-07 02:00:54.770 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.Get (Api)'
+2025-12-07 02:00:54.772 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables/7 - 200 null application/json; charset=utf-8 74.3441ms
+2025-12-07 02:01:15.454 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:01:15.472 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:15.474 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - 204 null null 19.3292ms
+2025-12-07 02:01:15.483 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5231/api/tables/7 - application/json 69
+2025-12-07 02:01:15.487 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:15.490 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.Update (Api)'
+2025-12-07 02:01:15.502 -03:00 [INF] Route matched with {action = "Update", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Api.Models.Entities.Table) on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:15.512 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."Id" = @__p_0
+LIMIT 1
+2025-12-07 02:01:15.530 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Tables" SET "Location" = @p0
+WHERE "Id" = @p1;
+2025-12-07 02:01:15.536 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.Models.Entities.Table'.
+2025-12-07 02:01:15.537 -03:00 [INF] Executed action Api.Controllers.TablesController.Update (Api) in 30.3138ms
+2025-12-07 02:01:15.540 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.Update (Api)'
+2025-12-07 02:01:15.542 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5231/api/tables/7 - 200 null application/json; charset=utf-8 58.7593ms
+2025-12-07 02:01:15.597 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:01:15.602 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:15.615 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 18.0199ms
+2025-12-07 02:01:15.626 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:01:15.636 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:15.637 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:15.641 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:15.648 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:01:15.654 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:01:15.656 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 9.8448ms
+2025-12-07 02:01:15.658 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:15.659 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 32.7781ms
+2025-12-07 02:01:25.011 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:01:25.012 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:01:25.020 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:25.028 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 17.5315ms
+2025-12-07 02:01:25.025 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:25.033 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - 204 null null 21.3275ms
+2025-12-07 02:01:25.037 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:01:25.038 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:01:25.056 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:25.051 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:25.065 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:25.062 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.Get (Api)'
+2025-12-07 02:01:25.068 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:25.070 -03:00 [INF] Route matched with {action = "Get", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:25.074 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:01:25.082 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."Id" = @__p_0
+LIMIT 1
+2025-12-07 02:01:25.085 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:01:25.090 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.Models.Entities.Table'.
+2025-12-07 02:01:25.096 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 23.0109ms
+2025-12-07 02:01:25.098 -03:00 [INF] Executed action Api.Controllers.TablesController.Get (Api) in 17.0994ms
+2025-12-07 02:01:25.099 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:25.101 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.Get (Api)'
+2025-12-07 02:01:25.103 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 65.1321ms
+2025-12-07 02:01:25.104 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables/7 - 200 null application/json; charset=utf-8 66.1982ms
+2025-12-07 02:01:40.257 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - null null
+2025-12-07 02:01:40.262 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:40.264 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables/7 - 204 null null 7.7407ms
+2025-12-07 02:01:40.279 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5231/api/tables/7 - application/json 69
+2025-12-07 02:01:40.284 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:40.290 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.Update (Api)'
+2025-12-07 02:01:40.294 -03:00 [INF] Route matched with {action = "Update", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, Api.Models.Entities.Table) on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:40.312 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+WHERE t."Id" = @__p_0
+LIMIT 1
+2025-12-07 02:01:40.323 -03:00 [INF] Executing OkObjectResult, writing value of type 'Api.Models.Entities.Table'.
+2025-12-07 02:01:40.329 -03:00 [INF] Executed action Api.Controllers.TablesController.Update (Api) in 20.5217ms
+2025-12-07 02:01:40.332 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.Update (Api)'
+2025-12-07 02:01:40.334 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5231/api/tables/7 - 200 null application/json; charset=utf-8 54.5868ms
+2025-12-07 02:01:40.387 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5231/api/tables - null null
+2025-12-07 02:01:40.390 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:40.392 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5231/api/tables - 204 null null 4.9964ms
+2025-12-07 02:01:40.396 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5231/api/tables - null null
+2025-12-07 02:01:40.400 -03:00 [INF] CORS policy execution successful.
+2025-12-07 02:01:40.403 -03:00 [INF] Executing endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:40.405 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tables"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller Api.Controllers.TablesController (Api).
+2025-12-07 02:01:40.409 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Capacity", t."CreatedAt", t."IsActive", t."Location", t."Name"
+FROM "Tables" AS t
+2025-12-07 02:01:40.427 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Api.Models.Entities.Table, Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-07 02:01:40.431 -03:00 [INF] Executed action Api.Controllers.TablesController.GetAll (Api) in 22.8391ms
+2025-12-07 02:01:40.438 -03:00 [INF] Executed endpoint 'Api.Controllers.TablesController.GetAll (Api)'
+2025-12-07 02:01:40.439 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5231/api/tables - 200 null application/json; charset=utf-8 43.2122ms

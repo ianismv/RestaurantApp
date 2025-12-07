@@ -51,6 +51,8 @@ public class TablesController : ControllerBase
         table.Name = updatedTable.Name;
         table.Capacity = updatedTable.Capacity;
         table.Location = updatedTable.Location;
+        table.IsActive = updatedTable.IsActive;
+
 
         await _context.SaveChangesAsync();
         return Ok(table);

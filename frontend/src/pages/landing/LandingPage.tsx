@@ -42,9 +42,17 @@ export default function LandingPage() {
                     <Button className="btn-glow">Registrarme</Button>
                   </Link>
                 </>
+              ) : user.role === 'Admin' ? (
+                <Link to="/admin">
+                  <Button className="bg-primary text-white hover:bg-primary-dark btn-glow">
+                    Admin Dashboard
+                  </Button>
+                </Link>
               ) : (
-                <Link to={user.role === 'Admin' ? '/admin' : '/reservations'}>
-                  <Button className="btn-glow">Ir a mis reservas</Button>
+                <Link to="/reservations">
+                  <Button className="btn-glow">
+                    Mis reservas
+                  </Button>
                 </Link>
               )}
             </div>

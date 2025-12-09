@@ -46,6 +46,13 @@ namespace Api.Repositories.Implementations
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateAsync(ReservationDish entity)
+        {
+            _context.ReservationDishes.Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
+
         public async Task RemoveDishAsync(int reservationId, int dishId)
         {
             var existing = await _context.ReservationDishes

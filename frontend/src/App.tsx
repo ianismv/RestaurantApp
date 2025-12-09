@@ -28,7 +28,6 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import TablesListPage from "@/pages/admin/tables/TablesListPage";
 import TableFormPage from "@/pages/admin/tables/TableFormPage";
 import DishesListPage from "@/pages/admin/dishes/DishesListPage";
-import DishFormPage from "@/pages/admin/dishes/DishFormPage";
 import AdminReservationsPage from "@/pages/admin/reservations/AdminReservationsPage";
 import NotFound from "@/pages/NotFound";
 
@@ -76,8 +75,6 @@ export const App = () => {
                 <Route path="/admin/tables/create" element={<TableFormPage />} />
                 <Route path="/admin/tables/:id/edit" element={<TableFormPage />} />
                 <Route path="/admin/dishes" element={<DishesListPage />} />
-                <Route path="/admin/dishes/create" element={<DishFormPage />} />
-                <Route path="/admin/dishes/:id/edit" element={<DishFormPage />} />
                 <Route path="/admin/reservations" element={<AdminReservationsPage />} />
                 <Route path="/admin/reservations/:id" element={<ReservationDetailPage />} />
               </Route>

@@ -52,6 +52,17 @@ namespace Api.Services.Implementations
             await _repository.AddDishAsync(reservationId, dto.DishId, dto.Quantity);
         }
 
+        public async Task<bool> UpdateDishQuantity(int reservationId, int dishId, int quantity)
+        {
+            var existingDishes = await _repository.GetByReservationIdAsync(reservationId);
+            var existing = existingDishes.Find(d => d.DishId == dishId);
+            if (existing == null) return false;
+
+            existing.Quantity = quantity;
+            await _repository.UpdateAsync(existing);
+            return true;
+        }
+
         public async Task RemoveDishAsync(int reservationId, int dishId)
         {
             await _repository.RemoveDishAsync(reservationId, dishId);

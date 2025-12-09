@@ -15,4 +15,9 @@
         public int DishId { get; set; }
         public int Quantity { get; set; } = 1;
     }
+
+    public class UpdateReservationDishDto
+    {
+        public int Quantity { get; set; }
+    }
 }

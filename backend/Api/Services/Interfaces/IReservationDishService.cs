@@ -9,5 +9,7 @@ namespace Api.Services.Interfaces
         Task<List<ReservationDishDto>> GetByReservationIdAsync(int reservationId);
         Task AddDishAsync(int reservationId, CreateReservationDishDto dto);
         Task RemoveDishAsync(int reservationId, int dishId);
+        Task<bool> UpdateDishQuantity(int reservationId, int dishId, int quantity);
+        
     }
 }

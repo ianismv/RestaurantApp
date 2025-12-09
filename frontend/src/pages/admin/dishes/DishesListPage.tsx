@@ -1,199 +1,295 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, DollarSign, Tag, CheckCircle, XCircle } from 'lucide-react';
-import { useDishes } from '@/hooks/useDishes';
-import { PageTransition, staggerContainer, fadeInUp } from '@/components/ui/page-transition';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { TableSkeleton } from '@/components/ui/skeleton-loader';
-import { useToast } from '@/hooks/use-toast';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { PageTransition, staggerContainer, fadeInUp } from "@/components/ui/page-transition";
+import { useDishesStore } from "@/stores/dishesStore";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Plus,
+  Trash2,
+  Pencil,
+  Loader2,
+  UtensilsCrossed,
+  Tags,
+  DollarSign,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
+  AlertDialogTrigger,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { DishFormModal } from "./DishFormModal";
+
 
 export default function DishesListPage() {
-  const { dishes, isLoading, deleteDish } = useDishes();
-  const { toast } = useToast();
+  const {
+    dishes,
+    isLoading,
+    fetchDishes,
+    createDish,
+    updateDish,
+    deleteDish,
+  } = useDishesStore();
 
-  const handleDelete = async (id: string) => {
+  const [search, setSearch] = useState("");
+  const [openForm, setOpenForm] = useState(false);
+  const [editingDish, setEditingDish] = useState<any>(null);
+
+  const [form, setForm] = useState({
+    name: "",
+    category: "",
+    price: "",
+  });
+
+  // Load dishes on mount
+  useEffect(() => {
+    fetchDishes();
+  }, [fetchDishes]);
+
+  const filtered = dishes.filter((d) =>
+    d.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.category || !form.price) {
+      toast({
+      title: "Error",
+      description: "Todos los campos son obligatorios.",
+    });
+      return;
+    }
+
+    const payload = {
+      name: form.name,
+      category: form.category,
+      price: parseFloat(form.price),
+    };
+
     try {
-      await deleteDish(id);
+      if (editingDish) {
+        await updateDish(editingDish.id, payload);
+        toast({
+          title: "Plato actualizado",
+          description: "Se editó correctamente.",
+        });
+      } else {
+        await createDish(payload);
+        toast({
+          title: "Plato creado",
+          description: "Se agregó el nuevo plato.",
+        });
+      }
+      setOpenForm(false);
+      setEditingDish(null);
+      setForm({ name: "", category: "", price: "" });
+    } catch {
       toast({
-        title: 'Plato eliminado',
-        description: 'El plato ha sido eliminado exitosamente',
-      });
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'No se pudo eliminar el plato',
-        variant: 'destructive',
+        title: "Error",
+        description: "No se pudo guardar el plato.",
       });
     }
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-    }).format(price);
+  const openEdit = (dish: any) => {
+    setEditingDish(dish);
+    setForm({
+      name: dish.name,
+      category: dish.category,
+      price: dish.price.toString(),
+    });
+    setOpenForm(true);
   };
 
-  // Group dishes by category
-  const categories = [...new Set(dishes.map((d) => d.category))];
-
   return (
-    <PageTransition>
-      <div className="space-y-8">
+    <PageTransition className="p-6">
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
+        className="space-y-6"
+      >
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="font-display text-3xl font-bold">Platos</h1>
-            <p className="text-muted-foreground mt-1">
-              Gestiona el menú del restaurante
-            </p>
-          </div>
-          <Link to="/admin/dishes/create">
-            <Button className="btn-glow">
+        <motion.div variants={fadeInUp} className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold flex items-center gap-2">
+            <UtensilsCrossed className="w-7 h-7" /> Gestión de Platos
+          </h1>
+
+          <Dialog open={openForm} onOpenChange={setOpenForm}>
+            <DialogTrigger asChild>
+              <Button className="btn-glow">
               <Plus className="h-4 w-4 mr-2" />
               Nuevo Plato
             </Button>
-          </Link>
-        </div>
+            </DialogTrigger>
 
-        {/* Dishes List */}
-        {isLoading ? (
-          <TableSkeleton rows={5} />
-        ) : dishes.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass-card rounded-2xl p-12 text-center"
-          >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-              <Tag className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="font-display text-xl font-semibold mb-2">
-              No hay platos
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Agrega tu primer plato para comenzar
-            </p>
-            <Link to="/admin/dishes/create">
-              <Button className="btn-glow">
-                <Plus className="h-4 w-4 mr-2" />
-                Crear Plato
-              </Button>
-            </Link>
-          </motion.div>
-        ) : (
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="show"
-            className="space-y-6"
-          >
-            {categories.map((category) => (
+            {/* CREATE/EDIT Form */}
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {editingDish ? "Editar Plato" : "Nuevo Plato"}
+                </DialogTitle>
+              </DialogHeader>
+
+              <div className="space-y-4">
+                <Input
+                  placeholder="Nombre del plato"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+                <Input
+                  placeholder="Categoría"
+                  value={form.category}
+                  onChange={(e) =>
+                    setForm({ ...form, category: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Precio"
+                  type="number"
+                  value={form.price}
+                  onChange={(e) =>
+                    setForm({ ...form, price: e.target.value })
+                  }
+                />
+              </div>
+
+              <DialogFooter>
+                <Button onClick={handleSubmit} disabled={isLoading}>
+                  {isLoading && <Loader2 className="animate-spin mr-2 w-4 h-4" />}
+                  Guardar
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </motion.div>
+
+        {/* Search */}
+        <motion.div variants={fadeInUp}>
+          <Input
+            placeholder="Buscar plato por nombre..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </motion.div>
+
+        {/* List */}
+        <motion.div
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {isLoading &&
+            [...Array(6)].map((_, i) => (
               <motion.div
-                key={category}
+                key={i}
                 variants={fadeInUp}
-                className="glass-card rounded-2xl overflow-hidden"
-              >
-                <div className="px-6 py-4 border-b border-border/50 bg-secondary/30">
-                  <h2 className="font-display text-lg font-semibold flex items-center gap-2">
-                    <Tag className="h-4 w-4 text-primary" />
-                    {category}
-                  </h2>
-                </div>
-                <div className="divide-y divide-border/30">
-                  {dishes
-                    .filter((d) => d.category === category)
-                    .map((dish) => (
-                      <div
-                        key={dish.id}
-                        className="p-4 flex items-center justify-between hover:bg-secondary/30 transition-colors"
+                className="rounded-lg border p-4 animate-pulse bg-neutral-100 h-40"
+              />
+            ))}
+
+          {!isLoading &&
+            filtered.map((dish) => (
+              <motion.div key={dish.id} variants={fadeInUp}>
+                <Card className="hover:shadow-lg transition">
+                  <CardHeader>
+                    <CardTitle className="flex justify-between items-center">
+                      {dish.name}
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardContent className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Tags className="w-4 h-4" />
+                      <Badge variant="secondary">{dish.category}</Badge>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <DollarSign className="w-4 h-4" />
+                      <span className="font-medium">${dish.price}</span>
+                    </div>
+
+                    <div className="flex justify-end gap-2 pt-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => openEdit(dish)}
                       >
-                        <div className="flex-1 min-w-0 mr-4">
-                          <div className="flex items-center gap-3">
-                            <p className="font-medium">{dish.name}</p>
-                            <Badge
-                              variant={dish.isAvailable ? 'default' : 'secondary'}
-                              className="flex items-center gap-1"
+                        <Pencil className="w-4 h-4 mr-1" />
+                        Editar
+                      </Button>
+
+                      {/* Delete Dialog */}
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="destructive" size="sm">
+                            <Trash2 className="w-4 h-4 mr-1" />
+                            Eliminar
+                          </Button>
+                        </AlertDialogTrigger>
+
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              ¿Eliminar este plato?
+                            </AlertDialogTitle>
+                          </AlertDialogHeader>
+
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={async () => {
+                                try {
+                                  await deleteDish(dish.id);
+                                  toast({
+                                    title: "Éxito",
+                                    description: "Plato eliminado.",
+                                  });
+                                  
+                                } catch {
+                                   toast({
+                                    title: "Error",
+                                    description: "No se pudo eliminar el plato.",
+                                  });
+                                  
+                                }
+                              }}
                             >
-                              {dish.isAvailable ? (
-                                <>
-                                  <CheckCircle className="h-3 w-3" />
-                                  Disponible
-                                </>
-                              ) : (
-                                <>
-                                  <XCircle className="h-3 w-3" />
-                                  No disponible
-                                </>
-                              )}
-                            </Badge>
-                          </div>
-                          {dish.description && (
-                            <p className="text-sm text-muted-foreground mt-1 truncate">
-                              {dish.description}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-4">
-                          <div className="text-right">
-                            <p className="font-semibold text-primary">
-                              {formatPrice(dish.price)}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Link to={`/admin/dishes/${dish.id}/edit`}>
-                              <Button variant="ghost" size="icon">
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                            </Link>
-                            <AlertDialog>
-                              <AlertDialogTrigger asChild>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="text-destructive hover:text-destructive"
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </AlertDialogTrigger>
-                              <AlertDialogContent>
-                                <AlertDialogHeader>
-                                  <AlertDialogTitle>¿Eliminar plato?</AlertDialogTitle>
-                                  <AlertDialogDescription>
-                                    Esta acción no se puede deshacer. El plato "{dish.name}" será
-                                    eliminado permanentemente.
-                                  </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                                  <AlertDialogAction onClick={() => handleDelete(dish.id)}>
-                                    Eliminar
-                                  </AlertDialogAction>
-                                </AlertDialogFooter>
-                              </AlertDialogContent>
-                            </AlertDialog>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
+                              Eliminar
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
-          </motion.div>
-        )}
-      </div>
+            <DishFormModal
+              open={openForm}
+              setOpen={setOpenForm}
+              editingDish={editingDish}
+              onSuccess={() => {
+                fetchDishes();
+                setEditingDish(null);
+              }}
+            />
+        </motion.div>
+      </motion.div>
     </PageTransition>
   );
 }

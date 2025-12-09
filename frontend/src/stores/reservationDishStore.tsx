@@ -11,9 +11,8 @@ interface ReservationDishState {
   removeDish: (reservationId: number, dishId: number) => Promise<void>;
   clearDishes: () => void;
   isAddingDish: (dishId: number) => boolean;
+  updateDishQuantity: (reservationId: number, dishId: number, quantity: number) => Promise<void>;
 }
-
-
 
 // Helper para toasts
 const showToast = (title: string, description: string) =>
@@ -63,6 +62,22 @@ export const useReservationDishStore = create<ReservationDishState>((set, get) =
       showToast('¡Plato eliminado!', 'Se removió correctamente de la reserva.');
     } catch {
       showToast('Error', 'No se pudo eliminar el plato.');
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  updateDishQuantity: async (reservationId: number, dishId: number, quantity: number) => {
+    set({ isLoading: true });
+    try {
+      // 🔥 Enviar SOLO quantity
+      await reservationDishApi.updateDish(reservationId, dishId, quantity);
+
+      await get().fetchDishes(reservationId);
+
+      showToast('¡Cantidad actualizada!', 'Se actualizó la cantidad correctamente.');
+    } catch {
+      showToast('Error', 'No se pudo actualizar la cantidad del plato.');
     } finally {
       set({ isLoading: false });
     }

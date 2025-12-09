@@ -3,6 +3,7 @@ import api from '@/lib/api';
 export interface Reservation {
   id: number; // antes era string
   userId: number;
+  userName: string; // ← agregá esto
   tableId: number;
   date: string;
   startTime: string;
@@ -11,6 +12,7 @@ export interface Reservation {
   status: 'Pending' | 'Confirmed' | 'Cancelled' | 'Completed';
   notes?: string;
   tableName?: string;
+  hasDishes?: boolean;
 }
 
 export interface CreateReservationDto {
@@ -58,6 +60,11 @@ export const reservationsApi = {
 
   cancel: async (id: number): Promise<Reservation> => { // <-- number
     const response = await api.patch(`/reservations/${id}/cancel`);
+    return response.data;
+  },
+
+    getAllAdmin: async () => {
+    const response = await api.get("/reservations/all");
     return response.data;
   },
 };

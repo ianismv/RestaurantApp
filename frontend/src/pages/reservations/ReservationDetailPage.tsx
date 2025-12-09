@@ -10,9 +10,10 @@ import AddDishModal from "@/components/AddDishModal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ReservationDish } from "@/services/reservationDish.api";
 
-import { ReservationStatus, getReservationStatusText } from "@/enums/ReservationStatus";
-
+import { getReservationStatusText } from "@/enums/ReservationStatus";
 
 export default function ReservationDetailPage() {
   const { id } = useParams();
@@ -20,11 +21,17 @@ export default function ReservationDetailPage() {
   const navigate = useNavigate();
 
   const { currentReservation, fetchReservation, deleteReservation } = useReservationStore();
-  const { dishes, fetchDishes, removeDish, addDish } = useReservationDishStore();
+  const { dishes: reservationDishes, removeDish, fetchDishes, updateDishQuantity } = useReservationDishStore();
   const { dishes: availableDishes, fetchDishes: fetchMenu } = useDishesStore();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [dishes, setDishes] = useState(reservationDishes);
 
+  // Modal para editar plato
+  const [editingDish, setEditingDish] = useState<ReservationDish | null>(null);
+  const [editQuantity, setEditQuantity] = useState<number>(0);
+
+  // Cargar reserva y platos
   useEffect(() => {
     if (!reservationId) return;
     fetchReservation(reservationId);
@@ -32,42 +39,59 @@ export default function ReservationDetailPage() {
     fetchMenu();
   }, [reservationId]);
 
-  const [dishQuantities, setDishQuantities] = useState<Record<number, number>>({});
-
+  // Mantener copia local de platos
   useEffect(() => {
-    const initialQuantities: Record<number, number> = {};
-    dishes.forEach(d => {
-      initialQuantities[d.dishId] = d.quantity;
-    });
-    setDishQuantities(initialQuantities);
-  }, [dishes]);
+    setDishes(reservationDishes.map(d => ({ ...d })));
+  }, [reservationDishes]);
 
-  const incrementQuantity = async (dishId: number) => {
-    // Actualizar estado local
-    setDishQuantities(prev => ({ ...prev, [dishId]: (prev[dishId] || 1) + 1 }));
-    // Agregar 1 unidad en backend
-    await addDish(reservationId, { dishId, quantity: 1 });
+  // Abrir modal de edición
+  const openEditModal = (dish: ReservationDish) => {
+    setEditingDish(dish);
+    setEditQuantity(dish.quantity);
   };
 
-  const decrementQuantity = async (dishId: number) => {
-    const currentQty = dishQuantities[dishId] || 1;
+  // Confirmar cambios desde modal
+  const confirmEdit = async () => {
+    if (!editingDish) return;
+    const dishId = editingDish.dishId;
 
-    if (currentQty <= 1) {
-      // Llega a 0 → eliminar plato en backend y limpiar local
-      await removeDish(reservationId, dishId);
-      setDishQuantities(prev => {
-        const copy = { ...prev };
-        delete copy[dishId];
-        return copy;
-      });
-    } else {
-      // Reducir cantidad sin eliminar
-      setDishQuantities(prev => ({ ...prev, [dishId]: currentQty - 1 }));
-      // Agregar lógica para restar 1 unidad en backend si tu API lo soporta
-      // Si no, dejalo local hasta sincronizar
+    try {
+      if (editQuantity === 0) {
+        // eliminar plato
+        await removeDish(reservationId, dishId);
+        setDishes(prev => prev.filter(d => d.dishId !== dishId));
+      } else {
+        // actualizar cantidad
+        await updateDishQuantity(reservationId, dishId, editQuantity);
+        setDishes(prev => prev.map(d => d.dishId === dishId ? { ...d, quantity: editQuantity } : d));
+      }
+    } catch (err) {
+      console.error("Error al actualizar plato:", err);
+    } finally {
+      setEditingDish(null);
     }
   };
 
+  // Añadir plato desde modal
+  const handleAddDish = (dishId: number) => {
+    const existing = dishes.find(d => d.dishId === dishId);
+    const dishInfo = availableDishes.find(d => d.id === dishId);
+    if (!dishInfo) return;
+
+    if (existing) {
+      setDishes(prev => prev.map(d => d.dishId === dishId ? { ...d, quantity: d.quantity + 1 } : d));
+    } else {
+      setDishes(prev => [...prev, {
+        dishId: dishInfo.id,
+        dishName: dishInfo.name,
+        price: dishInfo.price,
+        category: dishInfo.category,
+        quantity: 1
+      }]);
+    }
+
+    setIsAddModalOpen(false);
+  };
 
   if (!currentReservation) {
     return (
@@ -109,7 +133,7 @@ export default function ReservationDetailPage() {
             <p><strong>Fecha:</strong> {currentReservation.date}</p>
             <p><strong>Horario:</strong> {currentReservation.startTime} - {currentReservation.endTime}</p>
             <p><strong>Invitados:</strong> {currentReservation.guests}</p>
-            <p>  <strong>Estado:</strong> <Badge>{getReservationStatusText(currentReservation.status)}</Badge></p>
+            <p><strong>Estado:</strong> <Badge>{getReservationStatusText(currentReservation.status)}</Badge></p>
             {currentReservation.notes && <p><strong>Notas:</strong> {currentReservation.notes}</p>}
           </CardContent>
         </Card>
@@ -124,22 +148,37 @@ export default function ReservationDetailPage() {
           variant="add"
           icon="plus"
           description="Abrirá la lista de platos disponibles."
-          onConfirm={() => setIsModalOpen(true)}
+          onConfirm={() => setIsAddModalOpen(true)}
         />
       </div>
 
-      {/* DISH MODAL */}
+      {/* ADD DISH MODAL */}
       <AddDishModal
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        open={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
         availableDishes={availableDishes}
-        onSelect={(dishId) => {
-          addDish(reservationId, { dishId, quantity: 1 });
-          setIsModalOpen(false);
-        }}
+        onSelect={handleAddDish}
       />
 
-      {/* DISH LIST */}
+      {/* EDIT DISH MODAL */}
+      {editingDish && (
+      <Dialog open={true}>
+        <DialogContent className="p-6 space-y-4">
+          <h3 className="text-lg font-bold">{editingDish.dishName}</h3>
+          <div className="flex items-center gap-2 mt-2">
+            <Button onClick={() => setEditQuantity(q => Math.max(q - 1, 0))}>-</Button>
+            <span className="w-6 text-center">{editQuantity}</span>
+            <Button onClick={() => setEditQuantity(q => q + 1)}>+</Button>
+          </div>
+          <div className="flex justify-end gap-2 mt-4">
+            <Button variant="secondary" onClick={() => setEditingDish(null)}>Cancelar</Button>
+            <Button variant="default" onClick={confirmEdit}>Confirmar</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+      )}
+
+      {/* LISTA DE PLATOS */}
       <div className="space-y-4 mt-4">
         {dishes.length === 0 && (
           <div className="text-center text-muted-foreground py-6 text-sm">
@@ -148,26 +187,22 @@ export default function ReservationDetailPage() {
         )}
 
         {dishes.map((dish) => (
-        <motion.div
-          key={dish.dishId}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="shadow-sm border rounded-2xl p-4 flex justify-between items-center hover:shadow-md transition"
-        >
-          <div>
-            <p className="font-semibold text-lg text-gray-900">{dish.dishName}</p>
-            <p className="text-sm text-muted-foreground">
-              Cantidad: {dishQuantities[dish.dishId] || dish.quantity} · ${dish.price * (dishQuantities[dish.dishId] || dish.quantity)}
-            </p>
-          </div>
+          <motion.div
+            key={dish.dishId}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="shadow-sm border rounded-2xl p-4 flex justify-between items-center hover:shadow-md transition"
+          >
+            <div>
+              <p className="font-semibold text-lg text-gray-900">{dish.dishName}</p>
+              <p className="text-sm text-muted-foreground">
+                Cantidad: {dish.quantity} · ${dish.price * dish.quantity}
+              </p>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <Button size="sm" onClick={() => decrementQuantity(dish.dishId)}>-</Button>
-            <span className="w-6 text-center">{dishQuantities[dish.dishId] || dish.quantity}</span>
-            <Button size="sm" onClick={() => incrementQuantity(dish.dishId)}>+</Button>
-          </div>
-        </motion.div>
-      ))}
+            <Button size="sm" onClick={() => openEditModal(dish)}>Editar</Button>
+          </motion.div>
+        ))}
       </div>
     </PageTransition>
   );

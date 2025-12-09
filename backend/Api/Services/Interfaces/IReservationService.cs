@@ -19,4 +19,8 @@ public interface IReservationService
     Task<ReservationDto> CreateAsync(ReservationCreateDto dto, int userId);
     Task<ReservationDto> UpdateAsync(int id, ReservationCreateDto dto, int userId, string role);
     Task DeleteAsync(int id, int userId, string role);
+    Task<IEnumerable<ReservationAdminDto>> GetAllAsync();
+
+
+
 }

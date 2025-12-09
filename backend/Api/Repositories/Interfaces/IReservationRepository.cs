@@ -18,4 +18,7 @@ public interface IReservationRepository
 
     // ✅ NUEVO MÉTODO - Para consulta de disponibilidad
     Task<List<int>> GetReservedTableIdsAsync(DateOnly date, TimeOnly startTime, TimeOnly endTime);
+    Task<IEnumerable<Reservation>> GetAllAsync();
+
+
 }

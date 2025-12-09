@@ -164,4 +164,10 @@ public class ReservationService : IReservationService
 
         await _reservationRepository.DeleteAsync(id);
     }
+
+    public async Task<IEnumerable<ReservationAdminDto>> GetAllAsync()
+    {
+        var reservations = await _reservationRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<ReservationAdminDto>>(reservations);
+    }
 }

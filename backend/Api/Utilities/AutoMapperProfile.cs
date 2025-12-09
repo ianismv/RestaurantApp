@@ -50,5 +50,14 @@ public class AutoMapperProfile : Profile
        .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Dish != null ? src.Dish.Category : ""));
 
 
+        // Mapeo para GET /all evitando ciclos
+        CreateMap<Reservation, ReservationAdminDto>()
+    .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User != null ? src.User.Name : ""))
+    .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.User != null ? src.User.Email : ""))
+    .ForMember(dest => dest.TableName, opt => opt.MapFrom(src => src.Table != null ? src.Table.Name : ""))
+    .ForMember(dest => dest.Dishes, opt => opt.MapFrom(src => src.ReservationDishes))
+    .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes ?? ""));
+
+
     }
 }

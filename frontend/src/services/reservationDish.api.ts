@@ -33,4 +33,9 @@ export const reservationDishApi = {
 
   removeDish: (reservationId: number, dishId: number): Promise<void> =>
     handleRequest<void>(api.delete(`/reservations/${reservationId}/dishes/${dishId}`)),
+  // NUEVO: actualizar cantidad exacta
+  updateDish: (reservationId: number, dishId: number, quantity: number): Promise<void> =>
+  handleRequest<void>(
+    api.put(`/reservations/${reservationId}/dishes/${dishId}`, { quantity })
+  ),
 };

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Api.Repositories;
 
 namespace Api.Controllers;
 
@@ -98,6 +99,22 @@ public class ReservationsController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
+        }
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var reservations = await _reservationService.GetAllAsync();
+            return Ok(reservations); // Devuelve IEnumerable<ReservationAdminDto>
+        }
+        catch (Exception ex)
+        {
+            // En caso de error inesperado
+            return StatusCode(500, new { message = "Error al obtener reservas", details = ex.Message });
         }
     }
 }

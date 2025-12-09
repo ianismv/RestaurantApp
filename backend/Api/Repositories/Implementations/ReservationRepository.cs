@@ -90,4 +90,15 @@ public class ReservationRepository : IReservationRepository
             .Distinct()
             .ToListAsync();
     }
+
+    public async Task<IEnumerable<Reservation>> GetAllAsync()
+    {
+        return await _context.Reservations
+            .Include(r => r.User)
+            .Include(r => r.Table)
+            .Include(r => r.ReservationDishes)
+                .ThenInclude(rd => rd.Dish)
+            .ToListAsync();
+    }
+
 }

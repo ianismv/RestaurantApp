@@ -9,5 +9,7 @@ namespace Api.Repositories.Interfaces
         Task<List<ReservationDish>> GetByReservationIdAsync(int reservationId);
         Task AddDishAsync(int reservationId, int dishId, int quantity);
         Task RemoveDishAsync(int reservationId, int dishId);
+        Task UpdateAsync(ReservationDish entity);
+
     }
 }

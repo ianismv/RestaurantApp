@@ -27,6 +27,14 @@ namespace Api.Controllers
             return Ok(items);
         }
 
+        [HttpPut("{dishId}")]
+        public async Task<IActionResult> UpdateDish(int reservationId, int dishId, [FromBody] UpdateReservationDishDto dto)
+        {
+            var success = await _service.UpdateDishQuantity(reservationId, dishId, dto.Quantity);
+            if (!success) return NotFound();
+            return NoContent();
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddDish(int reservationId, [FromBody] CreateReservationDishDto dto)
         {

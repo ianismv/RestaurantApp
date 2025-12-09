@@ -12,10 +12,11 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { AdminReservation, useReservationStore } from "@/stores/reservationStore";
-import { Calendar, Clock, Users, User } from "lucide-react";
+import { User } from "lucide-react";
 import { formatISO, parseISO } from "date-fns";
+import { tablesApi, Table } from "@/services/tables.api";
 
-const STATUS_OPTIONS = ["Pending", "Confirmed", "Cancelled", "Completed"];
+const STATUS_OPTIONS = ["Pending", "Confirmed", "Cancelled", "Completed"] as const;
 
 export function ReservationEditModal({
   open,
@@ -35,50 +36,73 @@ export function ReservationEditModal({
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [guests, setGuests] = useState(1);
-const [status, setStatus] = useState<"Pending" | "Confirmed" | "Cancelled" | "Completed">("Pending");
+  const [status, setStatus] = useState<typeof STATUS_OPTIONS[number]>("Pending");
   const [notes, setNotes] = useState("");
-  const [tableName, setTableName] = useState("");
-
+  const [tableId, setTableId] = useState<string>("");
+  const [tables, setTables] = useState<Table[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Valores originales para comparar
+  const [originalValues, setOriginalValues] = useState<any>(null);
 
+  // Traer mesas activas
+  useEffect(() => {
+    async function fetchTables() {
+      const allTables = await tablesApi.getAll();
+      setTables(allTables.filter(t => t.isActive));
+    }
+    fetchTables();
+  }, []);
+
+  // Sincronizar estado local con la reserva actual
   useEffect(() => {
     if (reservation) {
-      setUserName(reservation.userName || "");
-      setUserEmail(reservation.userEmail || "");
-      setDate(formatISO(parseISO(reservation.date), { representation: "date" }));
-      setStartTime(reservation.startTime || "");
-      setEndTime(reservation.endTime || "");
-      setGuests(reservation.guests || 1);
-      setStatus(reservation.status || "Pending");
-      setNotes(reservation.notes || "");
-      setTableName(reservation.TableName || "");
+      const vals = {
+        userName: reservation.userName || "",
+        userEmail: reservation.userEmail || "",
+        date: formatISO(parseISO(reservation.date), { representation: "date" }),
+        startTime: reservation.startTime || "",
+        endTime: reservation.endTime || "",
+        guests: reservation.guests || 1,
+        status: reservation.status,
+        notes: reservation.notes || "",
+        tableId: reservation.tableId?.toString() || "",
+      };
+      
+      setUserName(vals.userName);
+      setUserEmail(vals.userEmail);
+      setDate(vals.date);
+      setStartTime(vals.startTime);
+      setEndTime(vals.endTime);
+      setGuests(vals.guests);
+      setStatus(vals.status);
+      setNotes(vals.notes);
+      setTableId(vals.tableId);
+      setOriginalValues(vals);
     }
   }, [reservation]);
 
   const handleSubmit = async () => {
-    if (!userName.trim() || !userEmail.trim()) {
-      toast({
-        title: "Error",
-        description: "Nombre y email son obligatorios",
-        variant: "destructive",
-      });
-      return;
-    }
-
+    if (!reservation || !originalValues) return;
     setIsLoading(true);
 
     try {
-      await updateReservation(reservation!.id, {
-        userName,
-        userEmail,
-        date,
-        startTime,
-        endTime,
-        guests,
-        status,
-        notes,
-        TableName: tableName,
-      });
+      // ✅ El backend requiere TODOS los campos obligatorios en ReservationCreateDto
+      // No podemos enviar solo los cambios, debemos enviar el objeto completo
+      const payload = {
+        tableId: Number(tableId),
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
+        guests: guests,
+        notes: notes || "",
+        status: status,
+        // dishes: [], // Opcional: si no tienes dishes, puedes omitirlo o enviar array vacío
+      };
+
+      console.log('🔄 Payload completo:', payload);
+
+      await updateReservation(reservation.id, payload);
 
       toast({
         title: "Reserva actualizada",
@@ -86,10 +110,10 @@ const [status, setStatus] = useState<"Pending" | "Confirmed" | "Cancelled" | "Co
       });
 
       setOpen(false);
-    } catch (err) {
+    } catch (error: any) {
       toast({
         title: "Error",
-        description: "No se pudo actualizar la reserva",
+        description: error.response?.data?.message || "No se pudo actualizar la reserva",
         variant: "destructive",
       });
     } finally {
@@ -110,68 +134,64 @@ const [status, setStatus] = useState<"Pending" | "Confirmed" | "Cancelled" | "Co
             <Label>Nombre</Label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                className="pl-10"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
+              <Input className="pl-10 bg-gray-100 cursor-not-allowed" value={userName} disabled />
             </div>
           </div>
 
           <div className="space-y-1">
             <Label>Email</Label>
-            <Input value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+            <Input value={userEmail} disabled className="bg-gray-100 cursor-not-allowed" />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <Label>Fecha</Label>
-              <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+              <Input type="date" value={date} onChange={e => setDate(e.target.value)} />
             </div>
             <div className="space-y-1">
               <Label>Hora inicio</Label>
-              <Input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+              <Input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} />
             </div>
             <div className="space-y-1">
               <Label>Hora fin</Label>
-              <Input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+              <Input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} />
             </div>
             <div className="space-y-1">
               <Label>Personas</Label>
-              <Input
-                type="number"
-                min={1}
-                value={guests}
-                onChange={(e) => setGuests(Number(e.target.value))}
-              />
+              <Input type="number" min={1} value={guests} onChange={e => setGuests(Number(e.target.value))} />
             </div>
           </div>
 
           <div className="space-y-1">
             <Label>Estado</Label>
             <select
-            className="w-full h-10 rounded-lg border border-input bg-secondary/50 text-sm"
-            value={status}
-            onChange={(e) =>
-                setStatus(e.target.value as "Pending" | "Confirmed" | "Cancelled" | "Completed")
-            }
+              className="w-full h-10 rounded-lg border border-input bg-secondary/50 text-sm"
+              value={status}
+              onChange={e => setStatus(e.target.value as typeof STATUS_OPTIONS[number])}
             >
-            {STATUS_OPTIONS.map((s) => (
-                <option key={s} value={s}>
-                {s}
-                </option>
-            ))}
+              {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
 
           <div className="space-y-1">
             <Label>Mesa</Label>
-            <Input value={tableName} onChange={(e) => setTableName(e.target.value)} />
+            <select
+              className="w-full h-10 rounded-lg border border-input bg-secondary/50 text-sm"
+              value={tableId}
+              onChange={e => setTableId(e.target.value)}
+            >
+              <option value="">Seleccionar mesa</option>
+              {tables.map(t => (
+                <option key={t.id} value={t.id}>
+                  {t.name} (Cap: {t.capacity})
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-1">
             <Label>Notas</Label>
-            <Input value={notes} onChange={(e) => setNotes(e.target.value)} />
+            <Input value={notes} onChange={e => setNotes(e.target.value)} />
           </div>
         </div>
 

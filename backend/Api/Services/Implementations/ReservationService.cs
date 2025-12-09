@@ -78,7 +78,15 @@ public class ReservationService : IReservationService
         // Crear reserva
         var reservation = _mapper.Map<Reservation>(dto);
         reservation.UserId = userId;
-        reservation.Status = ReservationStatus.Confirmed;
+
+        reservation.Status = dto.Status switch
+        {
+            "Pending" => ReservationStatus.Pending,
+            "Confirmed" => ReservationStatus.Confirmed,
+            "Cancelled" => ReservationStatus.Cancelled,
+            "Completed" => ReservationStatus.Completed,
+            _ => ReservationStatus.Pending
+        };
 
         // Manejar platos si se envían
         if (dto.Dishes != null && dto.Dishes.Any())
@@ -111,9 +119,9 @@ public class ReservationService : IReservationService
             throw new Exception("No tienes permiso para modificar esta reserva");
 
         var overlap = await _reservationRepository.GetByTableAndRangeAsync(
-            dto.TableId, dto.Date, dto.StartTime, dto.EndTime);
+            dto.TableId, dto.Date, dto.StartTime, dto.EndTime, id);
 
-        if (overlap != null && overlap.Id != id)
+        if (overlap != null)
             throw new Exception("El nuevo horario se solapa con otra reserva");
 
         var table = await _tableRepository.GetByIdAsync(dto.TableId)
@@ -122,8 +130,20 @@ public class ReservationService : IReservationService
         if (dto.Guests > table.Capacity)
             throw new Exception("Excede la capacidad de la mesa seleccionada");
 
+        // ✅ Mapea todos los campos del DTO a la reserva
         _mapper.Map(dto, reservation);
-        reservation.Status = ReservationStatus.Confirmed;
+
+        // ✅ Parsea el status correctamente
+        reservation.Status = dto.Status switch
+        {
+            "Pending" => ReservationStatus.Pending,
+            "Confirmed" => ReservationStatus.Confirmed,
+            "Cancelled" => ReservationStatus.Cancelled,
+            "Completed" => ReservationStatus.Completed,
+            _ => ReservationStatus.Pending
+        };
+
+        // ❌ ELIMINADA: reservation.Status = ReservationStatus.Confirmed;
 
         // Actualizar platos
         if (dto.Dishes != null)

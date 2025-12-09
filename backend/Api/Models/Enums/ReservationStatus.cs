@@ -6,5 +6,4 @@ public enum ReservationStatus
     Confirmed,
     Cancelled,
     Completed,
-    NoShow
 }

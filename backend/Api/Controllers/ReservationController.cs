@@ -75,6 +75,7 @@ public class ReservationsController : ControllerBase
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var role = User.FindFirstValue(ClaimTypes.Role)!;
+
         try
         {
             var updated = await _reservationService.UpdateAsync(id, dto, userId, role);
@@ -82,7 +83,8 @@ public class ReservationsController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            // Devuelve JSON con mensaje de error
+            return BadRequest(new { message = ex.Message });
         }
     }
 

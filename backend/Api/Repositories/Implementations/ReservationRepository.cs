@@ -45,11 +45,17 @@ public class ReservationRepository : IReservationRepository
             .FirstOrDefaultAsync(r => r.Id == id);
     }
 
-    public async Task<Reservation?> GetByTableAndRangeAsync(int tableId, DateOnly date, TimeOnly startTime, TimeOnly endTime)
+    public async Task<Reservation?> GetByTableAndRangeAsync(
+    int tableId, DateOnly date, TimeOnly startTime, TimeOnly endTime, int? excludeReservationId = null)
     {
         return await _context.Reservations
-            .FirstOrDefaultAsync(r => r.TableId == tableId && r.Date == date &&
-                ((r.StartTime < endTime && r.EndTime > startTime)));
+            .FirstOrDefaultAsync(r =>
+                r.TableId == tableId &&
+                r.Date == date &&
+                r.StartTime < endTime &&
+                r.EndTime > startTime &&
+                (!excludeReservationId.HasValue || r.Id != excludeReservationId.Value)
+            );
     }
 
     public async Task CreateAsync(Reservation reservation)

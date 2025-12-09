@@ -1,15 +1,15 @@
 import api from '@/lib/api';
 
 export interface Reservation {
-  id: number; // antes era string
+  id: number;
   userId: number;
-  userName: string; // ← agregá esto
+  userName: string;
   tableId: number;
   date: string;
   startTime: string;
   endTime: string;
   guests: number;
-  status: 'Pending' | 'Confirmed' | 'Cancelled' | 'Completed';
+  status: 'Pending' | 'Confirmed' | 'Cancelled' | 'Completed' | number; // ✅ Acepta número o string
   notes?: string;
   tableName?: string;
   hasDishes?: boolean;
@@ -25,7 +25,8 @@ export interface CreateReservationDto {
 }
 
 export interface UpdateReservationDto extends Partial<CreateReservationDto> {
-  status?: Reservation['status'];
+  status?: string; // ✅ El backend espera STRING: "Pending", "Confirmed", "Cancelled", "Completed"
+  dishes?: any[]; // El backend también puede recibir dishes
 }
 
 export const reservationsApi = {
@@ -39,7 +40,7 @@ export const reservationsApi = {
     return response.data;
   },
 
-  getById: async (id: number): Promise<Reservation> => { // <-- number
+  getById: async (id: number): Promise<Reservation> => {
     const response = await api.get(`/reservations/${id}`);
     return response.data;
   },
@@ -49,21 +50,21 @@ export const reservationsApi = {
     return response.data;
   },
 
-  update: async (id: number, data: UpdateReservationDto): Promise<Reservation> => { // <-- number
+  update: async (id: number, data: UpdateReservationDto): Promise<Reservation> => {
     const response = await api.put(`/reservations/${id}`, data);
     return response.data;
   },
 
-  delete: async (id: number): Promise<void> => { // <-- number
+  delete: async (id: number): Promise<void> => {
     await api.delete(`/reservations/${id}`);
   },
 
-  cancel: async (id: number): Promise<Reservation> => { // <-- number
+  cancel: async (id: number): Promise<Reservation> => {
     const response = await api.patch(`/reservations/${id}/cancel`);
     return response.data;
   },
 
-    getAllAdmin: async () => {
+  getAllAdmin: async () => {
     const response = await api.get("/reservations/all");
     return response.data;
   },

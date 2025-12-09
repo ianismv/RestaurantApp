@@ -1,14 +1,19 @@
 import { create } from 'zustand';
 import { Reservation, reservationsApi, CreateReservationDto } from '@/services/reservations.api';
 
+export interface AdminReservation extends Reservation {
+  userEmail: string;
+  Dishes: any[]; // reemplazar por el tipo real de platos
+  TableName: string;
+  hasDishes: boolean;
+}
+
 interface ReservationState {
-  reservations: Reservation[];
-  currentReservation: Reservation | null;
+  reservations: (Reservation | AdminReservation)[];
+  currentReservation: Reservation | AdminReservation | null;
   isLoading: boolean;
   error: string | null;
-  
 
-  // Actions
   fetchReservations: () => Promise<void>;
   fetchMyReservations: () => Promise<void>;
   fetchReservation: (id: number) => Promise<void>;
@@ -17,15 +22,7 @@ interface ReservationState {
   deleteReservation: (id: number) => Promise<void>;
   clearError: () => void;
   fetchAdminReservations: () => Promise<AdminReservation[]>;
-  updateReservation: (id: number, data: Partial<Reservation>) => Promise<Reservation>;
-}
-
-export interface AdminReservation extends Reservation {
-  userEmail: string;
-  Dishes: any[]; // o el tipo que tengan tus platos
-  TableName: string;
-  hasDishes: boolean;
-
+  updateReservation: (id: number, data: Partial<AdminReservation>) => Promise<AdminReservation>;
 }
 
 export const useReservationStore = create<ReservationState>()((set, get) => ({
@@ -44,50 +41,31 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
     }
   },
 
-    fetchMyReservations: async () => {
+  fetchMyReservations: async () => {
     set({ isLoading: true, error: null });
-
     try {
       const data = await reservationsApi.getMine();
-
-      set({
-        reservations: data,
-        isLoading: false,
-        error: null,
-      });
+      set({ reservations: data, isLoading: false, error: null });
     } catch (err: any) {
-      const message =
-        err?.response?.data?.message ??
-        err?.response?.data ??
-        err?.message ??
-        "Unexpected error";
-
-      set({
-        reservations: [], // muy importante para estado consistente
-        error: message,
-        isLoading: false,
-      });
+      set({ reservations: [], error: err?.message ?? 'Unexpected error', isLoading: false });
     }
   },
 
-    fetchReservation: async (id: number) => {
-      set({ isLoading: true, error: null });
-      try {
-        const reservation = await reservationsApi.getById(id);
-        set({ currentReservation: reservation, isLoading: false });
-      } catch (error: any) {
-        set({ error: error.message, isLoading: false });
-      }
+  fetchReservation: async (id: number) => {
+    set({ isLoading: true, error: null });
+    try {
+      const reservation = await reservationsApi.getById(id);
+      set({ currentReservation: reservation, isLoading: false });
+    } catch (error: any) {
+      set({ error: error.message, isLoading: false });
+    }
   },
 
   createReservation: async (data: CreateReservationDto) => {
     set({ isLoading: true, error: null });
     try {
       const reservation = await reservationsApi.create(data);
-      set((state) => ({
-        reservations: [...state.reservations, reservation],
-        isLoading: false,
-      }));
+      set((state) => ({ reservations: [...state.reservations, reservation], isLoading: false }));
       return reservation;
     } catch (error: any) {
       set({ error: error.message, isLoading: false });
@@ -95,7 +73,7 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
     }
   },
 
-    cancelReservation: async (id: number) => {
+  cancelReservation: async (id: number) => {
     set({ isLoading: true, error: null });
     try {
       await reservationsApi.cancel(id);
@@ -111,9 +89,7 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
     }
   },
 
-  clearError: () => set({ error: null }),
-
-    deleteReservation: async (id: number) => {
+  deleteReservation: async (id: number) => {
     set({ isLoading: true, error: null });
     try {
       await reservationsApi.delete(id);
@@ -127,57 +103,53 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
       throw error;
     }
   },
-    
-  
-        fetchAdminReservations: async () => {
-      set({ isLoading: true, error: null });
-      try {
-        const data = await reservationsApi.getAllAdmin();
 
-        const mapped: AdminReservation[] = data.map(r => ({
-          ...r,
-          userEmail: r.userEmail || '', // ahora sí usamos el email que viene del backend
-          userName: r.userName || '',
-          Dishes: r.dishes || [],
-          hasDishes: !!(r.dishes?.length),
-          TableName: r.tableName || `Mesa ${r.tableId}`,
-          notes: r.notes || '',
-        }));
+  clearError: () => set({ error: null }),
 
-        set({
-          reservations: mapped,
-          isLoading: false,
-          error: null,
-        });
+  fetchAdminReservations: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const data = await reservationsApi.getAllAdmin();
+      const mapped: AdminReservation[] = data.map((r) => ({
+        ...r,
+        userEmail: r.userEmail || '',
+        userName: r.userName || '',
+        Dishes: r.dishes || [],
+        hasDishes: !!(r.dishes?.length),
+        TableName: r.tableName || `Mesa ${r.tableId}`,
+        notes: r.notes || '',
+      }));
+      set({ reservations: mapped, isLoading: false, error: null });
+      return mapped;
+    } catch (err: any) {
+      set({ reservations: [], error: err?.message ?? 'Unexpected error', isLoading: false });
+      return [];
+    }
+  },
 
-        return mapped;
-      } catch (err: any) {
-        set({
-          reservations: [],
-          error:
-            err?.response?.data?.message ??
-            err?.response?.data ??
-            err?.message ??
-            'Unexpected error',
-          isLoading: false,
-        });
+  updateReservation: async (id: number, data: Partial<AdminReservation>) => {
+    set({ isLoading: true, error: null });
+    try {
+      const res: Reservation = await reservationsApi.update(id, data);
 
-        return [];
-      }
-    },
+      // Mapear la respuesta a AdminReservation
+      const updated: AdminReservation = {
+        ...res,
+        userEmail: (res as any).userEmail || data.userEmail || '',
+        TableName: (res as any).tableName || data.TableName || `Mesa ${(res as any).tableId}`,
+        Dishes: (res as any).dishes || data.Dishes || [],
+        hasDishes: !!((res as any).dishes?.length || data.Dishes?.length),
+      };
 
-    updateReservation: async (id: number, data: Partial<Reservation>) => {
-      set({ isLoading: true, error: null });
-      try {
-        const updated = await reservationsApi.update(id, data);
-        set((state) => ({
-          reservations: state.reservations.map(r => r.id === id ? updated : r),
-          isLoading: false,
-        }));
-        return updated;
-      } catch (error: any) {
-        set({ error: error.message, isLoading: false });
-        throw error;
-      }
-    },
+      set((state) => ({
+        reservations: state.reservations.map((r) => (r.id === id ? updated : r)),
+        isLoading: false,
+      }));
+
+      return updated;
+    } catch (error: any) {
+      set({ error: error.message, isLoading: false });
+      throw error;
+    }
+  },
 }));

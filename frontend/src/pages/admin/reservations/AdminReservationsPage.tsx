@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, Eye, User, Trash2, Check, X } from 'lucide-react';
+import { Plus, Calendar, Clock, Users, Eye, User, Trash2, Check, X } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useReservationStore, AdminReservation } from '@/stores/reservationStore';
@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ReservationEditModal } from './ReservationEditModal';
 
 const statusConfig = {
   Pending: { label: 'Pendiente', color: 'bg-yellow-100 text-yellow-800' },
@@ -31,6 +32,7 @@ export default function AdminReservationsPage() {
   const [selectedReservation, setSelectedReservation] = useState<AdminReservation | null>(null);
   const [search, setSearch] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [editingReservation, setEditingReservation] = useState<AdminReservation | null>(null);
 
   // Traer reservas admin
   useEffect(() => {
@@ -150,6 +152,14 @@ export default function AdminReservationsPage() {
 
                 <div className="flex gap-2 mt-4">
                   <Button
+                    className="bg-amber-500 hover:bg-amber-400 flex-1"
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setEditingReservation(res)}
+                  >
+                    ✎ Editar
+                  </Button>
+                  <Button
                     size="sm"
                     variant="outline"
                     className="flex-1"
@@ -176,6 +186,12 @@ export default function AdminReservationsPage() {
             ))}
           </motion.div>
         )}
+
+        <ReservationEditModal
+          open={!!editingReservation}
+          setOpen={() => setEditingReservation(null)}
+          reservation={editingReservation}
+        />
 
         {/* Modal */}
         <Dialog open={!!selectedReservation} onOpenChange={() => setSelectedReservation(null)}>

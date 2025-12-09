@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageTransition, staggerContainer } from '@/components/ui/page-transition';
 import { useReservationStore } from '@/stores/reservationStore';
@@ -7,10 +7,15 @@ import { STAT_CARD_THEMES } from '@/config/dashboardTheme';
 import { StatCard } from '@/components/dashboard/StatCard';
 import { RecentReservations } from '@/components/dashboard/RecentReservations';
 import { QuickActions } from '@/components/dashboard/QuickActions';
+import { DishFormModal } from './dishes/DishFormModal';
+
 
 export default function AdminDashboard() {
   const { fetchReservations } = useReservationStore();
   const stats = useDashboardStats();
+
+const [isAddDishOpen, setIsAddDishOpen] = useState(false);
+
 
   useEffect(() => {
     fetchReservations();
@@ -79,8 +84,18 @@ export default function AdminDashboard() {
         {/* Large Cards Section */}
         <div className="grid lg:grid-cols-2 gap-6">
           <RecentReservations reservations={stats.recentReservations} />
-          <QuickActions />
+          <QuickActions onAddDish={() => setIsAddDishOpen(true)} />
+
         </div>
+        <DishFormModal
+          open={isAddDishOpen}       // en vez de isOpen
+          setOpen={setIsAddDishOpen} // en vez de onClose
+          editingDish={null}          // null porque es un nuevo plato
+          onSuccess={() => {
+            setIsAddDishOpen(false);  // cerrar modal al guardar
+            // aquí podrías refrescar lista de platos si quieres
+          }}
+        />
       </div>
     </PageTransition>
   );

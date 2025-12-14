@@ -22,6 +22,7 @@ const navLinks = [
   { to: '/admin/tables', label: 'Mesas', icon: Table2 },
   { to: '/admin/dishes', label: 'Platos', icon: UtensilsCrossed },
   { to: '/admin/reservations', label: 'Reservas', icon: Calendar },
+  { to: '/admin/users', label: 'Usuarios', icon: User },
 ];
 
 export function AdminLayout() {

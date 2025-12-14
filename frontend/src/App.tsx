@@ -30,6 +30,7 @@ import TableFormPage from "@/pages/admin/tables/TableFormPage";
 import DishesListPage from "@/pages/admin/dishes/DishesListPage";
 import AdminReservationsPage from "@/pages/admin/reservations/AdminReservationsPage";
 import NotFound from "@/pages/NotFound";
+import UsersPage from "./pages/admin/users/UsersPage";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,8 @@ export const App = () => {
                 <Route path="/admin/dishes" element={<DishesListPage />} />
                 <Route path="/admin/reservations" element={<AdminReservationsPage />} />
                 <Route path="/admin/reservations/:id" element={<ReservationDetailPage />} />
+                <Route path="/admin/users" element={<UsersPage/>} />
+
               </Route>
 
               <Route path="*" element={<NotFound />} />

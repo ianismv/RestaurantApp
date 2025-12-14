@@ -7,14 +7,16 @@ import { useDashboardStats } from '@/hooks/use-dashboardStats';
 import { STAT_CARD_THEMES } from '@/config/dashboardTheme';
 import { RecentReservations } from '@/components/dashboard/RecentReservations';
 import { DishFormModal } from './dishes/DishFormModal';
+import { ReservationCreateModal } from './ReservationCreateModal';
 import { CalendarModal } from './CalendarModal';
 import { Button } from '@/components/ui/button';
 
 export default function AdminDashboard() {
-  const { fetchAdminReservations, reservations } = useReservationStore();
-  const statsRaw = useDashboardStats();
   const [isAddDishOpen, setIsAddDishOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const { fetchAdminReservations, reservations } = useReservationStore();
+  const statsRaw = useDashboardStats();
 
   useEffect(() => {
     fetchAdminReservations();
@@ -23,9 +25,21 @@ export default function AdminDashboard() {
   const totalReservations = statsRaw.totalReservations || 0;
   const confirmedCount = statsRaw.confirmedCount || 0;
   const pendingCount = statsRaw.pendingCount || 0;
-  const recentReservations = statsRaw.recentReservations || [];
   const tablesCount = statsRaw.tablesCount || 0;
   const dishesCount = statsRaw.dishesCount || 0;
+
+  // NUEVO: RecentReservations → solo pending + orden por hora más próxima
+  const pendingOnly = reservations.filter(
+    r => r.status.toLowerCase() === "pending"
+  );
+
+  const sortedByUpcoming = [...pendingOnly].sort((a, b) => {
+    const dateA = new Date(`${a.date}T${a.startTime || "00:00"}`);
+    const dateB = new Date(`${b.date}T${b.startTime || "00:00"}`);
+    return dateA.getTime() - dateB.getTime();
+  });
+
+  const upcomingReservations = sortedByUpcoming.slice(0, 5);
 
   const statCards = [
     {
@@ -76,7 +90,7 @@ export default function AdminDashboard() {
       description: 'Crear reserva manualmente',
       color: 'bg-blue-500',
       hoverColor: 'hover:bg-blue-600',
-      href: '/admin/reservations',
+      onClick: () => setIsCreateModalOpen(true),
     },
     {
       icon: UtensilsCrossed,
@@ -186,7 +200,8 @@ export default function AdminDashboard() {
             animate="show"
             className="lg:col-span-2"
           >
-            <RecentReservations reservations={recentReservations} showStatus />
+<RecentReservations reservations={upcomingReservations} limit={5} />
+
           </motion.div>
 
           {/* Quick Actions rediseñadas */}
@@ -282,6 +297,12 @@ export default function AdminDashboard() {
             </motion.div>
           </motion.div>
         </div>
+
+        {/*Create Reservation */}
+        <ReservationCreateModal
+          open={isCreateModalOpen}
+          setOpen={setIsCreateModalOpen}
+        />
 
         {/* Dish Modal */}
         <DishFormModal

@@ -27,4 +27,8 @@ public class ReservationCreateDto
     // 🔹 Nuevo campo
     [Required]
     public string Status { get; set; } = "Pending";
+
+    public string? UserEmail { get; set; } // Agregar esta línea
+
+
 }

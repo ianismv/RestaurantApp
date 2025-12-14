@@ -31,6 +31,8 @@ public class AutoMapperProfile : Profile
         // RESERVATIONS
         // ---------------------------------------------------------------------
         CreateMap<ReservationCreateDto, Reservation>()
+            .ForMember(dest => dest.Notes,
+                opt => opt.MapFrom(src => src.Notes ?? string.Empty))
             .ForMember(dest => dest.ReservationDishes, opt => opt.Ignore());
         // Se maneja manualmente en el Service
 

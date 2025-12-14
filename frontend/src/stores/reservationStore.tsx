@@ -161,23 +161,23 @@ export const useReservationStore = create<ReservationState>()((set, get) => ({
   },
 
   cancelReservation: async (id: number) => {
-    set({ isLoading: true, error: null });
-    try {
-      // ✅ Llama a la API para cancelar (esto actualiza el status en el backend)
-      await reservationsApi.cancel(id);
-      
-      // ✅ Actualiza el store con el nuevo status
-      set(state => ({
-        reservations: state.reservations.map(r => 
-          r.id === id ? { ...r, status: 'Cancelled' as ReservationStatus } : r
-        ),
-        isLoading: false,
-      }));
-    } catch (err: any) {
-      set({ error: err.message, isLoading: false });
-      throw err;
-    }
-  },
+  set({ isLoading: true, error: null });
+  try {
+    // ✅ Usar el endpoint correcto PATCH /api/reservations/{id}/cancel
+    await reservationsApi.cancel(id);
+    
+    // ✅ Actualizar el store con el nuevo status
+    set(state => ({
+      reservations: state.reservations.map(r => 
+        r.id === id ? { ...r, status: 'Cancelled' as ReservationStatus } : r
+      ),
+      isLoading: false,
+    }));
+  } catch (err: any) {
+    set({ error: err.message, isLoading: false });
+    throw err;
+  }
+},
 
   deleteReservation: async (id: number) => {
     set({ isLoading: true, error: null });

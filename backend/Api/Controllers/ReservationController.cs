@@ -1,10 +1,11 @@
 ﻿using Api.DTOs;
+using Api.Data;
 using Api.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Api.Repositories;
 
 namespace Api.Controllers;
 
@@ -14,10 +15,12 @@ namespace Api.Controllers;
 public class ReservationsController : ControllerBase
 {
     private readonly IReservationService _reservationService;
+    private readonly AppDbContext _context;
 
-    public ReservationsController(IReservationService reservationService)
+    public ReservationsController(IReservationService reservationService, AppDbContext context)
     {
         _reservationService = reservationService;
+        _context = context;
     }
 
     [HttpGet]
@@ -55,14 +58,38 @@ public class ReservationsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Crea una reserva. 
+    /// - Admin: puede especificar UserEmail para crear reserva a nombre de otro usuario
+    /// - User: crea reserva para sí mismo (usa el userId del token)
+    /// </summary>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ReservationCreateDto dto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        int userId;
+        var role = User.FindFirstValue(ClaimTypes.Role)!;
+
+        // 🔹 Si es Admin y viene userEmail, buscar usuario por email
+        if (role == "Admin" && !string.IsNullOrEmpty(dto.UserEmail))
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == dto.UserEmail && u.IsActive);
+
+            if (user == null)
+                return BadRequest("No existe un usuario activo con ese email");
+
+            userId = user.Id;
+        }
+        // 🔹 Si es User normal o Admin sin userEmail, usar el userId del token
+        else
+        {
+            userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        }
+
         try
         {
             var reservation = await _reservationService.CreateAsync(dto, userId);
-            return CreatedAtAction(nameof(Get), new { id = reservation.Id }, reservation);
+            return CreatedAtAction(nameof(GetById), new { id = reservation.Id }, reservation);
         }
         catch (Exception ex)
         {
@@ -83,7 +110,6 @@ public class ReservationsController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Devuelve JSON con mensaje de error
             return BadRequest(new { message = ex.Message });
         }
     }
@@ -93,6 +119,7 @@ public class ReservationsController : ControllerBase
     {
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var role = User.FindFirstValue(ClaimTypes.Role)!;
+
         try
         {
             await _reservationService.DeleteAsync(id, userId, role);
@@ -111,12 +138,28 @@ public class ReservationsController : ControllerBase
         try
         {
             var reservations = await _reservationService.GetAllAsync();
-            return Ok(reservations); // Devuelve IEnumerable<ReservationAdminDto>
+            return Ok(reservations);
         }
         catch (Exception ex)
         {
-            // En caso de error inesperado
             return StatusCode(500, new { message = "Error al obtener reservas", details = ex.Message });
+        }
+    }
+
+    [HttpPatch("{id}/cancel")]
+    public async Task<IActionResult> CancelReservation(int id)
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var role = User.FindFirstValue(ClaimTypes.Role)!;
+
+        try
+        {
+            await _reservationService.CancelAsync(id, userId, role);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
         }
     }
 }

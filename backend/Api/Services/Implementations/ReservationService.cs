@@ -190,4 +190,16 @@ public class ReservationService : IReservationService
         var reservations = await _reservationRepository.GetAllAsync();
         return _mapper.Map<IEnumerable<ReservationAdminDto>>(reservations);
     }
+
+    public async Task CancelAsync(int id, int userId, string role)
+    {
+        var reservation = await _reservationRepository.GetByIdAsync(id)
+            ?? throw new Exception("Reserva no encontrada");
+
+        if (reservation.UserId != userId && role != "Admin")
+            throw new Exception("No tienes permiso para cancelar esta reserva");
+
+        reservation.Status = ReservationStatus.Cancelled;
+        await _reservationRepository.UpdateAsync(reservation);
+    }
 }

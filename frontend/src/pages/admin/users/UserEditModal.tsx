@@ -1,28 +1,29 @@
 // =====================================================
-// 2. UserEditModal.tsx - Editar usuario
+// UserEditModal.tsx
+// Edición básica de usuario (Admin Dashboard)
 // =====================================================
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+
+import { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogClose,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { AppUser, usersApi } from '@/services/users.api';
-import { 
-  User, 
-  Mail, 
-  Shield, 
+import { useAuthStore } from '@/stores/authStore';
+import {
+  User,
+  Mail,
+  Shield,
   Loader2,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
 } from 'lucide-react';
 
 interface UserEditModalProps {
@@ -32,36 +33,48 @@ interface UserEditModalProps {
   onSuccess: () => void;
 }
 
-export function UserEditModal({ user, open, onClose, onSuccess }: UserEditModalProps) {
+export function UserEditModal({
+  user,
+  open,
+  onClose,
+  onSuccess,
+}: UserEditModalProps) {
   const { toast } = useToast();
-  
+  const currentUser = useAuthStore((state) => state.user);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState<'User' | 'Admin'>('User');
   const [isActive, setIsActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
 
   useEffect(() => {
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-      setRole(user.role as 'User' | 'Admin');
-      setIsActive(user.isActive);
-    }
+    if (!user) return;
+
+    setName(user.name);
+    setEmail(user.email);
+    setIsActive(user.isActive);
+    setErrors({});
   }, [user]);
 
-  const validateForm = (): boolean => {
-    const newErrors: { name?: string; email?: string } = {};
+  const isSelf = useMemo(() => {
+    if (!currentUser || !user) return false;
+    return currentUser.email.toLowerCase() === user.email.toLowerCase();
+  }, [currentUser, user]);
 
-    if (!name.trim()) {
-      newErrors.name = 'El nombre es requerido';
-    }
+  const isAdmin = user?.role === 'Admin';
 
-    if (!email.trim()) {
-      newErrors.email = 'El email es requerido';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Email inválido';
+  const validateForm = () => {
+    const newErrors: typeof errors = {};
+
+    if (!name.trim()) newErrors.name = 'El nombre es requerido';
+
+    if (!isAdmin) {
+      if (!email.trim()) {
+        newErrors.email = 'El email es requerido';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newErrors.email = 'Email inválido';
+      }
     }
 
     setErrors(newErrors);
@@ -69,29 +82,46 @@ export function UserEditModal({ user, open, onClose, onSuccess }: UserEditModalP
   };
 
   const handleSubmit = async () => {
-    if (!user || !validateForm()) return;
+    if (!user) return;
+    if (!validateForm()) return;
+
+    if (isSelf && !isActive) {
+      toast({
+        title: 'Acción no permitida',
+        description: 'No podés desactivar tu propia cuenta',
+        variant: 'destructive',
+      });
+      return;
+    }
 
     setIsLoading(true);
+
     try {
-      await usersApi.update(user.id, {
+      const payload: any = {
         name: name.trim(),
-        email: email.trim(),
-        role,
         isActive,
-      });
+      };
+
+      if (!isAdmin) {
+        payload.email = email.trim();
+      }
+
+      await usersApi.update(user.id, payload);
 
       toast({
-        title: "Usuario actualizado",
-        description: "Los cambios se guardaron correctamente",
+        title: 'Usuario actualizado',
+        description: 'Los cambios se guardaron correctamente',
       });
 
       onSuccess();
       onClose();
     } catch (error: any) {
       toast({
-        title: "Error",
-        description: error.response?.data?.message || "No se pudo actualizar el usuario",
-        variant: "destructive",
+        title: 'Error',
+        description:
+          error.response?.data?.message ||
+          'No se pudo actualizar el usuario',
+        variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
@@ -102,28 +132,23 @@ export function UserEditModal({ user, open, onClose, onSuccess }: UserEditModalP
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-md glass-card">
+      <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl gradient-text">
-            Editar Usuario
+          <DialogTitle className="text-xl font-semibold">
+            Editar usuario
           </DialogTitle>
-          <DialogClose />
         </DialogHeader>
 
         <div className="space-y-4 py-4">
           {/* NOMBRE */}
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <User className="h-4 w-4 text-primary" />
+              <User className="h-4 w-4" />
               Nombre *
             </Label>
             <Input
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                if (errors.name) setErrors({ ...errors, name: undefined });
-              }}
-              placeholder="Nombre completo"
+              onChange={(e) => setName(e.target.value)}
               className={errors.name ? 'border-red-500' : ''}
             />
             {errors.name && (
@@ -137,19 +162,23 @@ export function UserEditModal({ user, open, onClose, onSuccess }: UserEditModalP
           {/* EMAIL */}
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-primary" />
+              <Mail className="h-4 w-4" />
               Email *
             </Label>
             <Input
               type="email"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (errors.email) setErrors({ ...errors, email: undefined });
-              }}
-              placeholder="usuario@email.com"
-              className={errors.email ? 'border-red-500' : ''}
+              disabled={isAdmin}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`${errors.email ? 'border-red-500' : ''} ${
+                isAdmin ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
             />
+            <p className="text-xs text-muted-foreground">
+              {isAdmin
+                ? 'El email del administrador no puede modificarse.'
+                : 'Cambiar el email afecta el acceso y las notificaciones del usuario.'}
+            </p>
             {errors.email && (
               <p className="text-xs text-red-500 flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
@@ -161,82 +190,68 @@ export function UserEditModal({ user, open, onClose, onSuccess }: UserEditModalP
           {/* ROL */}
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Shield className="h-4 w-4 text-primary" />
+              <Shield className="h-4 w-4" />
               Rol
             </Label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value as 'User' | 'Admin')}
-              className="w-full h-10 rounded-lg border border-input bg-secondary/50 text-sm px-3"
-            >
-              <option value="User">User</option>
-              <option value="Admin">Admin</option>
-            </select>
-            {role === 'Admin' && (
-              <div className="flex items-center gap-2 p-2 rounded bg-purple-50 border border-purple-200">
-                <AlertCircle className="h-4 w-4 text-purple-600" />
-                <span className="text-xs text-purple-700">
-                  Este usuario tendrá permisos de administrador
-                </span>
-              </div>
-            )}
+            <Input value={user.role} disabled />
+            <p className="text-xs text-muted-foreground">
+              El rol no puede modificarse desde esta pantalla.
+            </p>
           </div>
 
-          {/* ESTADO ACTIVO */}
-          <div className="flex items-center justify-between p-4 rounded-xl bg-muted/50 border border-border">
+          {/* ESTADO */}
+          <div className="flex items-center justify-between p-4 rounded-lg border">
             <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-lg ${isActive ? 'bg-green-100' : 'bg-red-100'}`}>
-                {isActive ? (
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                ) : (
-                  <AlertCircle className="h-5 w-5 text-red-600" />
-                )}
-              </div>
+              {isActive ? (
+                <CheckCircle className="h-5 w-5 text-green-600" />
+              ) : (
+                <AlertCircle className="h-5 w-5 text-red-600" />
+              )}
               <div>
-                <p className="font-medium text-sm">Estado de la cuenta</p>
+                <p className="text-sm font-medium">Estado de la cuenta</p>
                 <p className="text-xs text-muted-foreground">
-                  {isActive ? 'El usuario puede acceder' : 'El usuario no puede acceder'}
+                  {isActive
+                    ? 'El usuario puede acceder al sistema'
+                    : 'El usuario no puede acceder'}
                 </p>
               </div>
             </div>
+
             <button
               type="button"
-              onClick={() => setIsActive(!isActive)}
-              className={`
-                relative inline-flex h-6 w-11 items-center rounded-full transition-colors
-                ${isActive ? 'bg-green-500' : 'bg-gray-300'}
-              `}
+              disabled={isSelf}
+              onClick={() => setIsActive((v) => !v)}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                isActive ? 'bg-green-500' : 'bg-gray-300'
+              } ${isSelf ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <span
-                className={`
-                  inline-block h-4 w-4 transform rounded-full bg-white transition-transform
-                  ${isActive ? 'translate-x-6' : 'translate-x-1'}
-                `}
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  isActive ? 'translate-x-6' : 'translate-x-1'
+                }`}
               />
             </button>
           </div>
+
+          {isSelf && (
+            <p className="text-xs text-muted-foreground">
+              No podés desactivar tu propia cuenta.
+            </p>
+          )}
         </div>
 
-        <DialogFooter className="gap-2">
-          <Button
-            variant="outline"
-            onClick={onClose}
-            disabled={isLoading}
-          >
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose} disabled={isLoading}>
             Cancelar
           </Button>
-          <Button
-            onClick={handleSubmit}
-            disabled={isLoading}
-            className="btn-glow"
-          >
+          <Button onClick={handleSubmit} disabled={isLoading}>
             {isLoading ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 Guardando...
               </>
             ) : (
-              'Guardar Cambios'
+              'Guardar cambios'
             )}
           </Button>
         </DialogFooter>

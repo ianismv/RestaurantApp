@@ -85,12 +85,33 @@ public class UsersController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] UserUpdateDto dto)
     {
-        var user = await _context.Users.FindAsync(id);
+        var user = await _context.Users
+            .Include(u => u.Reservations)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
         if (user == null)
             return NotFound(new { message = "Usuario no encontrado" });
 
-        // Verificar si el email ya existe en otro usuario
-        if (!string.IsNullOrEmpty(dto.Email) && dto.Email != user.Email)
+        // ------------------------------------------------------------------
+        // REGLA: un ADMIN no puede cambiar su email
+        // ------------------------------------------------------------------
+        if (user.Role == "Admin" && !string.IsNullOrWhiteSpace(dto.Email))
+        {
+            if (!string.Equals(dto.Email, user.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                return BadRequest(new
+                {
+                    message = "No está permitido modificar el email de un administrador"
+                });
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // EMAIL (solo si NO es admin)
+        // ------------------------------------------------------------------
+        if (user.Role != "Admin" &&
+            !string.IsNullOrWhiteSpace(dto.Email) &&
+            dto.Email != user.Email)
         {
             var emailExists = await _context.Users
                 .AnyAsync(u => u.Email == dto.Email && u.Id != id);
@@ -101,13 +122,22 @@ public class UsersController : ControllerBase
             user.Email = dto.Email;
         }
 
-        // Actualizar campos
-        if (!string.IsNullOrEmpty(dto.Name))
+        // ------------------------------------------------------------------
+        // NAME
+        // ------------------------------------------------------------------
+        if (!string.IsNullOrWhiteSpace(dto.Name))
             user.Name = dto.Name;
 
-        if (!string.IsNullOrEmpty(dto.Role))
-            user.Role = dto.Role;
+        // ------------------------------------------------------------------
+        // ROLE (opcional, si lo vas a permitir)
+        // Recomendación: NO permitir cambiar roles acá
+        // ------------------------------------------------------------------
+        // if (!string.IsNullOrEmpty(dto.Role))
+        //     user.Role = dto.Role;
 
+        // ------------------------------------------------------------------
+        // ACTIVE
+        // ------------------------------------------------------------------
         if (dto.IsActive.HasValue)
             user.IsActive = dto.IsActive.Value;
 
@@ -176,10 +206,21 @@ public class UsersController : ControllerBase
         if (user == null)
             return NotFound(new { message = "Usuario no encontrado" });
 
-        // No permitir eliminar al admin que está haciendo la petición
         var currentUserId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value);
+
+        // No eliminar tu propia cuenta
         if (user.Id == currentUserId)
             return BadRequest(new { message = "No puedes eliminar tu propia cuenta" });
+
+        // No eliminar al único admin
+        if (user.Role == "Admin")
+        {
+            var totalAdmins = await _context.Users.CountAsync(u => u.Role == "Admin" && u.Id != user.Id);
+            if (totalAdmins == 0)
+            {
+                return BadRequest(new { message = "No se puede eliminar al único administrador restante" });
+            }
+        }
 
         // Verificar si tiene reservas
         if (user.Reservations?.Any() == true)

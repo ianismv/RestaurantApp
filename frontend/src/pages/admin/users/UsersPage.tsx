@@ -295,34 +295,8 @@ export default function UsersPage() {
                       onClick={() => setSelectedUser(user)}
                     >
                       <Eye className="h-4 w-4 mr-2" />
-                      Ver
+                      Ver Detalles
                     </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1"
-                      onClick={() => setEditingUser(user)}
-                    >
-                      <Edit3 className="h-4 w-4 mr-2" />
-                      Editar
-                    </Button>
-                    {user.isActive ? (
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        onClick={() => handleDeactivate(user.id)}
-                      >
-                        <UserX className="h-4 w-4" />
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        variant="default"
-                        onClick={() => handleActivate(user.id)}
-                      >
-                        <UserCheck className="h-4 w-4" />
-                      </Button>
-                    )}
                   </div>
                 </div>
               </motion.div>
@@ -331,18 +305,35 @@ export default function UsersPage() {
         )}
 
         {/* MODALES */}
-        <UserDetailsModal
-          user={selectedUser}
-          open={!!selectedUser}
-          onClose={() => setSelectedUser(null)}
-        />
+        <AnimatePresence>
+          {selectedUser && (
+            <UserDetailsModal
+              key={`details-${selectedUser.id}`}
+              user={selectedUser}
+              open
+              onClose={() => setSelectedUser(null)}
+              onEdit={(user) => {
+                setSelectedUser(null);
+                setEditingUser(user);
+              }}
+            />
+          )}
+        </AnimatePresence>
 
-        <UserEditModal
-          user={editingUser}
-          open={!!editingUser}
-          onClose={() => setEditingUser(null)}
-          onSuccess={fetchUsers}
-        />
+        <AnimatePresence>
+          {editingUser && (
+            <UserEditModal
+              key={`edit-${editingUser.id}`}
+              user={editingUser}
+              open
+              onClose={() => setEditingUser(null)}
+              onSuccess={() => {
+                setEditingUser(null);
+                fetchUsers();
+              }}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </PageTransition>
   );

@@ -28,9 +28,10 @@ interface UserDetailsModalProps {
   user: AppUser | null;
   open: boolean;
   onClose: () => void;
+  onEdit: (user: AppUser) => void;
 }
 
-export function UserDetailsModal({ user, open, onClose }: UserDetailsModalProps) {
+export function UserDetailsModal({ user, open, onClose, onEdit }: UserDetailsModalProps) {
   if (!user) return null;
 
   return (
@@ -159,6 +160,27 @@ export function UserDetailsModal({ user, open, onClose }: UserDetailsModalProps)
               )}
             </div>
           </div>
+        </div>
+
+        {/* ACCIONES */}
+        <div className="pt-4 border-t border-border flex justify-end gap-2">
+          <button
+            onClick={() => {
+              onEdit(user);
+              onClose();
+            }}
+            className="
+              inline-flex items-center gap-2
+              px-4 py-2 rounded-lg
+              border border-primary
+              text-primary font-medium
+              hover:bg-primary/10
+              transition-colors
+            "
+          >
+            <Shield className="h-4 w-4" />
+            Editar usuario
+          </button>
         </div>
       </DialogContent>
     </Dialog>

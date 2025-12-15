@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { TableSkeleton } from '@/components/ui/skeleton-loader';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils'; // Asegúrate de importar 'cn' si lo usas en TableCard
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,8 +20,66 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
+// --- NUEVO COMPONENTE: VISTA DE TARJETA PARA MOBILE ---
+const TableCard = ({ table, handleDelete }: any) => (
+  <motion.div
+    variants={fadeInUp}
+    className="glass-card p-4 space-y-3 border border-border/50 rounded-xl"
+  >
+    <div className="flex justify-between items-start">
+      <h3 className="font-semibold text-lg">{table.name}</h3>
+      <Badge
+        variant={table.isActive ? 'default' : 'secondary'}
+        className="flex items-center gap-1 w-fit"
+      >
+        {table.isActive ? (<><CheckCircle className="h-3 w-3" /> Activa</>) : (<><XCircle className="h-3 w-3" /> Inactiva</>)}
+      </Badge>
+    </div>
+
+    <div className="text-sm space-y-1 text-muted-foreground">
+      <p className="flex items-center gap-2">
+        <Users className="h-4 w-4 shrink-0" />
+        Capacidad: <span className="text-foreground font-medium">{table.capacity} personas</span>
+      </p>
+      <p className="flex items-center gap-2">
+        <MapPin className="h-4 w-4 shrink-0" />
+        Ubicación: <span className="text-foreground font-medium">{table.location || '—'}</span>
+      </p>
+    </div>
+
+    <div className="flex justify-end gap-2 pt-2 border-t border-border/30">
+      <Link to={`/admin/tables/${table.id}/edit`}>
+        <Button variant="outline" size="icon">
+          <Edit className="h-4 w-4" />
+        </Button>
+      </Link>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="destructive" size="icon">
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>¿Eliminar mesa?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Esta acción no se puede deshacer. La mesa "{table.name}" será eliminada permanentemente.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => handleDelete(table.id)}>Eliminar</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  </motion.div>
+);
+// --- FIN DEL NUEVO COMPONENTE ---
+
+
 export default function TablesListPage() {
-const { tables, isLoading, updateTable, deleteTable } = useAdminTables();
+  const { tables, isLoading, updateTable, deleteTable } = useAdminTables();
   const { toast } = useToast();
 
   const handleDelete = async (id: string) => {
@@ -90,25 +149,16 @@ const { tables, isLoading, updateTable, deleteTable } = useAdminTables();
             animate="show"
             className="glass-card rounded-2xl overflow-hidden"
           >
-            <div className="overflow-x-auto">
+            {/* 1. MODO TABLA (Desktop/Tablet) */}
+            <div className="hidden sm:block overflow-x-auto"> {/* Ocultar en mobile */}
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border/50 bg-secondary/30">
-                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      Mesa
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      Capacidad
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      Ubicación
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      Estado
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground">
-                      Acciones
-                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">Mesa</th>
+                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">Capacidad</th>
+                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">Ubicación</th>
+                    <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">Estado</th>
+                    <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground">Acciones</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/30">
@@ -193,6 +243,14 @@ const { tables, isLoading, updateTable, deleteTable } = useAdminTables();
                 </tbody>
               </table>
             </div>
+
+            {/* 2. MODO TARJETA (Mobile) */}
+            <div className="sm:hidden p-4 space-y-4"> {/* Mostrar solo en mobile */}
+              {tables.map((table) => (
+                <TableCard key={table.id} table={table} handleDelete={handleDelete} />
+              ))}
+            </div>
+            
           </motion.div>
         )}
       </div>

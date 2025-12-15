@@ -28,6 +28,11 @@ export default function LoginPage() {
 
     if (!email || !password) {
       setError('Por favor completa todos los campos');
+      toast({
+        title: 'Error',
+        description: 'Por favor completa todos los campos',
+        variant: 'destructive', // estilo de error
+      });
       return;
     }
 
@@ -36,11 +41,17 @@ export default function LoginPage() {
       toast({
         title: '¡Bienvenido!',
         description: 'Has iniciado sesión correctamente',
+        variant: 'default',
       });
       navigate(from, { replace: true });
     } catch (err: any) {
       const message = err.response?.data?.message || 'Credenciales inválidas';
       setError(message);
+      toast({
+        title: 'Error de autenticación',
+        description: message,
+        variant: 'destructive',
+      });
     }
   };
 

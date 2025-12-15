@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, Utensils, Star, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Clock, Utensils, Star, ArrowRight, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageTransition, staggerContainer, fadeInUp } from '@/components/ui/page-transition';
 import { useAuthStore } from '@/stores/authStore';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 export default function LandingPage() {
   const { user } = useAuthStore();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <PageTransition>
@@ -24,13 +25,14 @@ export default function LandingPage() {
       >
         {/* Header */}
         <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/30 border-b border-border/20 shadow-lg">
-          <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
+          <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4 relative">
             <Link to="/" className="flex items-center gap-2">
               <span className="text-2xl">🍽️</span>
               <span className="font-display text-xl font-semibold gradient-text">RestaurantApp</span>
             </Link>
 
-            <div className="flex items-center gap-4">
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-4">
               {!user ? (
                 <>
                   <Link to="/login">
@@ -50,12 +52,55 @@ export default function LandingPage() {
                 </Link>
               ) : (
                 <Link to="/reservations">
-                  <Button className="btn-glow">
-                    Mis reservas
-                  </Button>
+                  <Button className="btn-glow">Mis reservas</Button>
                 </Link>
               )}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 hover:bg-white/40 rounded-lg transition-all"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Menú móvil"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+
+            {/* Mobile Dropdown */}
+            <AnimatePresence>
+              {mobileMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-16 right-4 left-4 bg-white/95 backdrop-blur-md rounded-lg shadow-lg flex flex-col gap-2 p-4 md:hidden z-50"
+                >
+                  {!user ? (
+                    <>
+                      <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                        <Button variant="ghost" className="w-full justify-center py-2">
+                          Iniciar Sesión
+                        </Button>
+                      </Link>
+                      <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
+                        <Button className="w-full btn-glow py-2">Registrarme</Button>
+                      </Link>
+                    </>
+                  ) : user.role === 'Admin' ? (
+                    <Link to="/admin" onClick={() => setMobileMenuOpen(false)}>
+                      <Button className="w-full bg-primary text-white hover:bg-primary-dark btn-glow py-2">
+                        Admin Dashboard
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link to="/reservations" onClick={() => setMobileMenuOpen(false)}>
+                      <Button className="w-full btn-glow py-2">Mis reservas</Button>
+                    </Link>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </header>
 
@@ -104,22 +149,6 @@ export default function LandingPage() {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-1">
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-                className="w-1.5 h-3 bg-primary rounded-full"
-              />
-            </div>
-          </motion.div>
         </section>
 
         {/* Features Section */}
@@ -161,12 +190,7 @@ export default function LandingPage() {
         {/* CTA Section */}
         <section className="py-24">
           <div className="container">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="glass-card rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-lg"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="glass-card rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-amber-500/5 to-primary/5" />
               <div className="relative z-10">
                 <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">¿Listo para comenzar?</h2>

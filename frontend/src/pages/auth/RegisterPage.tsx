@@ -57,6 +57,11 @@ export default function RegisterPage() {
     } catch (err: any) {
       const message = err.response?.data?.message || 'Error al crear la cuenta';
       setError(message);
+      toast({
+        title: 'Error de Registro, no se pudo realzar el registro',
+        description: message, // Usamos el mensaje del servidor o el genérico
+        variant: 'destructive', // Asumiendo que tu sistema de toasts tiene una variante 'destructive' (rojo)
+      });
     }
   };
 

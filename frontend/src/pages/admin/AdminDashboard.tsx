@@ -28,19 +28,6 @@ export default function AdminDashboard() {
   const tablesCount = statsRaw.tablesCount || 0;
   const dishesCount = statsRaw.dishesCount || 0;
 
-  // NUEVO: RecentReservations → solo pending + orden por hora más próxima
-  const pendingOnly = reservations.filter(
-    r => r.status.toLowerCase() === "pending"
-  );
-
-  const sortedByUpcoming = [...pendingOnly].sort((a, b) => {
-    const dateA = new Date(`${a.date}T${a.startTime || "00:00"}`);
-    const dateB = new Date(`${b.date}T${b.startTime || "00:00"}`);
-    return dateA.getTime() - dateB.getTime();
-  });
-
-  const upcomingReservations = sortedByUpcoming.slice(0, 5);
-
   const statCards = [
     {
       config: STAT_CARD_THEMES.tables,
@@ -200,7 +187,7 @@ export default function AdminDashboard() {
             animate="show"
             className="lg:col-span-2"
           >
-<RecentReservations reservations={upcomingReservations} limit={5} />
+          <RecentReservations reservations={reservations} limit={5} />
 
           </motion.div>
 

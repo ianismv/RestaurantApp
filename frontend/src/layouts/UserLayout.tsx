@@ -80,7 +80,7 @@ export function UserLayout() {
         <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
           
           {/* LOGO */}
-          <Link to="/dashboard" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <motion.span
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}

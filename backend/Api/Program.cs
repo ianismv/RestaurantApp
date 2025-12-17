@@ -88,7 +88,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Definimos el origen del frontend (Vite) de forma explícita,
 // ya que Vite por defecto corre en 5173. ESTE ES EL ORIGEN CORRECTO.
-const string FrontendOrigin = "http://localhost:8080"; //<---- nuevo front usa 8080
+const string FrontendOrigin = "http://grupo02.sandbox.devlights.com/"; //<---- nuevo front usa sandbox "http://localhost:8080"
+
 
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>

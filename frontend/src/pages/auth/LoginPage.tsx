@@ -167,7 +167,6 @@ export default function LoginPage() {
                 <span className="text-muted-foreground">Credenciales de Prueba: </span>
                 <div>
                 <p className="text-muted-foreground">👤 User: ianis@ianis.com/Ianis123</p>
-                <p className="text-muted-foreground">👑 Admin: admin@bodegon.com/1b4601d6a237</p>
                 </div>
             </div>
           </div>

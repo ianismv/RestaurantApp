@@ -93,7 +93,7 @@ const string FrontendOrigin = "http://grupo02.sandbox.devlights.com/"; //<---- n
 
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins(FrontendOrigin) // <--- ¡USAR 5173!
+        policy.AllowAnyOrigin() //fro // <--- ¡USAR 5173!
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials()));

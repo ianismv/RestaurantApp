@@ -14,7 +14,10 @@ import {
   Minus,
   Check,
   X,
-  Info
+  Info,
+  CheckCircle,
+  XCircle,
+  AlertCircle
 } from "lucide-react";
 import { useReservationStore } from "@/stores/reservationStore";
 import { useReservationDishStore } from "@/stores/reservationDishStore";
@@ -27,13 +30,32 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ReservationDish } from "@/services/reservationDish.api";
-import { getReservationStatusText } from "@/enums/ReservationStatus";
 
 const statusConfig = {
-  Pending: { label: 'Pendiente', color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
-  Confirmed: { label: 'Confirmada', color: 'bg-green-500/20 text-green-400 border-green-500/30' },
-  Cancelled: { label: 'Cancelada', color: 'bg-red-500/20 text-red-400 border-red-500/30' },
-  Completed: { label: 'Completada', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
+  Pending: { 
+    label: 'Pendiente', 
+    color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+    icon: Clock,
+    gradient: 'from-yellow-500/10 to-transparent'
+  },
+  Confirmed: { 
+    label: 'Confirmada', 
+    color: 'bg-green-500/20 text-green-400 border-green-500/30',
+    icon: CheckCircle,
+    gradient: 'from-green-500/10 to-transparent'
+  },
+  Cancelled: { 
+    label: 'Cancelada', 
+    color: 'bg-red-500/20 text-red-400 border-red-500/30',
+    icon: XCircle,
+    gradient: 'from-red-500/10 to-transparent'
+  },
+  Completed: { 
+    label: 'Completada', 
+    color: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    icon: CheckCircle,
+    gradient: 'from-blue-500/10 to-transparent'
+  },
 };
 
 export default function ReservationDetailPage() {
@@ -112,7 +134,26 @@ export default function ReservationDetailPage() {
     );
   }
 
-  const statusInfo = statusConfig[currentReservation.status] || statusConfig.Pending;
+  // Mapeo de números a keys
+const statusNumberToKey: { [key: number]: keyof typeof statusConfig } = {
+  0: 'Pending',
+  1: 'Confirmed',
+  2: 'Cancelled',
+  3: 'Completed'
+};
+
+// Convertir número a string si es necesario
+const statusKey = typeof currentReservation.status === 'number' 
+  ? statusNumberToKey[currentReservation.status]
+  : currentReservation.status;
+
+const statusInfo = statusConfig[statusKey] ?? {
+  label: 'Desconocido',
+  color: 'bg-gray-500/20 text-gray-400 border-gray-500/30',
+  icon: AlertCircle,
+  gradient: 'from-gray-500/10 to-transparent'
+};
+const StatusIcon = statusInfo.icon;
 
   return (
     <PageTransition className="p-4 sm:p-6 max-w-5xl mx-auto space-y-6">
@@ -156,6 +197,7 @@ export default function ReservationDetailPage() {
                 </h1>
               </div>
               <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm font-medium ${statusInfo.color}`}>
+                <StatusIcon className="h-3.5 w-3.5" />
                 {statusInfo.label}
               </div>
             </div>

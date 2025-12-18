@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { PageTransition, staggerContainer, fadeInUp } from "@/components/ui/page-transition";
+import {
+  PageTransition,
+  staggerContainer,
+  fadeInUp,
+} from "@/components/ui/page-transition";
 import { useDishesStore } from "@/stores/dishesStore";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -35,7 +39,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { DishFormModal } from "./DishFormModal";
-
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 export default function DishesListPage() {
   const {
@@ -48,6 +58,7 @@ export default function DishesListPage() {
   } = useDishesStore();
 
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [openForm, setOpenForm] = useState(false);
   const [editingDish, setEditingDish] = useState<any>(null);
 
@@ -57,21 +68,29 @@ export default function DishesListPage() {
     price: "",
   });
 
-  // Load dishes on mount
   useEffect(() => {
     fetchDishes();
   }, [fetchDishes]);
 
-  const filtered = dishes.filter((d) =>
-    d.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const categories = Array.from(new Set(dishes.map((d) => d.category)));
+
+  const filtered = dishes.filter((d) => {
+    const matchesSearch = d.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "all" || d.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
 
   const handleSubmit = async () => {
     if (!form.name || !form.category || !form.price) {
       toast({
-      title: "Error",
-      description: "Todos los campos son obligatorios.",
-    });
+        title: "Error",
+        description: "Todos los campos son obligatorios.",
+      });
       return;
     }
 
@@ -95,6 +114,7 @@ export default function DishesListPage() {
           description: "Se agregó el nuevo plato.",
         });
       }
+
       setOpenForm(false);
       setEditingDish(null);
       setForm({ name: "", category: "", price: "" });
@@ -125,20 +145,23 @@ export default function DishesListPage() {
         className="space-y-6"
       >
         {/* Header */}
-        <motion.div variants={fadeInUp} className="flex justify-between items-center">
+        <motion.div
+          variants={fadeInUp}
+          className="flex justify-between items-center"
+        >
           <h1 className="text-3xl font-bold flex items-center gap-2">
-            <UtensilsCrossed className="w-7 h-7" /> Gestión de Platos
+            <UtensilsCrossed className="w-7 h-7" />
+            Gestión de Platos
           </h1>
 
           <Dialog open={openForm} onOpenChange={setOpenForm}>
             <DialogTrigger asChild>
               <Button className="btn-glow">
-              <Plus className="h-4 w-4 mr-2" />
-              Nuevo Plato
-            </Button>
+                <Plus className="h-4 w-4 mr-2" />
+                Nuevo Plato
+              </Button>
             </DialogTrigger>
 
-            {/* CREATE/EDIT Form */}
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>
@@ -150,7 +173,9 @@ export default function DishesListPage() {
                 <Input
                   placeholder="Nombre del plato"
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, name: e.target.value })
+                  }
                 />
                 <Input
                   placeholder="Categoría"
@@ -171,7 +196,9 @@ export default function DishesListPage() {
 
               <DialogFooter>
                 <Button onClick={handleSubmit} disabled={isLoading}>
-                  {isLoading && <Loader2 className="animate-spin mr-2 w-4 h-4" />}
+                  {isLoading && (
+                    <Loader2 className="animate-spin mr-2 w-4 h-4" />
+                  )}
                   Guardar
                 </Button>
               </DialogFooter>
@@ -179,13 +206,32 @@ export default function DishesListPage() {
           </Dialog>
         </motion.div>
 
-        {/* Search */}
-        <motion.div variants={fadeInUp}>
+        {/* Search + Category Filter */}
+        <motion.div variants={fadeInUp} className="flex gap-4">
           <Input
             placeholder="Buscar plato por nombre..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            className="flex-1"
           />
+
+          <Select
+            value={selectedCategory}
+            onValueChange={setSelectedCategory}
+          >
+            <SelectTrigger className="w-[220px]">
+              <SelectValue placeholder="Categoría" />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectItem value="all">Todas</SelectItem>
+              {categories.map((cat) => (
+                <SelectItem key={cat} value={cat}>
+                  {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </motion.div>
 
         {/* List */}
@@ -207,9 +253,7 @@ export default function DishesListPage() {
               <motion.div key={dish.id} variants={fadeInUp}>
                 <Card className="hover:shadow-lg transition">
                   <CardHeader>
-                    <CardTitle className="flex justify-between items-center">
-                      {dish.name}
-                    </CardTitle>
+                    <CardTitle>{dish.name}</CardTitle>
                   </CardHeader>
 
                   <CardContent className="space-y-3">
@@ -233,7 +277,6 @@ export default function DishesListPage() {
                         Editar
                       </Button>
 
-                      {/* Delete Dialog */}
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button variant="destructive" size="sm">
@@ -250,7 +293,9 @@ export default function DishesListPage() {
                           </AlertDialogHeader>
 
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                            <AlertDialogCancel>
+                              Cancelar
+                            </AlertDialogCancel>
                             <AlertDialogAction
                               onClick={async () => {
                                 try {
@@ -259,13 +304,12 @@ export default function DishesListPage() {
                                     title: "Éxito",
                                     description: "Plato eliminado.",
                                   });
-                                  
                                 } catch {
-                                   toast({
+                                  toast({
                                     title: "Error",
-                                    description: "No se pudo eliminar el plato.",
+                                    description:
+                                      "No se pudo eliminar el plato.",
                                   });
-                                  
                                 }
                               }}
                             >
@@ -279,15 +323,16 @@ export default function DishesListPage() {
                 </Card>
               </motion.div>
             ))}
-            <DishFormModal
-              open={openForm}
-              setOpen={setOpenForm}
-              editingDish={editingDish}
-              onSuccess={() => {
-                fetchDishes();
-                setEditingDish(null);
-              }}
-            />
+
+          <DishFormModal
+            open={openForm}
+            setOpen={setOpenForm}
+            editingDish={editingDish}
+            onSuccess={() => {
+              fetchDishes();
+              setEditingDish(null);
+            }}
+          />
         </motion.div>
       </motion.div>
     </PageTransition>

@@ -4,12 +4,34 @@ import { Calendar, Clock, Utensils, Star, ArrowRight, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { PageTransition, staggerContainer, fadeInUp } from '@/components/ui/page-transition';
 import { useAuthStore } from '@/stores/authStore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import QRModal from './QRModal';
+import qrImage from './assets/RestaurantApp.png';
 
 export default function LandingPage() {
   const { user } = useAuthStore();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showQRModal, setShowQRModal] = useState(false);
+
+  useEffect(() => {
+    // CONDICIÓN ÚNICA: Si no hay usuario, mostramos el modal.
+    // Al no usar localStorage, se activará cada vez que la página cargue.
+    if (!user) {
+      const timer = setTimeout(() => {
+        setShowQRModal(true);
+      }, 800);
+      return () => clearTimeout(timer);
+    } else {
+      // Si el usuario se loguea mientras está en la página, nos aseguramos de cerrar el modal
+      setShowQRModal(false);
+    }
+  }, [user]);
+
+  const handleCloseModal = () => {
+    setShowQRModal(false);
+    // Eliminamos la línea de localStorage.setItem para que no se guarde el estado de "visto"
+  };
 
   return (
     <PageTransition>
@@ -23,6 +45,13 @@ export default function LandingPage() {
           transition: 'background 0.15s',
         }}
       >
+        {/* QR Modal */}
+        <QRModal 
+          isOpen={showQRModal} 
+          onClose={handleCloseModal}
+          qrImageUrl={qrImage}
+        />
+        
         {/* Header */}
         <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/30 border-b border-border/20 shadow-lg">
           <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4 relative">
@@ -214,7 +243,7 @@ export default function LandingPage() {
               <span className="text-xl">🍽️</span>
               <span className="font-display font-semibold gradient-text">RestaurantApp</span>
             </div>
-            <p className="text-sm text-muted-foreground">© 2024 RestaurantApp. Todos los derechos reservados.</p>
+            <p className="text-sm text-muted-foreground">© 2025 RestaurantApp. Todos los derechos reservados.</p>
           </div>
         </footer>
       </div>

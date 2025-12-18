@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Calendar, Table2, UtensilsCrossed, TrendingUp, Clock } from 'lucide-react';
 import { PageTransition, staggerContainer, fadeInUp } from '@/components/ui/page-transition';
@@ -22,9 +22,27 @@ export default function AdminDashboard() {
     fetchAdminReservations();
   }, [fetchAdminReservations]);
 
-  const totalReservations = statsRaw.totalReservations || 0;
-  const confirmedCount = statsRaw.confirmedCount || 0;
-  const pendingCount = statsRaw.pendingCount || 0;
+  // Filtrar solo reservas futuras (incluyendo hoy)
+  const futureReservations = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return reservations.filter(reservation => {
+      const reservationDate = new Date(reservation.date);
+      reservationDate.setHours(0, 0, 0, 0);
+      return reservationDate >= today;
+    });
+  }, [reservations]);
+
+  // Calcular estadísticas solo para reservas futuras
+  const futureStats = useMemo(() => {
+    const total = futureReservations.length;
+    const confirmed = futureReservations.filter(r => r.status === 'Confirmed').length;
+    const pending = futureReservations.filter(r => r.status === 'Pending').length;
+    
+    return { total, confirmed, pending };
+  }, [futureReservations]);
+
   const tablesCount = statsRaw.tablesCount || 0;
   const dishesCount = statsRaw.dishesCount || 0;
 
@@ -42,21 +60,21 @@ export default function AdminDashboard() {
     {
       config: {
         ...STAT_CARD_THEMES.todayReservations,
-        title: 'Reservas en total',
+        title: 'Reservas Futuras',
       },
-      value: totalReservations,
-      subtitle: `${confirmedCount} confirmadas, ${pendingCount} pendientes`,
+      value: futureStats.total,
+      subtitle: `${futureStats.confirmed} confirmadas, ${futureStats.pending} pendientes`,
       renderExtra: (
         <div className="w-full h-2 rounded-full bg-gray-200 mt-2 relative overflow-hidden">
           <div
             className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-500"
-            style={{ width: `${(confirmedCount / (totalReservations || 1)) * 100}%` }}
+            style={{ width: `${(futureStats.confirmed / (futureStats.total || 1)) * 100}%` }}
           />
           <div
             className="absolute top-0 h-full bg-amber-500 transition-all duration-500"
             style={{ 
-              left: `${(confirmedCount / (totalReservations || 1)) * 100}%`,
-              width: `${(pendingCount / (totalReservations || 1)) * 100}%` 
+              left: `${(futureStats.confirmed / (futureStats.total || 1)) * 100}%`,
+              width: `${(futureStats.pending / (futureStats.total || 1)) * 100}%` 
             }}
           />
         </div>
@@ -64,9 +82,9 @@ export default function AdminDashboard() {
     },
     {
       config: STAT_CARD_THEMES.pending,
-      value: pendingCount,
+      value: futureStats.pending,
       subtitle: 'Requieren atención',
-      trend: pendingCount > 0 ? { value: 8, isPositive: false } : undefined,
+      trend: futureStats.pending > 0 ? { value: 8, isPositive: false } : undefined,
     },
   ];
 

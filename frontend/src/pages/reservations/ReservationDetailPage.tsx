@@ -42,11 +42,10 @@ export default function ReservationDetailPage() {
   const navigate = useNavigate();
 
   const { currentReservation, fetchReservation, deleteReservation } = useReservationStore();
-  const { dishes: reservationDishes, removeDish, fetchDishes, updateDishQuantity } = useReservationDishStore();
+  const { dishes: reservationDishes, addDish, removeDish, fetchDishes, updateDishQuantity } = useReservationDishStore();
   const { dishes: availableDishes, fetchDishes: fetchMenu } = useDishesStore();
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [dishes, setDishes] = useState(reservationDishes);
   const [editingDish, setEditingDish] = useState<ReservationDish | null>(null);
   const [editQuantity, setEditQuantity] = useState<number>(0);
 
@@ -56,10 +55,6 @@ export default function ReservationDetailPage() {
     fetchDishes(reservationId);
     fetchMenu();
   }, [reservationId]);
-
-  useEffect(() => {
-    setDishes(reservationDishes.map(d => ({ ...d })));
-  }, [reservationDishes]);
 
   const openEditModal = (dish: ReservationDish) => {
     setEditingDish(dish);
@@ -73,10 +68,8 @@ export default function ReservationDetailPage() {
     try {
       if (editQuantity === 0) {
         await removeDish(reservationId, dishId);
-        setDishes(prev => prev.filter(d => d.dishId !== dishId));
       } else {
         await updateDishQuantity(reservationId, dishId, editQuantity);
-        setDishes(prev => prev.map(d => d.dishId === dishId ? { ...d, quantity: editQuantity } : d));
       }
     } catch (err) {
       console.error("Error al actualizar plato:", err);
@@ -85,28 +78,26 @@ export default function ReservationDetailPage() {
     }
   };
 
-  const handleAddDish = (dishId: number) => {
-    const existing = dishes.find(d => d.dishId === dishId);
-    const dishInfo = availableDishes.find(d => d.id === dishId);
-    if (!dishInfo) return;
+  const handleAddDish = async (dishId: number) => {
+    const existing = reservationDishes.find(d => d.dishId === dishId);
 
-    if (existing) {
-      setDishes(prev => prev.map(d => d.dishId === dishId ? { ...d, quantity: d.quantity + 1 } : d));
-    } else {
-      setDishes(prev => [...prev, {
-        dishId: dishInfo.id,
-        dishName: dishInfo.name,
-        price: dishInfo.price,
-        category: dishInfo.category,
-        quantity: 1
-      }]);
+    try {
+      if (existing) {
+        // Si el plato ya existe, incrementar la cantidad
+        await updateDishQuantity(reservationId, dishId, existing.quantity + 1);
+      } else {
+        // Si es un plato nuevo, añadirlo a la reserva
+        await addDish(reservationId, { dishId, quantity: 1 });
+      }
+    } catch (err) {
+      console.error("Error al añadir plato:", err);
+    } finally {
+      setIsAddModalOpen(false);
     }
-
-    setIsAddModalOpen(false);
   };
 
-  // Calcular total
-  const totalPrice = dishes.reduce((sum, dish) => sum + (dish.price * dish.quantity), 0);
+  // Calcular total directamente desde reservationDishes del store
+  const totalPrice = reservationDishes.reduce((sum, dish) => sum + (dish.price * dish.quantity), 0);
 
   if (!currentReservation) {
     return (
@@ -285,7 +276,7 @@ export default function ReservationDetailPage() {
           {/* LISTA DE PLATOS */}
           <div className="space-y-3">
             <AnimatePresence mode="popLayout">
-              {dishes.length === 0 ? (
+              {reservationDishes.length === 0 ? (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -303,7 +294,7 @@ export default function ReservationDetailPage() {
                   </p>
                 </motion.div>
               ) : (
-                dishes.map((dish, index) => (
+                reservationDishes.map((dish, index) => (
                   <motion.div
                     key={dish.dishId}
                     initial={{ opacity: 0, x: -20 }}
@@ -348,7 +339,7 @@ export default function ReservationDetailPage() {
           </div>
 
           {/* TOTAL */}
-          {dishes.length > 0 && (
+          {reservationDishes.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}

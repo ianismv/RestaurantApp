@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ReservationEditModal } from './ReservationEditModal';
+import { useToast } from '@/components/ui/use-toast';
 
 const statusConfig = {
   Pending: { label: 'Pendiente', color: 'bg-yellow-100 text-yellow-800' },
@@ -18,6 +19,7 @@ const statusConfig = {
   Cancelled: { label: 'Cancelada', color: 'bg-red-100 text-red-800' },
   Completed: { label: 'Completada', color: 'bg-blue-100 text-blue-800' },
 };
+
 
 export default function AdminReservationsPage() {
   const {
@@ -34,6 +36,8 @@ export default function AdminReservationsPage() {
   const [search, setSearch] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [editingReservationId, setEditingReservationId] = useState<number | null>(null);
+  const { toast } = useToast(); // Agregar esta línea junto a los otros hooks
+
 
   const editingReservation = useMemo(() => {
     if (!editingReservationId) return null;
@@ -132,8 +136,24 @@ export default function AdminReservationsPage() {
       console.error('Error al cancelar:', error);
     }
   };
+  
   const handleDelete = async (id: number) => {
-    if (confirm('¿Estás seguro de eliminar esta reserva?')) await deleteReservation(id);
+    if (!confirm('¿Estás seguro de eliminar esta reserva?')) return;
+    
+    try {
+      await deleteReservation(id);
+      toast({ 
+        title: '✅ Reserva eliminada', 
+        description: 'La reserva fue eliminada correctamente.' 
+      });
+    } catch (error: any) {
+      const message = error.response?.data || error.message || 'No se pudo eliminar la reserva';
+      toast({
+        title: '❌ No se puede eliminar',
+        description: message,
+        variant: 'destructive',
+      });
+    }
   };
 
   const normalizeStatus = (status?: string) =>

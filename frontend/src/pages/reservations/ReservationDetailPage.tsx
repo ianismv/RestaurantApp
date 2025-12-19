@@ -30,6 +30,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ReservationDish } from "@/services/reservationDish.api";
+import { useToast } from "@/hooks/use-toast";
 
 const statusConfig = {
   Pending: { 
@@ -70,6 +71,9 @@ export default function ReservationDetailPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingDish, setEditingDish] = useState<ReservationDish | null>(null);
   const [editQuantity, setEditQuantity] = useState<number>(0);
+
+  const { toast } = useToast(); // Agregar junto a los otros hooks
+
 
   useEffect(() => {
     if (!reservationId) return;
@@ -183,8 +187,21 @@ const StatusIcon = statusInfo.icon;
               variant="delete"
               icon="trash"
               onConfirm={async () => {
-                await deleteReservation(reservationId);
-                navigate("/reservations");
+                try {
+                  await deleteReservation(reservationId);
+                  toast({ 
+                    title: '✅ Reserva eliminada', 
+                    description: 'La reserva fue eliminada correctamente.' 
+                  });
+                  navigate("/reservations");
+                } catch (error: any) {
+                  const message = error.response?.data || error.message || 'No se pudo eliminar la reserva';
+                  toast({
+                    title: '❌ No se puede eliminar la reserva',   
+                    description: message,
+                    variant: 'destructive',
+                  });
+                }
               }}
             />
           </div>

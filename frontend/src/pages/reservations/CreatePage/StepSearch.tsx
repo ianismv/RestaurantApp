@@ -189,9 +189,6 @@ export function StepSearch({
         <p>• Máximo <strong>20 comensales</strong> por reserva</p>
         <p>• Las fechas pasadas no están disponibles</p>
         <p>• <strong>IMPORTANTE: </strong>No se pueden eliminar reservas con menos de 24 horas de anticipación</p>
-
-
-
       </div>
 
       <Button

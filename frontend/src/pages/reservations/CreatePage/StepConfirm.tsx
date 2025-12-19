@@ -4,11 +4,60 @@ import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useReservations } from '@/hooks/useReservations';
+import { useState } from 'react';
 
 export function StepConfirm({ form, onNext, onBack }: { form: ReturnType<typeof useReservations>, onNext: () => void, onBack: () => void }) {
+  const [isAddingToCalendar, setIsAddingToCalendar] = useState(false);
+
+  const createGoogleCalendarEvent = () => {
+    if (!form.date || !form.selectedSlot) return;
+
+    // Parsear la fecha y hora de inicio
+    const [startHour, startMinute] = form.selectedSlot.startTime.split(':');
+    const [endHour, endMinute] = form.selectedSlot.endTime.split(':');
+    
+    const startDate = new Date(form.date);
+    startDate.setHours(parseInt(startHour), parseInt(startMinute), 0);
+    
+    const endDate = new Date(form.date);
+    endDate.setHours(parseInt(endHour), parseInt(endMinute), 0);
+
+    // Formatear fechas para Google Calendar (formato ISO sin separadores)
+    const formatGoogleDate = (date: Date) => {
+      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
+
+    // Construir detalles del evento
+    const title = encodeURIComponent(`Reserva - ${form.selectedSlot.tableName}`);
+    const details = encodeURIComponent(
+      `Reserva confirmada\n\n` +
+      `Mesa: ${form.selectedSlot.tableName}\n` +
+      `Ubicación: ${form.selectedSlot.location}\n` +
+      `Personas: ${form.guests}\n` +
+      (form.notes ? `\nNotas: ${form.notes}` : '')
+    );
+    const location = encodeURIComponent(form.selectedSlot.location);
+    const dates = `${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}`;
+
+    // Crear URL de Google Calendar
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}&sf=true&output=xml`;
+
+    // Abrir en nueva pestaña
+    window.open(googleCalendarUrl, '_blank');
+  };
+
   const handleConfirm = async () => {
+    setIsAddingToCalendar(true);
     const reservation = await form.confirmReservation();
-    if (reservation) onNext();
+    
+    if (reservation) {
+      // Agregar a Google Calendar después de confirmar
+      createGoogleCalendarEvent();
+      setIsAddingToCalendar(false);
+      onNext();
+    } else {
+      setIsAddingToCalendar(false);
+    }
   };
 
   if (!form.selectedSlot) return <p className="text-muted-foreground">No hay mesa seleccionada.</p>;
@@ -32,8 +81,8 @@ export function StepConfirm({ form, onNext, onBack }: { form: ReturnType<typeof 
         <textarea placeholder="Notas adicionales..." value={form.notes} onChange={e => form.setNotes(e.target.value)} className="w-full p-3 rounded-xl border bg-secondary/20 resize-none" />
         <div className="flex justify-between">
           <Button variant="outline" onClick={onBack}>Volver</Button>
-          <Button onClick={handleConfirm} disabled={form.creatingReservation}>
-            {form.creatingReservation ? 'Confirmando...' : 'Confirmar'}
+          <Button onClick={handleConfirm} disabled={form.creatingReservation || isAddingToCalendar}>
+            {form.creatingReservation || isAddingToCalendar ? 'Confirmando...' : 'Confirmar y agregar a calendario'}
           </Button>
         </div>
       </div>

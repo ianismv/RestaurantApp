@@ -385,7 +385,7 @@ const StatusIcon = statusInfo.icon;
                         size="sm"
                         variant="outline"
                         onClick={() => openEditModal(dish)}
-                        className="gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                       >
                         <Edit3 className="h-3 w-3" />
                         Editar

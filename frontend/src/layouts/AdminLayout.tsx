@@ -48,13 +48,27 @@ export function AdminLayout() {
     }
   };
 
+  const closeMobileSidebar = () => {
+    setMobileOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background flex">
-      {/* Sidebar desktop */}
+      {/* Sidebar desktop (sticky) */}
       <motion.aside
         initial={false}
         animate={{ width: sidebarCollapsed ? 80 : 280 }}
-        className="hidden sm:flex fixed left-0 top-0 h-screen glass-card border-r border-border/50 z-50 flex-col"
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="
+          hidden sm:flex
+          sticky top-0
+          h-screen
+          glass-card
+          border-r border-border/50
+          flex-col
+          shrink-0
+          overflow-y-auto
+        "
       >
         <SidebarContent
           user={user}
@@ -64,48 +78,68 @@ export function AdminLayout() {
           toggleSidebarCollapse={toggleSidebarCollapse}
           handleLogout={handleLogout}
           isLoggingOut={isLoggingOut}
+          onNavigate={() => {}}
         />
       </motion.aside>
 
       {/* Sidebar mobile overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.aside
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            className="fixed inset-0 z-50 bg-background/95 glass-card p-4 flex flex-col sm:hidden"
-          >
-            <div className="flex justify-end mb-4">
-              <Button variant="ghost" size="icon" onClick={() => setMobileOpen(false)}>
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-            <SidebarContent
-              user={user}
-              sidebarCollapsed={false}
-              navLinks={navLinks}
-              isActive={isActive}
-              toggleSidebarCollapse={() => {}}
-              handleLogout={() => {
-                handleLogout();
-                setMobileOpen(false);
-              }}
-              isLoggingOut={isLoggingOut}
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-40 sm:hidden"
+              onClick={closeMobileSidebar}
             />
-          </motion.aside>
+
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="
+                fixed inset-y-0 left-0
+                w-[280px]
+                z-50
+                bg-background
+                glass-card
+                flex flex-col
+                sm:hidden
+                border-r border-border/50
+              "
+            >
+              <SidebarContent
+                user={user}
+                sidebarCollapsed={false}
+                navLinks={navLinks}
+                isActive={isActive}
+                toggleSidebarCollapse={closeMobileSidebar}
+                handleLogout={() => {
+                  handleLogout();
+                  closeMobileSidebar();
+                }}
+                isLoggingOut={isLoggingOut}
+                onNavigate={closeMobileSidebar}
+                isMobile
+              />
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-1 transition-all duration-300 sm:ml-[280px]">
+      <main className="flex-1 min-w-0">
         {/* Mobile top bar */}
-        <div className="sm:hidden flex items-center justify-between p-4 border-b border-border/50">
+        <div className="sm:hidden flex items-center justify-between p-4 border-b border-border/50 glass-card sticky top-0 z-30">
           <Button variant="ghost" size="icon" onClick={() => setMobileOpen(true)}>
             <Menu className="h-6 w-6" />
           </Button>
-          <span className="font-semibold text-lg animate-pulse">Admin</span>
+          <span className="font-semibold text-lg gradient-text">Admin</span>
+          <div className="w-10" />
         </div>
+
         <div className="p-4 sm:p-8">
           <Outlet />
         </div>
@@ -122,11 +156,13 @@ function SidebarContent({
   toggleSidebarCollapse,
   handleLogout,
   isLoggingOut,
+  onNavigate,
+  isMobile = false,
 }: any) {
   return (
     <>
       {/* Logo */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-border/50">
+      <div className="h-16 flex items-center justify-between px-4 border-b border-border/50 shrink-0">
         {!sidebarCollapsed && (
           <div className="flex items-center gap-2">
             <span className="text-2xl">🍽️</span>
@@ -140,17 +176,31 @@ function SidebarContent({
           size="icon"
           onClick={toggleSidebarCollapse}
           className="h-8 w-8 shrink-0"
+          title={
+            isMobile
+              ? 'Cerrar menú'
+              : sidebarCollapsed
+              ? 'Expandir'
+              : 'Contraer'
+          }
         >
-          {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+          {isMobile ? (
+            <X className="h-4 w-4" />
+          ) : sidebarCollapsed ? (
+            <ChevronRight className="h-4 w-4" />
+          ) : (
+            <ChevronLeft className="h-4 w-4" />
+          )}
         </Button>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {navLinks.map((link: any) => (
           <Link
             key={link.to}
             to={link.to}
+            onClick={onNavigate}
             className={cn(
               'flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200',
               isActive(link.to, link.end)
@@ -159,21 +209,32 @@ function SidebarContent({
             )}
           >
             <link.icon className="h-5 w-5 shrink-0" />
-            {!sidebarCollapsed && <span className="text-sm font-medium whitespace-nowrap">{link.label}</span>}
+            {!sidebarCollapsed && (
+              <span className="text-sm font-medium whitespace-nowrap">
+                {link.label}
+              </span>
+            )}
           </Link>
         ))}
       </nav>
 
       {/* User Section */}
-      <div className="p-4 border-t border-border/50">
-        <div className={cn('flex items-center gap-3 mb-3', sidebarCollapsed && 'justify-center')}>
+      <div className="p-4 border-t border-border/50 shrink-0">
+        <div
+          className={cn(
+            'flex items-center gap-3 mb-3',
+            sidebarCollapsed && 'justify-center'
+          )}
+        >
           <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
             <User className="h-5 w-5 text-primary" />
           </div>
           {!sidebarCollapsed && (
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">{user?.name}</p>
-              <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+              <p className="text-xs text-muted-foreground truncate">
+                {user?.email}
+              </p>
             </div>
           )}
         </div>
@@ -181,10 +242,17 @@ function SidebarContent({
           variant="ghost"
           onClick={handleLogout}
           disabled={isLoggingOut}
-          className={cn('w-full justify-start text-muted-foreground hover:text-foreground', sidebarCollapsed && 'justify-center px-2')}
+          className={cn(
+            'w-full justify-start text-muted-foreground hover:text-foreground',
+            sidebarCollapsed && 'justify-center px-2'
+          )}
         >
           <LogOut className="h-4 w-4 shrink-0" />
-          {!sidebarCollapsed && <span className="ml-2">{isLoggingOut ? 'Cerrando...' : 'Cerrar Sesión'}</span>}
+          {!sidebarCollapsed && (
+            <span className="ml-2">
+              {isLoggingOut ? 'Cerrando...' : 'Cerrar Sesión'}
+            </span>
+          )}
         </Button>
       </div>
     </>

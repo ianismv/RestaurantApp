@@ -11,7 +11,6 @@ import {
   CheckCircle,
   ArrowRight,
   AlertCircle,
-  UtensilsCrossed,
   StickyNote,
   Sparkles,
 } from 'lucide-react';
@@ -189,9 +188,7 @@ export default function ReservationsListPage() {
                   {reservation.notes}
                 </>
               ) : (
-                <span className="italic">
-                  Sin notas adicionales
-                </span>
+                <span className="italic">Sin notas adicionales</span>
               )}
             </p>
           </div>
@@ -243,12 +240,30 @@ export default function ReservationsListPage() {
               <CardSkeleton key={i} />
             ))}
           </div>
+        ) : reservations.length === 0 ? (
+          <EmptyReservationsCTA />
         ) : (
           <>
-            <Section title="Próximas confirmadas" items={groupedReservations.futureConfirmed} render={renderReservationCard} />
-            <Section title="Pendientes de confirmación" items={groupedReservations.futurePending} render={renderReservationCard} />
-            <Section title="Historial" items={groupedReservations.completed} render={renderReservationCard} />
-            <Section title="Canceladas" items={groupedReservations.cancelled} render={renderReservationCard} />
+            <Section
+              title="Próximas confirmadas"
+              items={groupedReservations.futureConfirmed}
+              render={renderReservationCard}
+            />
+            <Section
+              title="Pendientes de confirmación"
+              items={groupedReservations.futurePending}
+              render={renderReservationCard}
+            />
+            <Section
+              title="Historial"
+              items={groupedReservations.completed}
+              render={renderReservationCard}
+            />
+            <Section
+              title="Canceladas"
+              items={groupedReservations.cancelled}
+              render={renderReservationCard}
+            />
           </>
         )}
       </div>
@@ -303,4 +318,34 @@ function DateBadge({ date }: { date: Date }) {
       </span>
     );
   return null;
+}
+
+/* ---------- EMPTY STATE ---------- */
+
+function EmptyReservationsCTA() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="relative overflow-hidden glass-card rounded-2xl p-12 text-center"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-amber-500/10 pointer-events-none" />
+
+      <div className="relative z-10 max-w-md mx-auto space-y-6">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/20">
+          <Calendar className="h-10 w-10 text-primary" />
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold">
+            Aún no tenés reservas
+          </h3>
+          <p className="text-muted-foreground">
+            Reservá tu mesa en pocos pasos y asegurá tu lugar cuando
+            quieras disfrutar una gran experiencia.
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
 }

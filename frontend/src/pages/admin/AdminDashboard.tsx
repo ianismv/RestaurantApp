@@ -24,21 +24,20 @@ export default function AdminDashboard() {
 
   // Filtrar solo reservas futuras (incluyendo hoy)
   const futureReservations = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    return reservations.filter(reservation => {
-      const reservationDate = new Date(reservation.date);
-      reservationDate.setHours(0, 0, 0, 0);
-      return reservationDate >= today;
-    });
+    const today = new Date().toISOString().split('T')[0];
+
+    return reservations.filter(r =>
+      r.date.split('T')[0] >= today
+    );
   }, [reservations]);
 
   // Calcular estadísticas solo para reservas futuras
   const futureStats = useMemo(() => {
     const total = futureReservations.length;
-    const confirmed = futureReservations.filter(r => r.status === 'Confirmed').length;
-    const pending = futureReservations.filter(r => r.status === 'Pending').length;
+    const normalize = (s?: string) => s?.trim().toLowerCase();
+
+    const confirmed = futureReservations.filter(r => normalize(r.status) === 'confirmed').length;
+    const pending = futureReservations.filter(r => normalize(r.status) === 'pending').length;
     
     return { total, confirmed, pending };
   }, [futureReservations]);

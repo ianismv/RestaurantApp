@@ -223,6 +223,7 @@ export default function ReservationsListPage() {
             <p className="text-muted-foreground">
               Gestioná todas tus reservas desde aquí
             </p>
+            <p className="text-muted-foreground">• <strong>IMPORTANTE: </strong>No se pueden eliminar reservas pasadas, ni con menos de 24 horas de anticipación</p>
           </div>
 
           <Link to="/reservations/create">
